@@ -1,6 +1,7 @@
 import path from "path";
 import nodeExternals from "webpack-node-externals";
 import NodemonPlugin from "nodemon-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
 
 const src = path.resolve(__dirname, "src");
 
@@ -11,7 +12,7 @@ const config = {
     publicPath: "/",
     filename: "server.js"
   },
-  plugins: [new NodemonPlugin()],
+  plugins: [new NodemonPlugin(), new CopyPlugin([{ from: ".env" }])],
   target: "node",
   node: {
     fs: "empty",

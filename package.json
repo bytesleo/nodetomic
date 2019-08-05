@@ -1,18 +1,32 @@
 {
+  "private": true,
   "name": "node-cool-boilerplate",
   "version": "1.0.0",
-  "description": "Server",
+  "description": "Node, Express, MongoDB, Sockets, Redis, JWT, Webpack, Babel 7",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "nodejs",
+    "boilerplate",
+    "express",
+    "redis",
+    "mongodb",
+    "node-boilerplate",
+    "express-boilerplate"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/kevoj/node-cool-boilerplate.git"
   },
-  "author": "",
+  "author": {
+    "name": "leonardo Rico",
+    "email": "leonardo.ricog@gmail.com",
+    "url": "https://github.com/kevoj"
+  },
   "license": "MIT",
   "dependencies": {
     "@hapi/joi": "^15.1.0",

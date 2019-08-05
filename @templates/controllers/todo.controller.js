@@ -1,5 +1,6 @@
 // Libs
 import { success, error } from "express-easy-helper";
+import validator from "validator";
 // Business
 import TodoBusiness from "@/business/todo.business";
 
@@ -29,6 +30,11 @@ const all = async (req, res) => {
 const create = async (req, res) => {
   try {
     const { name, completed } = req.body;
+
+    if (validator.isEmpty(name)) throw "The name cannot be empty";
+    if (validator.isEmpty(completed)) throw "The completed cannot be empty";
+    if (!validator.isBoolean(completed)) throw "The completed is not valid";
+
     const data = await TodoBusiness.createTodo({
       name,
       completed
@@ -49,6 +55,10 @@ const create = async (req, res) => {
 const read = async (req, res) => {
   try {
     const todoId = req.params.id;
+
+    if (validator.isEmpty(todoId)) throw "The todoId cannot be empty";
+    if (!validator.isMongoId(todoId)) throw "The todoId is not valid";
+
     const data = await TodoBusiness.readTodo(todoId);
     return success(res, data);
   } catch (err) {
@@ -67,6 +77,13 @@ const update = async (req, res) => {
   try {
     const todoId = req.params.id;
     const { name, completed } = req.body;
+
+    if (validator.isEmpty(todoId)) throw "The todoId cannot be empty";
+    if (!validator.isMongoId(todoId)) throw "The todoId is not valid";
+    if (validator.isEmpty(name)) throw "The name cannot be empty";
+    if (validator.isEmpty(completed)) throw "The completed cannot be empty";
+    if (!validator.isBoolean(completed)) throw "The completed is not valid";
+
     const data = await TodoBusiness.updateTodo(todoId, {
       name,
       completed
@@ -87,6 +104,10 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     const todoId = req.params.id;
+
+    if (validator.isEmpty(todoId)) throw "The todoId cannot be empty";
+    if (!validator.isMongoId(todoId)) throw "The todoId is not valid";
+
     const data = await TodoBusiness.removeTodo(todoId);
     return success(res, data);
   } catch (err) {

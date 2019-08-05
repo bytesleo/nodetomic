@@ -1,5 +1,6 @@
 // Libs
 import { forbidden, error } from "express-easy-helper";
+import validator from "validator";
 // Utils
 import { check } from "@/utils/auth.util";
 
@@ -15,6 +16,8 @@ const mw = required => {
       let token = req.headers["authorization"];
 
       if (token) {
+        // Is JWT format
+        if (validator.isJWT(token)) throw "Token is not valid";
         // Add Bearer to authorization Header
         req.headers.authorization = `Bearer ${token}`;
 

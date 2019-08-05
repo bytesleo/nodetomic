@@ -1,5 +1,6 @@
 // Libs
 import { success, error, unauthorized } from "express-easy-helper";
+import validator from "validator";
 // Business
 import AuthBusiness from "@/business/auth.business";
 // Utils
@@ -17,6 +18,9 @@ import { TTL } from "@/constants/config.constant";
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    if (validator.isEmpty(email)) throw "The email cannot be empty";
+    if (validator.isEmpty(password)) throw "The password cannot be empty";
 
     const user = await AuthBusiness.authenticateUser(email, password);
     if (user) {
@@ -41,6 +45,15 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   try {
     const { name, last_name, email, password } = req.body;
+
+    if (validator.isEmpty(name)) throw "The name cannot be empty";
+    if (validator.isEmpty(last_name)) throw "The last_name cannot be empty";
+    if (validator.isEmpty(email)) throw "The email cannot be empty";
+    if (!validator.isEmail(email)) throw "The email is not valid";
+    if (validator.isEmpty(phone)) throw "The phone cannot be empty";
+    if (!validator.isMobilePhone(phone)) throw "The phone is not valid";
+    if (validator.isEmpty(password)) throw "The password cannot be empty";
+
     const data = await AuthBusiness.registerUser(
       name,
       last_name,
@@ -64,6 +77,10 @@ const register = async (req, res) => {
 const recover = async (req, res) => {
   try {
     const { email } = req.body;
+
+    if (validator.isEmpty(email)) throw "The email cannot be empty";
+    if (!validator.isEmail(email)) throw "The email is not valid";
+
     const data = await AuthBusiness.recoverUser(email);
     return success(res, data);
   } catch (err) {
@@ -81,6 +98,9 @@ const recover = async (req, res) => {
 const me = async (req, res) => {
   try {
     const userId = req.user.id;
+
+    if (validator.isEmpty(userId)) throw "The userId cannot be empty";
+
     if (user) {
       let data = await AuthBusiness.currentUser(userId);
       return data ? success(res, data) : unauthorized(res);
@@ -102,6 +122,11 @@ const me = async (req, res) => {
 const verify = async (req, res) => {
   try {
     const { phone, code } = req.body;
+
+    if (validator.isEmpty(phone)) throw "The phone cannot be empty";
+    if (!validator.isMobilePhone(phone)) throw "The phone is not valid";
+    if (validator.isEmpty(code)) throw "The code cannot be empty";
+
     const user = await AuthBusiness.verifyCode(phone, code);
     if (user) {
       const { _id, permissions } = user;

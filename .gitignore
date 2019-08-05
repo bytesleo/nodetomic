@@ -1,0 +1,11 @@
+node_modules
+dist
+backups
+.DS_Store
+.env
+.env.test
+.env.production
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

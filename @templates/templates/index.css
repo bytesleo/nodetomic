@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+}
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+img {
+  max-width: 80px;
+}
+h1,
+span {
+  font-family: sans-serif;
+  font-weight: 100;
+}
+h1 {
+  color: #333;
+  margin: 8px;
+}
+
+span {
+  color: #6f6f6f;
+}

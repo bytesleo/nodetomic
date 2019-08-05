@@ -1,0 +1,17 @@
+{
+  "presets": ["@babel/env"],
+  "plugins": [
+    [
+      "babel-plugin-root-import",
+
+      {
+        "rootPathPrefix": "@",
+        "rootPathSuffix": "./src"
+      }
+    ],
+    "@babel/plugin-transform-async-to-generator",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/transform-runtime",
+    "@babel/plugin-syntax-dynamic-import"
+  ]
+}

@@ -32,7 +32,7 @@ JWT_SECRET=KYTzTm5U7LKSh4ma
 
 ```bash
 NAME=node-cool-boilerplate
-MODE=test
+MODE=production
 HOST=localhost
 PORT=8000
 WS=8001

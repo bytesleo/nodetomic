@@ -1,5 +1,5 @@
 // Libs
-import { forbidden, error } from "express-easy-helper";
+import { forbidden, unauthorized, error } from "express-easy-helper";
 import validator from "validator";
 // Utils
 import { check } from "@/utils/auth.util";
@@ -16,14 +16,15 @@ const mw = required => {
       let token = req.headers["authorization"];
 
       if (token) {
-        // Is JWT format
-        if (validator.isJWT(token)) throw "Token is not valid";
         // Add Bearer to authorization Header
         req.headers.authorization = `Bearer ${token}`;
+        // Is JWT format
+        if (validator.isJWT(req.headers.authorization))
+          throw "Token is not valid";
 
         // Verify Token in Redis, if exists, then return decode token { key, iat}
         const session = await check(token);
-        if (!session) return next(forbidden(res));
+        if (!session) return next(unauthorized(res));
 
         // Validate permissions
         if (required) {

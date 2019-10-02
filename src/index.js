@@ -6,13 +6,17 @@ import { MODE, HOST, PORT, WS } from "@/constants/config.constant";
 import { init } from "./app";
 
 (async () => {
-  const app = await init();
-  app.listen(PORT, () => {
-    console.log(`-------
+  try {
+    const app = await init();
+    app.listen(PORT, () => {
+      console.log(`-------
 ${chalk.black.bgGreenBright(`->Server is ready!<-`)}
   mode: ${chalk.blueBright(`${MODE}`)}
   url: ${chalk.blueBright(`http://${HOST}:${PORT}`)}
   sockets: ${chalk.blueBright(`http://${HOST}:${WS}`)}
 -------`);
-  });
+    });
+  } catch (error) {
+    console.log(chalk.red.bold(error));
+  }
 })();

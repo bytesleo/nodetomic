@@ -7,22 +7,18 @@ import { connect as ws } from "@/libs/socketio.lib";
  * init
  */
 const init = async () => {
-  try {
-    // 1. Create Express app
-    const app = await express();
-    // 2. Connect to DB (You can enable seeds)
-    await db();
-    // 3. Connect to Redis
-    await redis();
-    // 4. Add Routes to app
-    await routes(app);
-    // 5. Connect Sockets (idle to connections...)
-    sockets();
-    // 6. return app to init listen
-    return app;
-  } catch (error) {
-    console.log({ error });
-  }
+  // 1. Create Express app
+  const app = await express();
+  // 2. Connect to DB (You can enable seeds)
+  await db();
+  // 3. Connect to Redis
+  await redis();
+  // 4. Add Routes to app
+  await routes(app);
+  // 5. Connect Sockets (idle to connections...)
+  sockets();
+  // 6. return app to init listen
+  return app;
 };
 
 /**

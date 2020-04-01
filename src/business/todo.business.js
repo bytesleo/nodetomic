@@ -2,21 +2,21 @@
 import TodoModel from "@/models/todo.model";
 
 /**
- * allTodos
+ * all
  *
  * @returns
  */
-const allTodos = async () => {
+const all = async () => {
   return await TodoModel.find().sort({ created_at: 1 });
 };
 
 /**
- * createTodo
+ * create
  *
  * @param {*} { name, completed }
  * @returns
  */
-const createTodo = async ({ name, completed }) => {
+const create = async ({ name, completed }) => {
   return await TodoModel.create({
     name,
     completed
@@ -24,23 +24,23 @@ const createTodo = async ({ name, completed }) => {
 };
 
 /**
- * readTodo
+ * read
  *
  * @param {*} todoId
  * @returns
  */
-const readTodo = async todoId => {
+const read = async todoId => {
   return await TodoModel.find({ _id: todoId });
 };
 
 /**
- * updateTodo
+ * update
  *
  * @param {*} todoId
  * @param {*} { name, completed }
  * @returns
  */
-const updateTodo = async (todoId, { name, completed }) => {
+const update = async (todoId, { name, completed }) => {
   return await TodoModel.updateOne(
     { _id: todoId },
     {
@@ -52,19 +52,19 @@ const updateTodo = async (todoId, { name, completed }) => {
 };
 
 /**
- * removeTodo
+ * remove
  *
  * @param {*} todoId
  * @returns
  */
-const removeTodo = async todoId => {
+const remove = async todoId => {
   return await TodoModel.deleteOne({ _id: todoId });
 };
 
 export default {
-  allTodos,
-  createTodo,
-  readTodo,
-  updateTodo,
-  removeTodo
+  all,
+  create,
+  read,
+  update,
+  remove
 };

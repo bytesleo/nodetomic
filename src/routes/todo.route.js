@@ -1,10 +1,13 @@
+import express from "express";
 // Controllers
 import TodoController from "@/controllers/todo.controller";
+// Constants
+const router = express.Router();
 
-export default app => {
-  app.get("/api/todo/all", TodoController.all);
-  app.post("/api/todo/create", TodoController.create);
-  app.get("/api/todo/read/:id", TodoController.read);
-  app.put("/api/todo/update/:id", TodoController.update);
-  app.delete("/api/todo/remove/:id", TodoController.remove);
-};
+router.get("/api/todo/all", TodoController.all);
+router.post("/api/todo/create", TodoController.create);
+router.get("/api/todo/read/:id", TodoController.read);
+router.put("/api/todo/update/:id", TodoController.update);
+router.delete("/api/todo/remove/:id", TodoController.remove);
+
+export default router;

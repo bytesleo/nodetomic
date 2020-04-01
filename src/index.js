@@ -3,20 +3,22 @@ import chalk from "chalk";
 // Constants
 import { MODE, HOST, PORT, WS } from "@/constants/config.constant";
 // App
-import { init } from "./app";
+import { init } from "@/app";
+import { app } from "@/libs/express.lib";
 
 (async () => {
   try {
-    const app = await init();
+    await init();
     app.listen(PORT, () => {
-      console.log(`-------
-${chalk.black.bgGreenBright(`->Server is ready!<-`)}
-  mode: ${chalk.blueBright(`${MODE}`)}
-  url: ${chalk.blueBright(`http://${HOST}:${PORT}`)}
-  sockets: ${chalk.blueBright(`http://${HOST}:${WS}`)}
--------`);
+      console.log(
+        `-------\n${chalk.black.bgGreenBright(
+          `🚀 Server is ready!`
+        )}\nmode: ${chalk.blueBright(`${MODE}`)}\nurl: ${chalk.blueBright(
+          `http://${HOST}:${PORT}`
+        )}\nsockets: ${chalk.blueBright(`http://${HOST}:${WS}`)}\n-------`
+      );
     });
   } catch (error) {
-    console.log(chalk.red.bold(error));
+    console.log(`${chalk.red.bold(error)}`);
   }
 })();

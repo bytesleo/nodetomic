@@ -12,7 +12,18 @@ const config = {
     publicPath: "/",
     filename: "server.js"
   },
-  plugins: [new NodemonPlugin(), new CopyPlugin([{ from: ".env" }])],
+  plugins: [
+    new NodemonPlugin({
+      watch: [
+        path.resolve("./src"),
+        path.resolve(".env"),
+        path.resolve("package.json")
+      ],
+      ignore: ["./node_modules", "./dist"],
+      verbose: true
+    }),
+    new CopyPlugin([{ from: ".env" }])
+  ],
   target: "node",
   node: {
     fs: "empty",

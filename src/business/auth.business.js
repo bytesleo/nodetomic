@@ -2,13 +2,13 @@
 import UserModel from "@/models/user.model";
 
 /**
- * authenticateUser
+ * authenticate
  *
  * @param {*} email
  * @param {*} password
  * @returns
  */
-const authenticateUser = async (email, password) => {
+const authenticate = async (email, password) => {
   const user = await UserModel.findOne({
     email
   })
@@ -27,13 +27,13 @@ const authenticateUser = async (email, password) => {
 
 /**
  *
- * registerUser
+ * register
  *
  * @param {*} email
  * @param {*} password
  * @returns
  */
-const registerUser = async (name, last_name, email, password) => {
+const register = async (name, last_name, email, password) => {
   const code = Math.floor(1000 + Math.random() * 9000);
   const user = await UserModel.findOne({
     email
@@ -55,12 +55,12 @@ const registerUser = async (name, last_name, email, password) => {
 };
 
 /**
- * recoverUser
+ * recover
  *
  * @param {*} email
  * @returns
  */
-const recoverUser = async email => {
+const recover = async email => {
   const code = Math.floor(1000 + Math.random() * 9000);
 
   const user = await UserModel.findOne({
@@ -80,24 +80,24 @@ const recoverUser = async email => {
 };
 
 /**
- * currentUser
+ * current
  *
  * @param {*} userId
  * @returns
  */
-const currentUser = async userId => {
+const current = async userId => {
   return await UserModel.findById(userId)
     .select("-code_verification -enabled")
     .lean();
 };
 
 /**
- * verifyCode
+ * verify
  *
  * @param {*} code
  * @returns
  */
-const verifyCode = async code => {
+const verify = async code => {
   const user = await UserModel.findOne({
     code_verification: code,
     enabled: true
@@ -115,9 +115,9 @@ const verifyCode = async code => {
 };
 
 export default {
-  authenticateUser,
-  registerUser,
-  recoverUser,
-  currentUser,
-  verifyCode
+  authenticate,
+  register,
+  recover,
+  current,
+  verify
 };

@@ -10,13 +10,13 @@ const connect = () =>
     const r = new Redis(URI_REDIS);
 
     r.on("connect", function() {
-      console.log("->Redis: connected!");
+      console.log("✅ Redis: connected!");
       redis = r;
       resolve();
     });
 
     r.on("error", err => {
-      console.error("->Redis: error");
+      console.error("❌ Redis: error");
       reject(err);
     });
   });

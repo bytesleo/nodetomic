@@ -1,8 +1,9 @@
 // Libs
-import { success, error } from "express-easy-helper";
+import { success } from "express-easy-helper";
 import validator from "validator";
 // Business
 import TodoBusiness from "@/business/todo.business";
+import { error } from "@/utils/helper.util";
 
 /**
  * all
@@ -13,10 +14,10 @@ import TodoBusiness from "@/business/todo.business";
  */
 const all = async (req, res) => {
   try {
-    const data = await TodoBusiness.allTodos();
+    const data = await TodoBusiness.all();
     return success(res, data);
   } catch (err) {
-    return error(res, { err });
+    error(res, err);
   }
 };
 
@@ -35,13 +36,13 @@ const create = async (req, res) => {
     if (validator.isEmpty(completed)) throw "The completed cannot be empty";
     if (!validator.isBoolean(completed)) throw "The completed is not valid";
 
-    const data = await TodoBusiness.createTodo({
+    const data = await TodoBusiness.create({
       name,
       completed
     });
     return success(res, 201, data);
   } catch (err) {
-    return error(res, { err });
+    error(res, err);
   }
 };
 
@@ -59,10 +60,10 @@ const read = async (req, res) => {
     if (validator.isEmpty(todoId)) throw "The todoId cannot be empty";
     if (!validator.isMongoId(todoId)) throw "The todoId is not valid";
 
-    const data = await TodoBusiness.readTodo(todoId);
+    const data = await TodoBusiness.read(todoId);
     return success(res, data);
   } catch (err) {
-    return error(res, { err });
+    error(res, err);
   }
 };
 
@@ -84,13 +85,13 @@ const update = async (req, res) => {
     if (validator.isEmpty(completed)) throw "The completed cannot be empty";
     if (!validator.isBoolean(completed)) throw "The completed is not valid";
 
-    const data = await TodoBusiness.updateTodo(todoId, {
+    const data = await TodoBusiness.update(todoId, {
       name,
       completed
     });
     return success(res, data);
   } catch (err) {
-    return error(res, { err });
+    error(res, err);
   }
 };
 
@@ -108,10 +109,10 @@ const remove = async (req, res) => {
     if (validator.isEmpty(todoId)) throw "The todoId cannot be empty";
     if (!validator.isMongoId(todoId)) throw "The todoId is not valid";
 
-    const data = await TodoBusiness.removeTodo(todoId);
+    const data = await TodoBusiness.remove(todoId);
     return success(res, data);
   } catch (err) {
-    return error(res, { err });
+    error(res, err);
   }
 };
 

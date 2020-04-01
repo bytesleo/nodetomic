@@ -3,22 +3,19 @@ import { create as express } from "@/libs/express.lib";
 import { connect as mongoose } from "@/libs/mongoose.lib";
 import { connect as redis } from "@/libs/redis.lib";
 import { connect as ws } from "@/libs/socketio.lib";
+
 /**
  * init
  */
 const init = async () => {
-  // 1. Create Express app
-  const app = await express();
-  // 2. Connect to DB (You can enable seeds)
+  // 1. Connect to DB (You can enable seeds)
   await db();
-  // 3. Connect to Redis
+  // 2. Connect to Redis
   await redis();
-  // 4. Add Routes to app
-  await routes(app);
-  // 5. Connect Sockets (idle to connections...)
+  // 3. Create Express app and add routes
+  await routes();
+  // 4. Connect Sockets (idle to connections...)
   sockets();
-  // 6. return app to init listen
-  return app;
 };
 
 /**
@@ -26,6 +23,10 @@ const init = async () => {
  */
 const db = async () => {
   await mongoose();
+  // Models
+  require("@/models/user.model");
+  require("@/models/todo.model");
+  // Seeds
   // await require("@/seeds/user.seed").default();
   // await require("@/seeds/todo.seed").default();
 };
@@ -33,9 +34,11 @@ const db = async () => {
 /**
  * Routes
  */
-const routes = app => {
-  require("@/routes/auth.route").default(app);
-  require("@/routes/todo.route").default(app);
+const routes = async () => {
+  await express([
+    require("@/routes/auth.route").default,
+    require("@/routes/todo.route").default
+  ]);
 };
 
 /**

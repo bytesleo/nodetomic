@@ -15,7 +15,7 @@ const config = {
   plugins: [
     new NodemonPlugin({
       watch: [
-        path.resolve("./src"),
+        path.resolve("./dist"),
         path.resolve(".env"),
         path.resolve("package.json")
       ],

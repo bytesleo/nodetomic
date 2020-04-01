@@ -19,7 +19,7 @@ const config = {
         path.resolve(".env"),
         path.resolve("package.json")
       ],
-      ignore: ["./node_modules", "./dist"],
+      ignore: ["./node_modules"],
       verbose: true
     }),
     new CopyPlugin([{ from: ".env" }])

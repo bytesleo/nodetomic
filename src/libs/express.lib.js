@@ -68,8 +68,6 @@ const create = async (routes) => {
     })
   );
   app.use(express.static(path.resolve(__dirname, "./../src/templates")));
-
-  // return app;
 };
 
 export { create, app };

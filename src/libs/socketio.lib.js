@@ -1,4 +1,3 @@
-// Libs
 import redisAdapter from "socket.io-redis";
 // Constants
 import { WS, URI_WS_REDIS } from "@/constants/config.constant";

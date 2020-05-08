@@ -1,4 +1,3 @@
-// Libs
 import { success } from "express-easy-helper";
 import validator from "validator";
 // Business

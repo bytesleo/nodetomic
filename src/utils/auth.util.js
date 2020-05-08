@@ -1,4 +1,3 @@
-// Libs
 import jsonwebtoken from "jsonwebtoken";
 // Constants
 import { JWT_SECRET } from "@/constants/config.constant";

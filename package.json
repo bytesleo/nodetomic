@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "node-cool-boilerplate",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Node, Express, MongoDB, Sockets, Redis, JWT, Webpack, Babel 7",
   "main": "src/index.js",
   "scripts": {

@@ -10,26 +10,27 @@ const config = {
   output: {
     path: path.join(__dirname, "dist"),
     publicPath: "/",
-    filename: "server.js"
+    filename: "server.js",
   },
   plugins: [
     new NodemonPlugin({
       watch: [
         path.resolve("./dist"),
         path.resolve(".env"),
-        path.resolve("package.json")
+        path.resolve("package.json"),
       ],
       ignore: ["./node_modules"],
-      verbose: true
+      verbose: true,
+      delay: "1000",
     }),
-    new CopyPlugin([{ from: ".env" }])
+    new CopyPlugin([{ from: ".env" }]),
   ],
   target: "node",
   node: {
     fs: "empty",
     // Need this when working with express, otherwise the build fails
     __dirname: false, // if you don't put this is, __dirname
-    __filename: false // and __filename return blank or /
+    __filename: false, // and __filename return blank or /
   },
   externals: [nodeExternals()], // Need this to avoid error when working with Express
   module: {
@@ -38,14 +39,14 @@ const config = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
-      }
-    ]
+          loader: "babel-loader",
+        },
+      },
+    ],
   },
   stats: {
-    warnings: false
-  }
+    warnings: false,
+  },
 };
 
 export default config;

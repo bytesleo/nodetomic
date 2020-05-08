@@ -1,4 +1,3 @@
-// Libs
 import { forbidden, unauthorized, error } from "express-easy-helper";
 import validator from "validator";
 // Utils

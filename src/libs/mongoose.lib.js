@@ -1,4 +1,3 @@
-// Libs
 import mongoose from "mongoose";
 // Constants
 import { URI_DB, MODE } from "@/constants/config.constant";

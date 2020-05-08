@@ -1,4 +1,3 @@
-// Libs
 import Redis from "ioredis";
 // Constants
 import { URI_REDIS } from "@/constants/config.constant";

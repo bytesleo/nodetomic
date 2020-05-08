@@ -1,4 +1,3 @@
-// Libs
 import chalk from "chalk";
 // Constants
 import { MODE, HOST, PORT, WS } from "@/constants/config.constant";

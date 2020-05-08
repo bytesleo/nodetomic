@@ -1,8 +1,9 @@
-// Utils/Libs
+// Base
 import { create as express } from "@/libs/express.lib";
 import { connect as mongoose } from "@/libs/mongoose.lib";
 import { connect as redis } from "@/libs/redis.lib";
 import { connect as ws } from "@/libs/socketio.lib";
+import { autoload } from "@/utils/autoload.util";
 
 /**
  * init
@@ -23,22 +24,18 @@ const init = async () => {
  */
 const db = async () => {
   await mongoose();
-  // Models
-  require("@/models/user.model");
-  require("@/models/todo.model");
-  // Seeds
-  // await require("@/seeds/user.seed").default();
-  // await require("@/seeds/todo.seed").default();
+  // Load Models
+  await autoload("models");
+  // Load Seeds
+  // await autoload("seeds");
 };
 
 /**
  * Routes
  */
 const routes = async () => {
-  await express([
-    require("@/routes/auth.route").default,
-    require("@/routes/todo.route").default
-  ]);
+  // Load routes
+  await express(await autoload("routes"));
 };
 
 /**
@@ -46,7 +43,8 @@ const routes = async () => {
  */
 const sockets = async () => {
   const { socket, io } = await ws();
-  require("@/sockets/todo.socket").default(socket, io);
+  // Load sockets
+  autoload("sockets", { socket, io });
 };
 
 export { init };

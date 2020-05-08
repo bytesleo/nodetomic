@@ -1,4 +1,4 @@
-// Base
+// base
 import { create as express } from "@/libs/express.lib";
 import { connect as mongoose } from "@/libs/mongoose.lib";
 import { connect as redis } from "@/libs/redis.lib";
@@ -9,29 +9,29 @@ import { autoload } from "@/utils/autoload.util";
  * init
  */
 const init = async () => {
-  // 1. Connect to DB (You can enable seeds)
+  // 1. connect to DB (You can enable seeds)
   await db();
-  // 2. Connect to Redis
+  // 2. connect to Redis
   await redis();
-  // 3. Create Express app and add routes
+  // 3. create Express app and add routes
   await routes();
-  // 4. Connect Sockets (idle to connections...)
+  // 4. connect Sockets (idle to connections...)
   sockets();
 };
 
 /**
- * DB
+ * db
  */
 const db = async () => {
   await mongoose();
   // Load Models
   await autoload("models");
   // Load Seeds
-  // await autoload("seeds");
+  await autoload("seeds");
 };
 
 /**
- * Routes
+ * routes
  */
 const routes = async () => {
   // Load routes
@@ -39,7 +39,7 @@ const routes = async () => {
 };
 
 /**
- * Sockets
+ * sockets
  */
 const sockets = async () => {
   const { socket, io } = await ws();

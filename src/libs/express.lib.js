@@ -8,17 +8,19 @@ import compression from "compression";
 import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
+import requestIp from "request-ip";
+
 // Constants
 import { NAME, MODE } from "@/constants/config.constant";
 
 const app = express();
 
-const create = async routes => {
+const create = async (routes) => {
   // parse body params and attache them to req.body
   app.use(
     bodyParser.json({
       limit: "25mb",
-      extended: true
+      extended: true,
     })
   );
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,7 +38,7 @@ const create = async routes => {
       windowMs: 1 * 60 * 1000, // 1 minutes
       max: 1000, // limit each IP to 1000 requests per windowMs
       message: "You have exceeded the  requests in 24 hrs limit!",
-      headers: true
+      headers: true,
     })
   );
   app.use(cookieParser());
@@ -47,16 +49,24 @@ const create = async routes => {
   // enable CORS - Cross Origin Resource Sharing
   app.use(cors());
 
+  // client ip
+  app.use(requestIp.mw());
+
   // logs
   app.use(morgan("dev"));
 
   // Routes
-  app.use(routes);
+  if (routes.length > 0) app.use(routes);
 
   // views
   app.set("views", path.resolve(__dirname, "./../src/templates"));
   app.set("view engine", "pug");
-  app.get("/", (_, res) => res.render("index", { name: NAME, mode: MODE }));
+  app.get("/", (_, res) =>
+    res.render("index", {
+      name: NAME,
+      mode: MODE,
+    })
+  );
   app.use(express.static(path.resolve(__dirname, "./../src/templates")));
 
   // return app;

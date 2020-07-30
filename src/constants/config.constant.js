@@ -12,6 +12,8 @@ const PORT = process.env.PORT;
 
 const WS = process.env.WS;
 
+const DOMAIN = process.env.DOMAIN;
+
 const URI_DB = process.env.URI_DB;
 
 const URI_REDIS = process.env.URI_REDIS;
@@ -23,7 +25,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const TTL = {
   one_day: 86400,
   one_week: 604800,
-  one_year: 31536000
+  one_year: 31536000,
 };
 
 export {
@@ -32,9 +34,10 @@ export {
   HOST,
   PORT,
   WS,
+  DOMAIN,
   URI_DB,
   URI_REDIS,
   URI_WS_REDIS,
   JWT_SECRET,
-  TTL
+  TTL,
 };

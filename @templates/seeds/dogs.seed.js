@@ -5,17 +5,17 @@ import { many } from "@/utils/seed.util";
 // Data
 const data = [
   {
-    name: "Get a shower",
-    completed: true
+    name: "Sparky",
+    race: "Beagle",
   },
   {
-    name: "Have breakfast",
-    completed: false
+    name: "Zeus",
+    race: "Chihuahua",
   },
   {
-    name: "Go to work",
-    completed: false
-  }
+    name: "Poseidon",
+    race: "Bulldog",
+  },
 ];
 
 export default async () => await many(TodoModel, data);

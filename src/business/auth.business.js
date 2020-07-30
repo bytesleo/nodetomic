@@ -4,13 +4,20 @@ import UserModel from "@/models/user.model";
 /**
  * authenticate
  *
- * @param {*} email
+ * @param {*} username
  * @param {*} password
  * @returns
  */
-const authenticate = async (email, password) => {
+const authenticate = async (username, password) => {
   const user = await UserModel.findOne({
-    email
+    $or: [
+      {
+        email: username,
+      },
+      {
+        phone: username,
+      },
+    ],
   })
     .select("+password")
     .lean();
@@ -29,27 +36,41 @@ const authenticate = async (email, password) => {
  *
  * register
  *
- * @param {*} email
+ * @param {*} username
  * @param {*} password
  * @returns
  */
-const register = async (name, last_name, email, password) => {
+const register = async (username, password) => {
   const code = Math.floor(1000 + Math.random() * 9000);
   const user = await UserModel.findOne({
-    email
+    $or: [
+      {
+        email: username,
+      },
+      {
+        phone: username,
+      },
+    ],
   }).lean();
 
   if (user) {
-    throw `The email ${email} is already registered`;
+    throw `${username} is already registered`;
   } else {
     // here send Email with Code if user is created
 
+    const query = {};
+    if (username.includes("@")) {
+      query.email = username;
+      query.phone = username;
+    } else {
+      query.phone = username;
+      query.email = username;
+    }
+
     return await UserModel.create({
-      name,
-      last_name,
-      email,
+      ...query,
       password,
-      code_verification: code
+      code_verification: code,
     });
   }
 };
@@ -60,22 +81,30 @@ const register = async (name, last_name, email, password) => {
  * @param {*} email
  * @returns
  */
-const recover = async email => {
+const recover = async (username) => {
   const code = Math.floor(1000 + Math.random() * 9000);
 
   const user = await UserModel.findOne({
-    email,
-    enabled: true
+    $or: [
+      {
+        email: username,
+      },
+      {
+        phone: username,
+      },
+    ],
+    enabled: true,
   }).lean();
 
   if (user) {
     // Send code here via Email
-    return await UserModel.updateOne(
-      { _id: user._id },
-      { code_verification: code }
-    );
+    await UserModel.updateOne({ _id: user._id }, { code_verification: code });
+
+    return {
+      sent: `Sent code to ${username}`,
+    };
   } else {
-    throw "The email is not registered";
+    throw `${username} is not registered`;
   }
 };
 
@@ -85,22 +114,32 @@ const recover = async email => {
  * @param {*} userId
  * @returns
  */
-const current = async userId => {
+const current = async (userId) => {
   return await UserModel.findById(userId)
-    .select("-code_verification -enabled")
+    .select("phone email name last_name created_at")
+
     .lean();
 };
 
 /**
  * verify
  *
+ * @param {*} username
  * @param {*} code
  * @returns
  */
-const verify = async code => {
+const verify = async (username, code) => {
   const user = await UserModel.findOne({
+    $or: [
+      {
+        email: username,
+      },
+      {
+        phone: username,
+      },
+    ],
     code_verification: code,
-    enabled: true
+    enabled: true,
   }).lean();
 
   if (user) {
@@ -119,5 +158,5 @@ export default {
   register,
   recover,
   current,
-  verify
+  verify,
 };

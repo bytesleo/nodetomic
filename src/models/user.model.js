@@ -1,63 +1,64 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import bcrypt from "bcrypt";
 
 // Schema
-const Schema = new mongoose.Schema({
+const schema = new Schema({
+  phone: {
+    type: String,
+    required: true,
+    index: { unique: true },
+  },
   email: {
     type: String,
     required: true,
-    index: { unique: true }
+    index: { unique: true },
   },
   name: {
     type: String,
-    default: null
+    default: null,
   },
   last_name: {
     type: String,
-    default: null
-  },
-  phone: {
-    type: String,
-    default: null
+    default: null,
   },
   password: {
     type: String,
     select: false,
-    default: null
+    default: null,
   },
   permissions: {
     type: Array,
-    default: ["user"]
+    default: ["user"],
   },
   code_verification: {
     type: String,
-    default: null
+    default: null,
   },
   enabled: {
     type: Boolean,
-    default: true
+    default: true,
   },
   updated_at: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   created_at: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 // Plugins
-Schema.plugin(mongoosePaginate);
+schema.plugin(mongoosePaginate);
 
 // Statics
-Schema.statics.compare = async (candidatePassword, password) => {
+schema.statics.compare = async (candidatePassword, password) => {
   return await bcrypt.compareSync(candidatePassword, password);
 };
 
 // Hooks
-Schema.pre("save", async function() {
+schema.pre("save", async function () {
   const user = this;
   if (user.password) {
     const hash = await bcrypt.hashSync(user.password, 10);
@@ -65,7 +66,7 @@ Schema.pre("save", async function() {
   }
 });
 
-Schema.pre("updateOne", async function() {
+schema.pre("updateOne", async function () {
   const user = this._update;
   if (user.password) {
     const hash = await bcrypt.hashSync(user.password, 10);
@@ -73,6 +74,6 @@ Schema.pre("updateOne", async function() {
   }
 });
 
-const Model = mongoose.model("User", Schema);
+const Model = model("User", schema);
 
 export default Model;

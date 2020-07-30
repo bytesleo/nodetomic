@@ -9,9 +9,10 @@ import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
 import requestIp from "request-ip";
-
 // Constants
 import { NAME, MODE } from "@/constants/config.constant";
+// Libs
+import { create as swagger } from "@/libs/swagger.lib";
 
 const app = express();
 
@@ -58,6 +59,9 @@ const create = async (routes) => {
   // Routes
   if (routes.length > 0) app.use(routes);
 
+  // swagger
+  const swaggerUrl = await swagger(app);
+
   // views
   app.set("views", path.resolve(__dirname, "./../src/templates"));
   app.set("view engine", "pug");
@@ -65,6 +69,7 @@ const create = async (routes) => {
     res.render("index", {
       name: NAME,
       mode: MODE,
+      docs: swaggerUrl,
     })
   );
   app.use(express.static(path.resolve(__dirname, "./../src/templates")));

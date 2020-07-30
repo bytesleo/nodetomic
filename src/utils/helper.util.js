@@ -1,4 +1,4 @@
-import { error as errorApi } from "express-easy-helper";
+import { success, error as errorApi } from "express-easy-helper";
 
 /**
  * error
@@ -18,4 +18,4 @@ const error = (res, e) => {
   }
 };
 
-export { error };
+export { error, success };

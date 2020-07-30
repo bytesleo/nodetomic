@@ -1,10 +1,10 @@
-import { success, unauthorized } from "express-easy-helper";
+import { unauthorized } from "express-easy-helper";
 import validator from "validator";
 // Business
 import AuthBusiness from "@/business/auth.business";
 // Utils
 import { session } from "@/utils/auth.util";
-import { error } from "@/utils/helper.util";
+import { success, error } from "@/utils/helper.util";
 // Constants
 import { TTL } from "@/constants/config.constant";
 
@@ -17,12 +17,12 @@ import { TTL } from "@/constants/config.constant";
  */
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    if (validator.isEmpty(email)) throw "The email cannot be empty";
+    if (validator.isEmpty(username)) throw "The email cannot be empty";
     if (validator.isEmpty(password)) throw "The password cannot be empty";
 
-    const user = await AuthBusiness.authenticate(email, password);
+    const user = await AuthBusiness.authenticate(username, password);
     if (user) {
       const { _id, permissions } = user;
       const token = await session(_id, { permissions }, TTL.one_year);
@@ -44,17 +44,12 @@ const login = async (req, res) => {
  */
 const register = async (req, res) => {
   try {
-    const { name, last_name, email, password } = req.body;
+    const { username, password } = req.body;
 
-    if (validator.isEmpty(name)) throw "The name cannot be empty";
-    if (validator.isEmpty(last_name)) throw "The last_name cannot be empty";
-    if (validator.isEmpty(email)) throw "The email cannot be empty";
-    if (!validator.isEmail(email)) throw "The email is not valid";
-    if (validator.isEmpty(phone)) throw "The phone cannot be empty";
-    if (!validator.isMobilePhone(phone)) throw "The phone is not valid";
+    if (validator.isEmpty(username)) throw "The username cannot be empty";
     if (validator.isEmpty(password)) throw "The password cannot be empty";
 
-    const data = await AuthBusiness.register(name, last_name, email, password);
+    const data = await AuthBusiness.register(username, password);
     let created = "_id" in data || "n" in data;
     return success(res, 201, { created });
   } catch (err) {
@@ -71,12 +66,12 @@ const register = async (req, res) => {
  */
 const recover = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { username } = req.body;
 
-    if (validator.isEmpty(email)) throw "The email cannot be empty";
-    if (!validator.isEmail(email)) throw "The email is not valid";
+    if (validator.isEmpty(username)) throw "The email cannot be empty";
+    // if (!validator.isEmail(username)) throw "The email is not valid";
 
-    const data = await AuthBusiness.recover(email);
+    const data = await AuthBusiness.recover(username);
     return success(res, data);
   } catch (err) {
     error(res, err);
@@ -96,7 +91,7 @@ const me = async (req, res) => {
 
     if (validator.isEmpty(userId)) throw "The userId cannot be empty";
 
-    if (user) {
+    if (userId) {
       let data = await AuthBusiness.current(userId);
       return data ? success(res, data) : unauthorized(res);
     } else {
@@ -116,17 +111,16 @@ const me = async (req, res) => {
  */
 const verify = async (req, res) => {
   try {
-    const { phone, code } = req.body;
+    const { username, code } = req.body;
 
-    if (validator.isEmpty(phone)) throw "The phone cannot be empty";
-    if (!validator.isMobilePhone(phone)) throw "The phone is not valid";
+    if (validator.isEmpty(username)) throw "The phone cannot be empty";
     if (validator.isEmpty(code)) throw "The code cannot be empty";
 
-    const user = await AuthBusiness.verify(phone, code);
+    const user = await AuthBusiness.verify(username, code);
     if (user) {
       const { _id, permissions } = user;
       const token = await session(_id, { permissions }, TTL.one_year);
-      return success(res, { token, permissions });
+      return success(res, { token });
     } else {
       return unauthorized(res);
     }

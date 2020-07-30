@@ -23,7 +23,7 @@ const config = {
       verbose: true,
       delay: "1000",
     }),
-    new CopyPlugin([{ from: ".env" }]),
+    new CopyPlugin({ patterns: [{ from: ".env" }] }),
   ],
   target: "node",
   node: {

@@ -10,3 +10,5 @@ html
       img(src='logo.gif')
       h1 #{name}
       span #{mode}
+      if docs && mode === "development"
+        a(href=docs) DOCS

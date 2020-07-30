@@ -1,5 +1,5 @@
 // Models
-import TodoModel from "@/models/todo.model";
+import TodoModel from "@/models/dogs.model";
 // Utils
 import { many } from "@/utils/seed.util";
 // Data

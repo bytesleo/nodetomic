@@ -12,7 +12,7 @@ export default (_socket, _io) => {
  *
  */
 const on = () => {
-  socket.on("todo:new", data => emit("todo:add", data));
+  socket.on("dogs:new", data => emit("dogs:add", data));
 };
 
 /**

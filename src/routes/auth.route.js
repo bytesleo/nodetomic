@@ -13,7 +13,7 @@ const router = express.Router();
  * @param {string} username.formData.required - email or phone
  * @param {string} password.formData.required - user's password
  * @returns {object} 200 - success
- * @returns {Error} 500 - error
+ * @returns {Error} 5XX - error
  */
 router.post("/api/auth/login", AuthController.login);
 
@@ -24,7 +24,7 @@ router.post("/api/auth/login", AuthController.login);
  * @param {string} username.formData.required - email or phone
  * @param {string} password.formData.required - user's password
  * @returns {object} 200 - success
- * @returns {Error} 500 - error
+ * @returns {Error} 5XX - error
  */
 router.post("/api/auth/register", AuthController.register);
 
@@ -34,7 +34,7 @@ router.post("/api/auth/register", AuthController.register);
  * @group Auth
  * @param {string} username.formData.required - email or phone
  * @returns {object} 200 - success
- * @returns {Error} 500 - error
+ * @returns {Error} 5XX - error
  */
 router.post("/api/auth/recover", AuthController.recover);
 
@@ -46,7 +46,7 @@ router.post("/api/auth/recover", AuthController.recover);
  * @returns {object} 200 - success
  * @returns {object} 401 - unauthorized
  * @returns {object} 403 - forbidden
- * @returns {Error} 500 - error
+ * @returns {Error} 5XX - error
  */
 router.get("/api/auth/me", mw(["user"]), AuthController.me);
 
@@ -57,7 +57,7 @@ router.get("/api/auth/me", mw(["user"]), AuthController.me);
  * @param {string} username.formData.required - email or phone
  * @param {number} code.formData.required - code
  * @returns {object} 200 - success
- * @returns {Error} 500 - error
+ * @returns {Error} 5XX - error
  */
 router.post("/api/auth/verify", AuthController.verify);
 

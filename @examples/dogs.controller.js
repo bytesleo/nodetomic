@@ -4,6 +4,7 @@ import { success, error } from "@/utils/helper.util";
 
 const all = async (req, res) => {
   try {
+    // const userId = req.user.id; if have mw()
     const data = await DogBusiness.all();
     success(res, data);
   } catch (err) {

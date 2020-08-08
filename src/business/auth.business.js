@@ -42,7 +42,7 @@ const authenticate = async (username, password) => {
  */
 const register = async (username, password) => {
   const code = Math.floor(1000 + Math.random() * 9000);
-  const user = await UserModel.findOne({
+  const exists = await UserModel.exists({
     $or: [
       {
         email: username,
@@ -53,11 +53,9 @@ const register = async (username, password) => {
     ],
   }).lean();
 
-  if (user) {
+  if (exists) {
     throw `${username} is already registered`;
   } else {
-    // here send Email with Code if user is created
-
     const query = {};
     if (username.includes("@")) {
       query.email = username;
@@ -67,11 +65,44 @@ const register = async (username, password) => {
       query.email = username;
     }
 
-    return await UserModel.create({
+    const created = UserModel.create({
       ...query,
       password,
       code_verification: code,
     });
+
+    // relationships...
+    // const page = await PagesModel.create({ user: user._id });
+    // if (page?._id) query.page = page._id;
+
+    // Send Code
+    // if (username.includes("@")) {
+    //   sendEmail({
+    //     to: username,
+    //     from: "hi@weflow.me",
+    //     subject: "WeFlow: verifica tu cuenta",
+    //     message: `Código: ${code}`,
+    //     templateId: 22,
+    //     params: {},
+    //   });
+    // } else {
+    //   sendSMS({
+    //     to: username,
+    //     from: "WeFlow",
+    //     message: `WeFlow: ${code}`,
+    //   });
+    // }
+
+    // const created = await UserModel.findOneAndUpdate(
+    //   {
+    //     _id: user._id,
+    //   },
+    //   {
+    //     page,
+    //   }
+    // );
+
+    return created;
   }
 };
 
@@ -97,9 +128,25 @@ const recover = async (username) => {
   }).lean();
 
   if (user) {
-    // Send code here via Email
     await UserModel.updateOne({ _id: user._id }, { code_verification: code });
 
+    // Send code
+    // if (username.includes("@")) {
+    //   sendEmail({
+    //     to: username,
+    //     from: "hi@example.com",
+    //     subject: "Example",
+    //     message: `Example: ${code}`,
+    //     templateId: 22,
+    //     params: {},
+    //   });
+    // } else {
+    //   sendSMS({
+    //     to: username,
+    //     from: "WeFlow",
+    //     message: `WeFlow: ${code}`,
+    //   });
+    // }
     return {
       sent: `Sent code to ${username}`,
     };

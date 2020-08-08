@@ -1,5 +1,5 @@
 // Models
-import TodoModel from "@/models/dogs.model";
+import DogsModel from "@/models/dogs.model";
 // Utils
 import { many } from "@/utils/seed.util";
 // Data
@@ -18,4 +18,4 @@ const data = [
   },
 ];
 
-export default async () => await many(TodoModel, data);
+export default async () => await many(DogsModel, data);

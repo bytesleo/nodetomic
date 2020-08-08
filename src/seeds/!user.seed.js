@@ -6,7 +6,7 @@ import { once } from "@/utils/seed.util";
 const data = {
   name: "User",
   last_name: "Example",
-  phone: "111111111",
+  phone: "123456789",
   email: "user@example.com",
   password: "123",
   permissions: ["user"]

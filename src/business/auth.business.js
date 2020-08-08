@@ -128,7 +128,7 @@ const recover = async (username) => {
   }).lean();
 
   if (user) {
-    await UserModel.updateOne({ _id: user._id }, { code_verification: code });
+    // await UserModel.updateOne({ _id: user._id }, { code_verification: code });
 
     // Send code
     // if (username.includes("@")) {

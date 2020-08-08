@@ -6,12 +6,14 @@ import bcrypt from "bcrypt";
 const schema = new Schema({
   phone: {
     type: String,
-    required: true,
+    trim: true,
+    uppercase: true,
     index: { unique: true },
   },
   email: {
     type: String,
-    required: true,
+    trim: true,
+    uppercase: true,
     index: { unique: true },
   },
   name: {

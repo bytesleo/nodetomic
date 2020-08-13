@@ -5,9 +5,11 @@
 ```bash
 git clone https://github.com/kevoj/node-cool-boilerplate
 ```
+
 ```bash
 cd node-cool-boilerplate
 ```
+
 ```bash
 yarn
 ```
@@ -19,8 +21,8 @@ Create file **.env**
 #### Dev
 
 ```bash
-NAME=node-cool-boilerplate
 MODE=development
+NAME=example-name
 HOST=localhost
 PORT=8000
 WS=8001
@@ -34,8 +36,8 @@ JWT_SECRET=shhhh
 #### Test
 
 ```bash
-NAME=node-cool-boilerplate
-MODE=test
+MODE=testing
+NAME=example-name
 HOST=localhost
 PORT=9000
 WS=9001
@@ -49,22 +51,23 @@ JWT_SECRET=KYTzTm5U7LKSh4ma
 #### Prod
 
 ```bash
-NAME=node-cool-boilerplate
 MODE=production
+NAME=example-name
 HOST=localhost
-PORT=9000
-WS=9001
+PORT=10000
+WS=10001
 DOMAIN=prod.example.com
 URI_DB=mongodb://user_prod:9M27WKgRNbvqfxYT@localhost:27017/example-prod
 URI_REDIS=redis://:FgkTHsjEEPG4w77p@127.0.0.1:6379/0
 URI_WS_REDIS=redis://:FgkTHsjEEPG4w77p@127.0.0.1:6379/1
 JWT_SECRET=ZTnpNMuAUFh2P9vw
 ```
+
 #### Notes
+
 - Replace all values to **URI_DB, URI_REDIS, URI_WS_REDIS, JWT_SECRET**
 
 ### Scripts
-
 
 #### start
 
@@ -77,4 +80,5 @@ yarn start
 ```bash
 yarn build
 ```
+
 **output:** dist

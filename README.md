@@ -41,8 +41,8 @@ PORT=9000
 WS=9001
 DOMAIN=example.com
 URI_DB=mongodb://user_test:3dF9zDWYrVYsUveG@localhost:27017/example-test
-URI_REDIS=redis://:QbZ948wBGVpUwurF@127.0.0.1:6379/0
-URI_WS_REDIS=redis://:QbZ948wBGVpUwurF@127.0.0.1:6379/1
+URI_REDIS=redis://:QbZ948wBGVpUwurF@127.0.0.1:6379/2
+URI_WS_REDIS=redis://:QbZ948wBGVpUwurF@127.0.0.1:6379/3
 JWT_SECRET=KYTzTm5U7LKSh4ma
 ```
 

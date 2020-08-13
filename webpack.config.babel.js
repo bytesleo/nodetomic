@@ -20,6 +20,7 @@ const config = {
         path.resolve("package.json"),
       ],
       ignore: ["./node_modules"],
+      ext: "* .env",
       verbose: true,
       delay: "1000",
     }),

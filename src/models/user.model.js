@@ -1,9 +1,14 @@
-import { Schema, model } from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
+import mongoose, { Schema, model } from "mongoose";
+import aggregatePaginate from "mongoose-aggregate-paginate-v2";
+import AutoIncrement from "mongoose-sequence";
 import bcrypt from "bcrypt";
 
 // Schema
 const schema = new Schema({
+  id: {
+    type: Number,
+    default: null,
+  },
   phone: {
     type: String,
     trim: true,
@@ -18,10 +23,14 @@ const schema = new Schema({
   },
   name: {
     type: String,
+    uppercase: true,
+    trim: true,
     default: null,
   },
   last_name: {
     type: String,
+    uppercase: true,
+    trim: true,
     default: null,
   },
   password: {
@@ -49,10 +58,15 @@ const schema = new Schema({
     type: Date,
     default: Date.now,
   },
+  deleted_at: {
+    type: Date,
+    default: null,
+  },
 });
 
 // Plugins
-schema.plugin(mongoosePaginate);
+schema.plugin(aggregatePaginate);
+schema.plugin(AutoIncrement(mongoose), { id: "user_seq", inc_field: "id" });
 
 // Statics
 schema.statics.compare = async (candidatePassword, password) => {
@@ -75,6 +89,9 @@ schema.pre("updateOne", async function () {
     this._update.password = hash;
   }
 });
+
+// Indexes
+schema.index({ id: 1 });
 
 const Model = model("User", schema);
 

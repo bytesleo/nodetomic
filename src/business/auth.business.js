@@ -127,7 +127,7 @@ const register = async (username, password, terms) => {
  * recover
  *
  * @param {*} email
- * @returns
+ * @returns {object}
  */
 const recover = async (username) => {
   const code = Math.floor(1000 + Math.random() * 9000);
@@ -183,7 +183,7 @@ const recover = async (username) => {
  * me
  *
  * @param {*} userId
- * @returns
+ * @returns {object}
  */
 const me = async (userId) => {
   return await UserModel.findOne({ _id: userId, enabled: true })
@@ -196,7 +196,7 @@ const me = async (userId) => {
  *
  * @param {*} username
  * @param {*} code
- * @returns
+ * @returns {object}
  */
 const verify = async (username, code) => {
   const user = await UserModel.findOne({

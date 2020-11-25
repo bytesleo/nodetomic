@@ -46,11 +46,15 @@ const create = async (routes) => {
   app.use(cookieParser());
 
   // secure apps by setting various HTTP headers
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+  );
 
   // enable CORS - Cross Origin Resource Sharing
-  app.use(cors({ origin: false }));
-  
+  app.use(cors());
+
   // file upload
   app.use(fileUpload());
 

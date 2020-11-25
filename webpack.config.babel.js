@@ -1,4 +1,5 @@
 import path from "path";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import nodeExternals from "webpack-node-externals";
 import NodemonPlugin from "nodemon-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
@@ -13,6 +14,7 @@ const config = {
     filename: "server.js",
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new NodemonPlugin({
       watch: [
         path.resolve("./dist"),
@@ -20,7 +22,6 @@ const config = {
         path.resolve("package.json"),
       ],
       ignore: ["./node_modules"],
-      ext: "* .env",
       verbose: true,
       delay: "1000",
     }),
@@ -28,7 +29,6 @@ const config = {
   ],
   target: "node",
   node: {
-    fs: "empty",
     // Need this when working with express, otherwise the build fails
     __dirname: false, // if you don't put this is, __dirname
     __filename: false, // and __filename return blank or /

@@ -10,7 +10,7 @@ import { redis } from "@/libs/redis.lib";
  * @param {*} length
  * @returns
  */
-const hash = length => {
+const hash = (length) => {
   const possible =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let text = "";
@@ -25,11 +25,11 @@ const hash = length => {
  * @param {*} data
  * @returns
  */
-const sign = async data => {
+const sign = async (data) => {
   try {
     return await jsonwebtoken.sign(data, JWT_SECRET);
   } catch (err) {
-    throw new Error(err);
+    throw err;
   }
 };
 
@@ -39,11 +39,11 @@ const sign = async data => {
  * @param {*} data
  * @returns
  */
-const verify = async data => {
+const verify = async (data) => {
   try {
     return await jsonwebtoken.verify(data, JWT_SECRET);
   } catch (err) {
-    throw new Error(err);
+    throw err;
   }
 };
 
@@ -62,7 +62,7 @@ const session = async (id, data, ttl) => {
     await redis.set(key, token, "EX", ttl);
     return token;
   } catch (err) {
-    throw new Error(err);
+    throw err;
   }
 };
 
@@ -72,7 +72,7 @@ const session = async (id, data, ttl) => {
  * @param {*} token
  * @returns
  */
-const check = async token => {
+const check = async (token) => {
   try {
     const decode = await verify(token);
     if ("key" in decode) {
@@ -82,7 +82,22 @@ const check = async token => {
       return false;
     }
   } catch (err) {
-    throw new Error(err);
+    throw err;
+  }
+};
+
+/**
+ * renew (Redis)
+ *
+ * @param {*} key
+ * @param {*} ttl
+ */
+const renew = async (key, ttl) => {
+  try {
+    // here 
+    await destroy(key);
+  } catch (err) {
+    throw err;
   }
 };
 
@@ -91,12 +106,12 @@ const check = async token => {
  *
  * @param {*} key
  */
-const destroy = async key => {
+const destroy = async (key) => {
   try {
     await redis.del(key);
   } catch (err) {
-    throw new Error(err);
+    throw err;
   }
 };
 
-export { session, check, destroy, sign, verify, hash };
+export { session, check, destroy, sign, verify, hash, renew };

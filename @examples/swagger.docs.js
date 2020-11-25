@@ -44,11 +44,20 @@
  */
 
 /**
+ * Array Parameter
+ * @route GET /api/dogs
+ * @group Dogs
+ * @param {Array<string>} tags.body.required
+ * @returns {object} 200 - success
+ * @returns {Error} 5XX - error
+ */
+
+/**
  * Code Status
  * @route GET /api/dogs
  * @group Dogs
- * @param {object} headerId.header.required - headerId
  * @returns {object} 200 - success
+ * @returns {Error} 5XX - error
  * @returns {object} 400 - bad request
  * @returns {object} 401 - unauthorized
  * @returns {object} 403 - forbidden

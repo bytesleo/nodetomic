@@ -1,13 +1,13 @@
-# node-cool-boilerplate
+# nodetomic
 
 ### Install
 
 ```bash
-git clone https://github.com/kevoj/node-cool-boilerplate
+git clone https://github.com/kevoj/nodetomic
 ```
 
 ```bash
-cd node-cool-boilerplate
+cd nodetomic
 ```
 
 ```bash
@@ -38,7 +38,7 @@ JWT_SECRET=shhhh
 ```bash
 MODE=testing
 NAME=example-name
-HOST=localhost
+HOST=example-test.com
 PORT=9000
 WS=9001
 DOMAIN=test.example.com
@@ -53,7 +53,7 @@ JWT_SECRET=KYTzTm5U7LKSh4ma
 ```bash
 MODE=production
 NAME=example-name
-HOST=localhost
+HOST=example.com
 PORT=10000
 WS=10001
 DOMAIN=prod.example.com

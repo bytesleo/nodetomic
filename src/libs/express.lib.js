@@ -8,6 +8,7 @@ import compression from "compression";
 import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
+import fileUpload from "express-fileupload";
 import requestIp from "request-ip";
 // Constants
 import { NAME, MODE } from "@/constants/config.constant";
@@ -48,7 +49,10 @@ const create = async (routes) => {
   app.use(helmet());
 
   // enable CORS - Cross Origin Resource Sharing
-  app.use(cors());
+  app.use(cors({ origin: false }));
+  
+  // file upload
+  app.use(fileUpload());
 
   // client ip
   app.use(requestIp.mw());

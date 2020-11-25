@@ -22,7 +22,7 @@ const login = async (req, res) => {
     if (validator.isEmpty(username)) throw "The email cannot be empty";
     if (validator.isEmpty(password)) throw "The password cannot be empty";
 
-    const user = await AuthBusiness.authenticate(username, password);
+    const user = await AuthBusiness.login(username, password);
     if (user) {
       const { _id, permissions } = user;
       const token = await session(_id, { permissions }, TTL.one_year);
@@ -90,9 +90,12 @@ const me = async (req, res) => {
     const userId = req.user.id;
 
     if (validator.isEmpty(userId)) throw "The userId cannot be empty";
+    if (!validator.isMongoId(userId)) {
+      throw "Invalid auth userId...";
+    }
 
     if (userId) {
-      let data = await AuthBusiness.current(userId);
+      let data = await AuthBusiness.me(userId);
       return data ? success(res, data) : unauthorized(res);
     } else {
       return unauthorized(res);

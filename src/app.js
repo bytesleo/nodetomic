@@ -42,9 +42,13 @@ const routes = async () => {
  * sockets
  */
 const sockets = async () => {
-  const { socket, io } = await ws();
-  // Load sockets
-  autoload("sockets", { socket, io });
+  await ws([
+    // {
+    //   event: "example",
+    //   permissions: ["user"],
+    //   auth: true,
+    // },
+  ]);
 };
 
 export { init };

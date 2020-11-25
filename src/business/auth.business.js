@@ -2,13 +2,13 @@
 import UserModel from "@/models/user.model";
 
 /**
- * authenticate
+ * login
  *
  * @param {*} username
  * @param {*} password
- * @returns
+ * @returns {object}
  */
-const authenticate = async (username, password) => {
+const login = async (username, password) => {
   const user = await UserModel.findOne({
     $or: [
       {
@@ -23,12 +23,28 @@ const authenticate = async (username, password) => {
     .lean();
 
   if (user) {
-    if (!user.enabled) throw `The user has been banned"`;
+    if (!user.enabled)
+      throw {
+        code: "ERROR_LOGIN_1",
+        message: `The user has been banned`,
+      };
+    if (!user.password)
+      throw {
+        code: "ERROR_LOGIN_2",
+        message: `Don't have a password, try in recover password`,
+      };
     const isMatch = await UserModel.compare(password, user.password);
-    if (!isMatch) throw "Incorrect password";
+    if (!isMatch)
+      throw {
+        code: "ERROR_LOGIN_3",
+        message: `Incorrect password`,
+      };
     return user;
   } else {
-    throw "User not found";
+    throw {
+      code: "ERROR_LOGIN_4",
+      message: `User not found`,
+    };
   }
 };
 
@@ -38,9 +54,9 @@ const authenticate = async (username, password) => {
  *
  * @param {*} username
  * @param {*} password
- * @returns
+ * @returns {object}
  */
-const register = async (username, password) => {
+const register = async (username, password, terms) => {
   const code = Math.floor(1000 + Math.random() * 9000);
   const exists = await UserModel.exists({
     $or: [
@@ -51,12 +67,17 @@ const register = async (username, password) => {
         phone: username,
       },
     ],
-  }).lean();
+  });
 
   if (exists) {
-    throw `${username} is already registered`;
+    throw {
+      code: "ERROR_REGISTER_1",
+      message: `${username} is already registered`,
+      params: { username },
+    };
   } else {
     const query = {};
+
     if (username.includes("@")) {
       query.email = username;
       query.phone = username;
@@ -65,44 +86,40 @@ const register = async (username, password) => {
       query.email = username;
     }
 
-    const created = UserModel.create({
+    const user = await UserModel.create({
       ...query,
       password,
+      check_terms: terms,
       code_verification: code,
     });
 
-    // relationships...
     // const page = await PagesModel.create({ user: user._id });
-    // if (page?._id) query.page = page._id;
 
     // Send Code
-    // if (username.includes("@")) {
-    //   sendEmail({
-    //     to: username,
-    //     from: "hi@weflow.me",
-    //     subject: "WeFlow: verifica tu cuenta",
-    //     message: `Código: ${code}`,
-    //     templateId: 22,
-    //     params: {},
-    //   });
-    // } else {
-    //   sendSMS({
-    //     to: username,
-    //     from: "WeFlow",
-    //     message: `WeFlow: ${code}`,
-    //   });
-    // }
+    if (username.includes("@")) {
+      // sendEmail({
+      //   to: username,
+      //   from: "hi@nodetomic.com",
+      //   subject: "Nodetomic: bienvenido",
+      //   message: `Código: ${code}`,
+      //   template: "register",
+      //   params: {
+      //     code,
+      //   },
+      // });
+    } else {
+      // sendSMS({
+      //   to: username,
+      //   from: "Nodetomic",
+      //   message: `Nodetomic: ${code}`,
+      // });
+    }
 
-    // const created = await UserModel.findOneAndUpdate(
-    //   {
-    //     _id: user._id,
-    //   },
-    //   {
-    //     page,
-    //   }
-    // );
+    // relate to other collections
+    // user.page = page
+    // const created = await user.save()
 
-    return created;
+    return user;
   }
 };
 
@@ -128,43 +145,49 @@ const recover = async (username) => {
   }).lean();
 
   if (user) {
-    // await UserModel.updateOne({ _id: user._id }, { code_verification: code });
+    // Send code here via Email
+    await UserModel.updateOne({ _id: user._id }, { code_verification: code });
 
-    // Send code
-    // if (username.includes("@")) {
-    //   sendEmail({
-    //     to: username,
-    //     from: "hi@example.com",
-    //     subject: "Example",
-    //     message: `Example: ${code}`,
-    //     templateId: 22,
-    //     params: {},
-    //   });
-    // } else {
-    //   sendSMS({
-    //     to: username,
-    //     from: "WeFlow",
-    //     message: `WeFlow: ${code}`,
-    //   });
-    // }
+    if (username.includes("@")) {
+      // sendEmail({
+      //   to: username,
+      //   from: "hi@nodetomic.com",
+      //   subject: "Nodetomic: recuperar cuenta",
+      //   message: `Nodetomic: ${code}`,
+      //   template: "recover",
+      //   params: {
+      //     code,
+      //   },
+      // });
+    } else {
+      // sendSMS({
+      //   to: username,
+      //   from: "Nodetomic",
+      //   message: `Nodetomic: ${code}`,
+      // });
+    }
+
     return {
       sent: `Sent code to ${username}`,
     };
   } else {
-    throw `${username} is not registered`;
+    throw {
+      code: "ERROR_RECOVER_1",
+      message: `${username} is not registered`,
+      params: { username },
+    };
   }
 };
 
 /**
- * current
+ * me
  *
  * @param {*} userId
  * @returns
  */
-const current = async (userId) => {
-  return await UserModel.findById(userId)
+const me = async (userId) => {
+  return await UserModel.findOne({ _id: userId, enabled: true })
     .select("phone email name last_name created_at")
-
     .lean();
 };
 
@@ -196,14 +219,18 @@ const verify = async (username, code) => {
       { new: true }
     );
   } else {
-    throw "Invalid Code";
+    throw {
+      code: "ERROR_VERIFY_1",
+      message: `Invalid code`,
+      params: { code },
+    };
   }
 };
 
 export default {
-  authenticate,
+  login,
   register,
   recover,
-  current,
+  me,
   verify,
 };

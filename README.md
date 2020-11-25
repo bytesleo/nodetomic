@@ -38,7 +38,7 @@ JWT_SECRET=shhhh
 ```bash
 MODE=testing
 NAME=example-name
-HOST=example-test.com
+HOST=localhost
 PORT=9000
 WS=9001
 DOMAIN=test.example.com
@@ -53,7 +53,7 @@ JWT_SECRET=KYTzTm5U7LKSh4ma
 ```bash
 MODE=production
 NAME=example-name
-HOST=example.com
+HOST=localhost
 PORT=10000
 WS=10001
 DOMAIN=prod.example.com

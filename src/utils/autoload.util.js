@@ -24,7 +24,7 @@ const autoload = (path, params) => {
           .map(sockets)
           .map((x) => x.default(params.socket, params.io));
       default:
-        break;
+        return [];
     }
   } catch (error) {
     if (error?.code !== "MODULE_NOT_FOUND") console.log(error);

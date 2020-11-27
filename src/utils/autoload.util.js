@@ -19,13 +19,13 @@ const models = () => {
   }
 };
 
-const sockets = () => {
+const sockets = (socket, io) => {
   try {
     const paths = require.context("../sockets", true, /^((?!!).)*.js$/);
     return paths
       .keys()
       .map(paths)
-      .map((x) => x.default(params.socket, params.io));
+      .map((x) => x.default(socket, io));
   } catch (error) {
     return [];
   }
@@ -41,5 +41,3 @@ const seeds = () => {
 };
 
 export default { models, routes, sockets, seeds };
-
-

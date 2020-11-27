@@ -2,7 +2,7 @@ import redisAdapter from "socket.io-redis";
 // Constants
 import { WS, URI_WS_REDIS } from "@/constants/config.constant";
 // Utils
-import { autoload } from "@/utils/autoload.util";
+import autoload from "@/utils/autoload.util";
 import { mws } from "@/utils/middleware.util";
 
 const io = require("socket.io")(WS);
@@ -29,7 +29,7 @@ const connect = (required = []) =>
       });
       // socket.set("pingTimeout", 63000);
       // autload
-      autoload("sockets", { socket, io });
+      autoload.sockets(socket, io);
       resolve();
     });
   });

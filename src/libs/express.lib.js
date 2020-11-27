@@ -75,7 +75,7 @@ const create = async (routes) => {
   app.engine(".hbs", handlebars({ extname: ".hbs", defaultLayout: false }));
   app.set("view engine", ".hbs");
   // Views
-  app.set("views", path.resolve(__dirname, "./../src/templates"));
+  app.set("views", path.resolve(__dirname, "./../src/layouts"));
   // Index
   app.get("/", (_, res) =>
     res.render("index", {
@@ -85,7 +85,7 @@ const create = async (routes) => {
     })
   );
   // Static
-  app.use(express.static(path.resolve(__dirname, "./../src/templates")));
+  app.use(express.static(path.resolve(__dirname, "./../src/layouts")));
 };
 
 export { create, app };

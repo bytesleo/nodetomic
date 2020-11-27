@@ -11,7 +11,7 @@ const config = {
   output: {
     path: path.join(__dirname, "dist"),
     publicPath: "/",
-    filename: "server.js",
+    filename: "app.js",
   },
   plugins: [
     new CleanWebpackPlugin(),

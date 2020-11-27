@@ -20,21 +20,21 @@ AWS.config.update({
 const aws_s3 = new AWS.S3();
 const pinpoint = new AWS.Pinpoint({ apiVersion: "2016-12-01" });
 
-const s3Upload = async (data = {}, upload = {}) => {
+const s3Upload = async (config = {}, files) => {
   try {
-    console.log("s3", { data });
+    console.log("s3 upload", { config });
     let result = [];
 
-    if (upload && upload instanceof Array) {
+    if (files && files instanceof Array) {
       let promises = [];
 
-      for (const file of upload) {
+      for (const file of files) {
         promises.push(
           aws_s3
             .upload({
-              Bucket: data.bucket,
+              Bucket: config.bucket,
               Body: file.data,
-              Key: `${MODE}${data.path}${file.md5}_${file.name}`,
+              Key: `${MODE}${config.path}${file.md5}_${file.name}`,
             })
             .promise()
         );
@@ -45,7 +45,7 @@ const s3Upload = async (data = {}, upload = {}) => {
       values.map((x) => {
         result.push({
           url: x.Location,
-          ...data,
+          ...config,
         });
       });
     }
@@ -59,7 +59,7 @@ const s3Upload = async (data = {}, upload = {}) => {
 
 const s3Delete = async (deletion) => {
   try {
-    console.log("s3_delete", { deletion });
+    console.log("s3 delete", { deletion });
     let result = [];
 
     // Always receive Array, even for 1 element

@@ -178,7 +178,7 @@ export { s3Upload, s3Delete, sendEmail, sendSMS };
 // sendSMS({
 //   to: "+573001111111",
 //   from: "Nodetomic",
-//   message: "Nodetomic: This is a test",
+//   message: "Nodetomic: 123",
 // });
 
 // Test Email
@@ -187,7 +187,7 @@ export { s3Upload, s3Delete, sendEmail, sendSMS };
 //   from: "hi@example.com",
 //   subject: "Nodetomic",
 //   message: "This is a test",
-//   template: "register",
+//   template: "email.register",
 //   params: {
 //     code: 123,
 //   },

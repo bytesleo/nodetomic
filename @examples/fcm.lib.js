@@ -42,7 +42,7 @@ const sendPushNotification = async (body) => {
         console.log(`Old Tokens to delete: ${oldTokensCount}`);
 
         if (oldTokensCount > 0) {
-          await UsersBusiness.fcmClearGarbage(body.receiverId, successTokens);
+          await UsersBusiness.fcmClearGarbage(body.userId, successTokens);
         }
       }
 
@@ -65,13 +65,11 @@ const sendPushNotification = async (body) => {
 export { sendPushNotification };
 
 // Test FCM
-// setTimeout(async () => {
 //   await sendPushNotification({
 //     to: [],
 //     notification: {
 //       title: "Nodetomic",
 //       body: "Hello world",
 //     },
-//     receiverId: ""
+//     userId: ""
 //   });
-// }, 2000);

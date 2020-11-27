@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{name}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" sizes="any" href="favicon.png" type="image/png" />
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <div>
+        <img src="logo.gif" />
+        <h1>{{name}}</h1>
+        <span>{{mode}}</span>
+        {{#if docs}}
+        <a href="{{docs}}">DOCS</a>
+        {{/if}}
+    </div>
+</body>
+
+</html>

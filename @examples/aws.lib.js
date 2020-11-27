@@ -20,15 +20,13 @@ AWS.config.update({
 const aws_s3 = new AWS.S3();
 const pinpoint = new AWS.Pinpoint({ apiVersion: "2016-12-01" });
 
-const s3 = async (data = {}, upload = {}) => {
+const s3Upload = async (data = {}, upload = {}) => {
   try {
     console.log("s3", { data });
-    let result;
+    let result = [];
 
-    // multiple
     if (upload && upload instanceof Array) {
       let promises = [];
-      result = [];
 
       for (const file of upload) {
         promises.push(
@@ -50,29 +48,16 @@ const s3 = async (data = {}, upload = {}) => {
           ...data,
         });
       });
-
-      // once
-    } else if (upload && upload instanceof Object) {
-      const value = await aws_s3
-        .upload({
-          Bucket: data.bucket,
-          Body: upload.data,
-          Key: `${MODE}${data.path}${upload.md5}_${upload.name}`,
-        })
-        .promise();
-      result = {
-        url: value.Location,
-        ...data,
-      };
     }
+
     console.log({ result });
     return result;
   } catch (err) {
-    console.log({ s3Error: err });
+    console.log({ s3UploadError: err });
   }
 };
 
-const s3_delete = async (deletion) => {
+const s3Delete = async (deletion) => {
   try {
     console.log("s3_delete", { deletion });
     let result = [];
@@ -99,7 +84,7 @@ const s3_delete = async (deletion) => {
     console.log(result);
     return result;
   } catch (err) {
-    console.log({ s3Error: err });
+    console.log({ s3DeleteError: err });
   }
 };
 
@@ -152,7 +137,7 @@ const sendEmail = async (data) => {
       console.log({ detail: result.MessageResponse.Result });
     }
   } catch (err) {
-    console.log({ PinPointEmailError: err });
+    console.log({ sendEmailError: err });
   }
 };
 
@@ -183,46 +168,45 @@ const sendSMS = async (data) => {
       console.log({ result });
     }
   } catch (err) {
-    console.log({ PinPointSMSError: err });
+    console.log({ sendSMSError: err });
   }
 };
 
-export { s3, s3_delete, sendEmail, sendSMS };
+export { s3Upload, s3Delete, sendEmail, sendSMS };
 
 // Test SMS
 // sendSMS({
-//   to: "+573192035101",
-//   from: "WeFlow",
-//   message: "We flow: Esto es una prueba",
+//   to: "+573001111111",
+//   from: "Nodetomic",
+//   message: "Nodetomic: This is a test",
 // });
 
 // Test Email
 // sendEmail({
-//   to: "leonardo.ricog@gmail.com",
-//   from: "hi@weflow.me",
-//   subject: "WeFlow",
-//   message: "Soy otra prueba",
+//   to: "user@example.com",
+//   from: "hi@example.com",
+//   subject: "Nodetomic",
+//   message: "This is a test",
 //   template: "register",
 //   params: {
-//     code: 1456,
+//     code: 123,
 //   },
 // });
 
 // Test S3
-// await s3(
+// await s3Upload(
 //   {
-//     bucket: "weflow",
-//     path: `/covers/${userId}/`,
+//     bucket: "Nodetomic",
+//     path: `development/images/user1/`,
 //   },
 //   files
 // );
 
 // Test S3_delete
-// (async () => {
-//   await s3_delete([
-//     {
-//       bucket: "weflow-app",
-//       key: `development/covers/5f3ea5f74540bb41e965ad4b/dbc2951f1be4a64c1e8739339b87e037_6C38F877-FC29-4CD0-B1C8-023F5801DF4A.jpg`,
-//     },
-//   ]);
-// })();
+
+// s3Delete([
+//   {
+//     bucket: "Nodetomic",
+//     key: `development/images/xxxxx.jpg`,
+//   }
+// ]);

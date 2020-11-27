@@ -1,5 +1,6 @@
 import path from "path";
 import express from "express";
+import handlebars from "express-handlebars";
 import bodyParser from "body-parser";
 import methodOverride from "method-override";
 import rateLimit from "express-rate-limit";
@@ -70,16 +71,20 @@ const create = async (routes) => {
   // swagger
   const swaggerUrl = await swagger(app);
 
-  // views
+  // handlebars
+  app.engine(".hbs", handlebars({ extname: ".hbs", defaultLayout: false }));
+  app.set("view engine", ".hbs");
+  // Views
   app.set("views", path.resolve(__dirname, "./../src/templates"));
-  app.set("view engine", "pug");
+  // Index
   app.get("/", (_, res) =>
     res.render("index", {
       name: NAME,
       mode: MODE,
-      docs: swaggerUrl,
+      docs: MODE === "development" ? swaggerUrl : false,
     })
   );
+  // Static
   app.use(express.static(path.resolve(__dirname, "./../src/templates")));
 };
 

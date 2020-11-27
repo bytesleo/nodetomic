@@ -1,5 +1,6 @@
 // Models
 import UserModel from "@/models/user.model";
+import { renderTemplate } from "../utils/template.util";
 
 /**
  * login

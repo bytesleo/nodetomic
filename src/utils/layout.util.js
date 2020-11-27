@@ -6,7 +6,7 @@ const hbs = handlebars.create();
 
 const renderTemplate = async (name, params) => {
   const template = await hbs.getTemplate(
-    path.resolve(__dirname, `./../src/templates/${name}.hbs`),
+    path.resolve(__dirname, `./../src/layouts/${name}.hbs`),
     {
       cache: app.enabled("view cache"),
     }

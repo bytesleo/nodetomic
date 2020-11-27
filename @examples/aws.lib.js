@@ -9,7 +9,7 @@ import {
   MODE,
 } from "@/constants/config.constant";
 
-import { renderTemplate } from "../utils/template.util";
+import { renderTemplate } from "../utils/layout.util";
 
 AWS.config.update({
   accessKeyId: AWS_S3_ACCESS_KEY_ID,

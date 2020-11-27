@@ -42,7 +42,7 @@ const sendPushNotification = async (body) => {
         console.log(`Old Tokens to delete: ${oldTokensCount}`);
 
         if (oldTokensCount > 0) {
-          await UsersBusiness.fcmClearGarbage(body.userId, successTokens);
+          // await UsersBusiness.fcmClearGarbage(body.userId, successTokens);
         }
       }
 

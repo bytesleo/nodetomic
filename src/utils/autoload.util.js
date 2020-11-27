@@ -1,35 +1,45 @@
-const autoload = (path, params) => {
+const routes = () => {
   try {
-    switch (path) {
-      case "routes":
-        const routes = require.context("../routes", true, /^((?!!).)*.js$/);
-        let routes_keys = routes.keys();
-        //   console.log("files", routes_keys);
-        return routes_keys.map(routes).map((x) => x.default);
-      case "models":
-        const models = require.context("../models", true, /^((?!!).)*.js$/);
-        let models_keys = models.keys();
-        //   console.log("files", models_keys);
-        return models_keys.map(models);
-      case "seeds":
-        const seeds = require.context("../seeds", true, /^((?!!).)*.js$/);
-        let seeds_keys = seeds.keys();
-        //   console.log("files", seeds_keys);
-        return seeds_keys.map(seeds).map((x) => x.default());
-      case "sockets":
-        const sockets = require.context("../sockets", true, /^((?!!).)*.js$/);
-        let sockets_keys = sockets.keys();
-        //   console.log("files", sockets_keys);
-        return sockets_keys
-          .map(sockets)
-          .map((x) => x.default(params.socket, params.io));
-      default:
-        return [];
-    }
+    const paths = require.context("../routes", true, /^((?!!).)*.js$/);
+    return paths
+      .keys()
+      .map(paths)
+      .map((x) => x.default);
   } catch (error) {
-    if (error?.code !== "MODULE_NOT_FOUND") console.log(error);
     return [];
   }
 };
 
-export { autoload };
+const models = () => {
+  try {
+    const paths = require.context("../models", true, /^((?!!).)*.js$/);
+    return paths.keys().map(paths);
+  } catch (error) {
+    return [];
+  }
+};
+
+const sockets = () => {
+  try {
+    const paths = require.context("../sockets", true, /^((?!!).)*.js$/);
+    return paths
+      .keys()
+      .map(paths)
+      .map((x) => x.default(params.socket, params.io));
+  } catch (error) {
+    return [];
+  }
+};
+
+const seeds = () => {
+  try {
+    const paths = require.context("../seeds", true, /^((?!!).)*.js$/);
+    return paths.keys().map((x) => x.default());
+  } catch (error) {
+    return [];
+  }
+};
+
+export default { models, routes, sockets, seeds };
+
+

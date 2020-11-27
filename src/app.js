@@ -3,7 +3,7 @@ import { create as express } from "@/libs/express.lib";
 import { connect as mongoose } from "@/libs/mongoose.lib";
 import { connect as redis } from "@/libs/redis.lib";
 import { connect as ws } from "@/libs/socketio.lib";
-import { autoload } from "@/utils/autoload.util";
+import autoload from "@/utils/autoload.util";
 
 /**
  * init
@@ -25,9 +25,9 @@ const init = async () => {
 const db = async () => {
   await mongoose();
   // Load Models
-  await autoload("models");
+  await autoload.models();
   // Load Seeds
-  await autoload("seeds");
+  await autoload.seeds();
 };
 
 /**
@@ -35,7 +35,7 @@ const db = async () => {
  */
 const routes = async () => {
   // Load routes
-  await express(await autoload("routes"));
+  await express(await autoload.routes());
 };
 
 /**

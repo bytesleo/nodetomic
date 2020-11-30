@@ -1,7 +1,7 @@
 import { forbidden, unauthorized, error } from "express-easy-helper";
 import validator from "validator";
 // Utils
-import { check } from "@/utils/auth.util";
+import { check, renew } from "@/utils/auth.util";
 
 /**
  * mw
@@ -35,6 +35,10 @@ const mw = (required) => {
               if (isAuthorized.length === 0) return next(forbidden(res));
             }
           }
+
+          // Renew
+          await renew(session.key, "keep");
+
           // Extract current id of user
           let [id] = session.key.split(":");
           req.user = { ...session, ...{ id } };

@@ -1,6 +1,6 @@
 import jsonwebtoken from "jsonwebtoken";
 // Constants
-import { JWT_SECRET } from "@/constants/config.constant";
+import { JWT_SECRET, TTL } from "@/constants/config.constant";
 // Utils
 import { redis } from "@/libs/redis.lib";
 
@@ -52,14 +52,13 @@ const verify = async (data) => {
  *
  * @param {*} id
  * @param {*} data
- * @param {*} ttl (seconds)
  * @returns
  */
-const session = async (id, data, ttl) => {
+const session = async (id, data) => {
   try {
     const key = `${id}:${hash(8)}`;
     const token = await sign({ key, ...data });
-    await redis.set(key, token, "EX", ttl);
+    await redis.set(key, token, "EX", TTL.one_month);
     return token;
   } catch (err) {
     throw err;
@@ -90,12 +89,12 @@ const check = async (token) => {
  * renew (Redis)
  *
  * @param {*} key
- * @param {*} ttl
  */
-const renew = async (key, ttl) => {
+const renew = async (key, type) => {
   try {
-    // here 
-    await destroy(key);
+    if (type === "keep") {
+      await redis.expire(key, TTL.one_month);
+    }
   } catch (err) {
     throw err;
   }

@@ -5,8 +5,6 @@ import AuthBusiness from "@/business/auth.business";
 // Utils
 import { session } from "@/utils/auth.util";
 import { success, error } from "@/utils/helper.util";
-// Constants
-import { TTL } from "@/constants/config.constant";
 
 /**
  * login
@@ -25,7 +23,7 @@ const login = async (req, res) => {
     const user = await AuthBusiness.login(username, password);
     if (user) {
       const { _id, permissions } = user;
-      const token = await session(_id, { permissions }, TTL.one_year);
+      const token = await session(_id, { permissions });
       return success(res, { token });
     } else {
       return unauthorized(res);
@@ -122,7 +120,7 @@ const verify = async (req, res) => {
     const user = await AuthBusiness.verify(username, code);
     if (user) {
       const { _id, permissions } = user;
-      const token = await session(_id, { permissions }, TTL.one_year);
+      const token = await session(_id, { permissions });
       return success(res, { token });
     } else {
       return unauthorized(res);

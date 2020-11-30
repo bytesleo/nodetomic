@@ -25,6 +25,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const TTL = {
   one_day: 86400,
   one_week: 604800,
+  one_month: 2592000,
   one_year: 31536000,
 };
 

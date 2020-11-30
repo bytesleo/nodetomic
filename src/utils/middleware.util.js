@@ -1,6 +1,6 @@
-import { forbidden, unauthorized, error } from "express-easy-helper";
 import validator from "validator";
 // Utils
+import { forbidden, unauthorized, error } from "@/utils/helper.util";
 import { check, renew } from "@/utils/auth.util";
 
 /**
@@ -21,11 +21,9 @@ const mw = (required) => {
 
           // Add Bearer to authorization Header
           req.headers.authorization = `Bearer ${token}`;
-          // Verify Token in Redis, if exists, then return decode token { key, iat }
+          // Verify Token in Redis, if exists, then return decode token { key, ...data, iat }
           const session = await check(token);
-          // console.log({ session });
-          // renew token
-          // const session = await check(token);
+
           // Validate permissions
           if (required) {
             if ("permissions" in session) {
@@ -51,7 +49,7 @@ const mw = (required) => {
         return next(unauthorized(res));
       }
     } catch (err) {
-      return next(error(res, { err }));
+      return next(error(res, err));
     }
   };
 };

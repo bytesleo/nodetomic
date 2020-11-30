@@ -1,10 +1,9 @@
-import { unauthorized } from "express-easy-helper";
 import validator from "validator";
 // Business
 import AuthBusiness from "@/business/auth.business";
 // Utils
 import { session } from "@/utils/auth.util";
-import { success, error } from "@/utils/helper.util";
+import { success, error, unauthorized } from "@/utils/helper.util";
 
 /**
  * login

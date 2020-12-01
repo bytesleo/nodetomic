@@ -889,6 +889,13 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/bson@*":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/bson/-/bson-4.0.3.tgz#30889d2ffde6262abbe38659364c631454999fbf"
+  integrity sha512-mVRvYnTOZJz3ccpxhr3wgxVmSeiYinW+zlzQz3SXWaJmD1DuL05Jeq7nKw3SnbKmbleW5qrLG5vdyWe/A9sXhw==
+  dependencies:
+    "@types/node" "*"
+
 "@types/component-emitter@^1.2.10":
   version "1.2.10"
   resolved "https://registry.yarnpkg.com/@types/component-emitter/-/component-emitter-1.2.10.tgz#ef5b1589b9f16544642e473db5ea5639107ef3ea"
@@ -975,6 +982,14 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
+
+"@types/mongodb@^3.5.27":
+  version "3.5.34"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.5.34.tgz#eaa04b9a85906129fb9aab2eb63079edcf802a98"
+  integrity sha512-73iy3+MiH+wxSM+hVA5jcW9ZTUaor2WKvM7hW+htOSgVb7E6/JBHOWaxj7rL1/vaxEBziKRr/VPecy3YAKqLuQ==
+  dependencies:
+    "@types/bson" "*"
+    "@types/node" "*"
 
 "@types/node@*", "@types/node@^14.14.7":
   version "14.14.10"
@@ -3288,16 +3303,17 @@ mongoose-sequence@^5.3.0:
     async "^2.5.0"
     lodash "^4.17.20"
 
-mongoose@^5.10.19:
-  version "5.10.19"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.10.19.tgz#a8ca94d63737cc9c002832e1aa7169ef0c156779"
-  integrity sha512-SuJwbhQpfZ6WZFM6H2v0Hv1wQNLDeBDLZwOHR3UnR6IlPLKjuLyEx4OLI0vFQihv+JWJKWqJt+LcRRbRyL9PCg==
+mongoose@^5.11.0:
+  version "5.11.0"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.11.0.tgz#d3e84767ee438688cca01827bc042deaff4a6d91"
+  integrity sha512-PX8uOCztBxx68+sWV4EAioRs76gco1EZiu2BA0/saMaYrproU2HWtkXO9Tfbf+eFQMAnDdNKopoe3AKhen4mJQ==
   dependencies:
+    "@types/mongodb" "^3.5.27"
     bson "^1.1.4"
     kareem "2.3.1"
     mongodb "3.6.3"
     mongoose-legacy-pluralize "1.0.2"
-    mpath "0.7.0"
+    mpath "0.8.0"
     mquery "3.2.2"
     ms "2.1.2"
     regexp-clone "1.0.0"
@@ -3316,10 +3332,10 @@ morgan@^1.10.0:
     on-finished "~2.3.0"
     on-headers "~1.0.2"
 
-mpath@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/mpath/-/mpath-0.7.0.tgz#20e8102e276b71709d6e07e9f8d4d0f641afbfb8"
-  integrity sha512-Aiq04hILxhz1L+f7sjGyn7IxYzWm1zLNNXcfhDtx04kZ2Gk7uvFdgZ8ts1cWa/6d0TQmag2yR8zSGZUmp0tFNg==
+mpath@0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/mpath/-/mpath-0.8.0.tgz#48bc1da84e75519d4d74ee6242a4a7e16b4e1997"
+  integrity sha512-slIifXzF6pBxKpPV47ScgqWfGgkpwZNy55fY/umDrgmAxjWMz/WYzYsd8cThU49kw0rLyPWTZaWrOlazaeW57Q==
 
 mquery@3.2.2:
   version "3.2.2"

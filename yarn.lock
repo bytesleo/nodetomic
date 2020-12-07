@@ -4234,10 +4234,10 @@ socket.io-redis@^6.0.1:
     socket.io-adapter "~2.0.0"
     uid2 "0.0.3"
 
-socket.io@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/socket.io/-/socket.io-3.0.3.tgz#f296e95b14077d30e77e695849621514191a59f5"
-  integrity sha512-TC1GnSXhDVmd3bHji5aG7AgWB8UL7E6quACbKra8uFXBqlMwEDbrJFK+tjuIY5Pe9N0L+MAPPDv3pycnn0000A==
+socket.io@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/socket.io/-/socket.io-3.0.4.tgz#20130a80b57e48dadb671f22e3776047cc7f9d53"
+  integrity sha512-Vj1jUoO75WGc9txWd311ZJJqS9Dr8QtNJJ7gk2r7dcM/yGe9sit7qOijQl3GAwhpBOz/W8CwkD7R6yob07nLbA==
   dependencies:
     "@types/cookie" "^0.4.0"
     "@types/cors" "^2.8.8"

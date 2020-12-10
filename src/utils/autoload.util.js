@@ -34,7 +34,10 @@ const sockets = (socket, io) => {
 const seeds = () => {
   try {
     const paths = require.context("../seeds", true, /^((?!!).)*.js$/);
-    return paths.keys().map((x) => x.default());
+    return paths
+      .keys()
+      .map(paths)
+      .map((x) => x.default());
   } catch (error) {
     return [];
   }

@@ -4,23 +4,20 @@ import nodeExternals from "webpack-node-externals";
 import NodemonPlugin from "nodemon-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 
-const src = path.resolve(__dirname, "src");
-
 const config = (env, argv) => {
-  const isProduction = argv.mode === "production";
-
+  // const isProduction = argv.mode === "production";
   return {
-    entry: [src],
+    entry: [path.resolve(__dirname, "src")],
     output: {
       path: path.join(__dirname, "dist"),
       publicPath: "/",
-      filename: isProduction ? "app.js" : "app.[contenthash].js",
+      filename: "app.js",
     },
     plugins: [
       new CleanWebpackPlugin(),
       new NodemonPlugin({
         watch: [
-          path.resolve("./dist"),
+          path.resolve(__dirname, "src"),
           path.resolve(".env"),
           path.resolve("package.json"),
         ],

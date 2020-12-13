@@ -6,6 +6,8 @@ import { NAME, MODE, HOST, PORT } from "@/constants/config.constant";
 
 const create = async (app) => {
   const options = {
+    swagger: '2.0'
+,
     info: {
       version: "1.0.0",
       title: NAME,

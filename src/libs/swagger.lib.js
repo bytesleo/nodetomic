@@ -1,42 +1,35 @@
 import path from "path";
-import swagger from "express-swagger-generator";
+import swagger from "express-jsdoc-swagger";
+
 // Constants
 import { NAME, MODE, HOST, PORT } from "@/constants/config.constant";
 
 const create = async (app) => {
-  const expressSwagger = swagger(app);
-  // swagger
   const options = {
-    swaggerDefinition: {
-      info: {
-        description: "API",
-        title: NAME,
-        version: "1.0.0",
-      },
-      host: `${HOST}:${PORT}`,
-      basePath: "/",
-      produces: ["application/json", "application/xml"],
-      schemes: ["http", "https"],
-      securityDefinitions: {
-        JWT: {
-          type: "apiKey",
-          in: "header",
-          name: "Authorization",
-          description: "",
-        },
+    info: {
+      version: "1.0.0",
+      title: NAME,
+      description: "API description",
+    },
+    security: {
+      JWT: {
+        type: "apiKey",
+        in: "header",
+        name: "Authorization",
+        description: "",
       },
     },
-    route: {
-      url: "/docs",
-      docs: "/docs.json",
-    },
-    basedir: path.resolve(__dirname, "./../src"), //app absolute path
-    files: ["routes/**/*.js"], //Path to the API handle folder
+    filesPattern: ["routes/**/*.js"], // Glob pattern to find your jsdoc files (it supports arrays too ['./**/*.controller.js', './**/*.route.js'])
+    swaggerUIPath: "/api-docs", // SwaggerUI will be render in this url. Default: '/api-docs'
+    baseDir: path.resolve(__dirname, "./../src"),
+    exposeSwaggerUI: true, // Expose OpenAPI UI. Default true
+    exposeApiDocs: false, // Expose Open API JSON Docs documentation in `apiDocsPath` path. Default false.
+    apiDocsPath: "/api-docs", // Open API JSON Docs endpoint. Default value '/v3/api-docs'.
   };
 
-  if (MODE === "development") expressSwagger(options);
+  if (MODE === "development") swagger(app)(options);
 
-  return options.route.url;
+  return options.swaggerUIPath;
 };
 
 export { create };

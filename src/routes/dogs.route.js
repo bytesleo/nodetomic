@@ -7,23 +7,23 @@ import { mw } from "@/utils/middleware.util";
 const router = express.Router();
 
 /**
- * Get all dogs
- * @route GET /api/dogs/all
- * @group Dogs
- * @returns {object} 200 - success
- * @returns {Error} 5XX - error
+ * GET /api/dogs/all
+ * @summary Get all dogs
+ * @tags Dogs
+ * @return {object} 200 - Success
+ * @return {object} 5XX - Error
  */
 router.get("/api/dogs/all", DogsController.all);
 
 /**
- * Get all dogs (logged)
- * @route GET /api/dogs/all/logged
+ * GET /api/dogs/all/logged
+ * @summary  Get all dogs
  * @security JWT
- * @group Dogs
- * @returns {object} 200 - success
- * @returns {object} 401 - unauthorized
- * @returns {object} 403 - forbidden
- * @returns {Error} 5XX - error
+ * @tags Dogs
+ * @return {object} 200 - Success
+ * @return {object} 401 - Unauthorized
+ * @return {object} 403 - Forbidden
+ * @return {object} 5XX - Error
  */
 router.get("/api/dogs/all/logged", mw(["user"]), DogsController.all);
 

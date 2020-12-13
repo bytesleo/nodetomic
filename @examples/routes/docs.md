@@ -1,12 +1,11 @@
 ```javascript
-
 /**
  * Form Parameter
  * @route POST /api/dogs/create
  * @group Dogs
- * @param {string} dogName.formData.required - dogName
- * @returns {object} 200 - success
- * @returns {Error} 5XX - error
+ * @param {string} name.form.required - dog name
+ * @returns {object} 200 - Success
+ * @returns {Error} 5XX - Error
  */
 
 /**
@@ -68,8 +67,6 @@
  * @returns {object} 422 - invalid
  * @returns {Error} 5XX - error
  */
-
 ```
 
 <https://swagger.io/docs/specification/describing-parameters>
-

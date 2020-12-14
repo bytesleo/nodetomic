@@ -113,8 +113,6 @@ const verify = async (req, res) => {
   try {
     const { username, code } = req.body;
 
-    console.log(req.body)
-
     if (validator.isEmpty(username)) throw "The phone cannot be empty";
     if (validator.isEmpty(code)) throw "The code cannot be empty";
 

@@ -23,7 +23,7 @@ const config = (env, argv) => {
         ],
         ignore: ["./node_modules"],
         verbose: true,
-        // delay: "1000",
+        delay: "500",
       }),
       new CopyPlugin({ patterns: [{ from: ".env" }] }),
     ],

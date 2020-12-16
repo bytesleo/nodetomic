@@ -17,9 +17,7 @@ const config = (env, argv) => {
     plugins: [
       new CleanWebpackPlugin(),
       new ESLintPlugin({
-        extensions: ['js', 'jsx', 'ts', 'tsx'],
-        emitError: true,
-        emitWarning: true
+        extensions: ['js', 'jsx', 'ts', 'tsx']
       }),
       new NodemonPlugin({
         watch: [

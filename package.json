@@ -83,6 +83,24 @@
     "webpack-cli": "^4.2.0",
     "webpack-node-externals": "^2.5.2"
   },
+  "babel": {
+    "presets": [
+      "@babel/env"
+    ],
+    "plugins": [
+      [
+        "babel-plugin-root-import",
+        {
+          "rootPathPrefix": "@/",
+          "rootPathSuffix": "./src"
+        }
+      ],
+      "@babel/plugin-transform-async-to-generator",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/transform-runtime",
+      "@babel/plugin-syntax-dynamic-import"
+    ]
+  },
   "prettier": {
     "tabWidth": 2,
     "semi": true,

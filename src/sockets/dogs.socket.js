@@ -11,9 +11,9 @@ export default (_socket, _io) => {
  * listen events ON
  */
 const on = () => {
-  // socket.on("dogs:ping", (data) => {
-  //   console.log("userId", socket.user.id)
-  //   io.emit("dogs:pong", data);
+  // socket.on('dogs:ping', (data) => {
+  //   console.log('userId', socket.user.id);
+  //   io.emit('dogs:pong', data);
   // });
 };
 

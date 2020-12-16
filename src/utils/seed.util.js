@@ -7,7 +7,7 @@
 const many = async (model, data) => {
   try {
     await model.insertMany(data);
-    console.log("->Seed Success: ", model.collection.collectionName);
+    console.log('->Seed Success: ', model.collection.collectionName);
   } catch (error) {
     console.error(new Error(error));
   }
@@ -22,7 +22,7 @@ const many = async (model, data) => {
 const once = async (model, data) => {
   try {
     await model.create(data);
-    console.log("->Seed Success: ", model.collection.collectionName);
+    console.log('->Seed Success: ', model.collection.collectionName);
   } catch (error) {
     console.error(new Error(error));
   }

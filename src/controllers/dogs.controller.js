@@ -1,6 +1,6 @@
 // Business
-import DogBusiness from "@/business/dogs.business";
-import { success, error } from "@/utils/helper.util";
+import DogBusiness from '@/business/dogs.business';
+import { success, error } from '@/utils/helper.util';
 
 const all = async (req, res) => {
   try {

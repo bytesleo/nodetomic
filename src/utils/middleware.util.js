@@ -1,7 +1,7 @@
-import validator from "validator";
+import validator from 'validator';
 // Utils
-import { forbidden, unauthorized, error } from "@/utils/helper.util";
-import { check, renew } from "@/utils/auth.util";
+import { forbidden, unauthorized, error } from '@/utils/helper.util';
+import { check, renew } from '@/utils/auth.util';
 
 /**
  * mw
@@ -12,12 +12,12 @@ import { check, renew } from "@/utils/auth.util";
 const mw = (required) => {
   return async (req, res, next) => {
     try {
-      let token = req.headers["authorization"];
+      let token = req.headers['authorization'];
 
       if (token) {
         try {
           // Is JWT format
-          if (!validator.isJWT(token)) throw "Token is not valid";
+          if (!validator.isJWT(token)) throw 'Token is not valid';
 
           // Add Bearer to authorization Header
           req.headers.authorization = `Bearer ${token}`;
@@ -26,7 +26,7 @@ const mw = (required) => {
 
           // Validate permissions
           if (required) {
-            if ("permissions" in session) {
+            if ('permissions' in session) {
               const isAuthorized = required.filter((x) =>
                 session.permissions.includes(x)
               );
@@ -35,10 +35,10 @@ const mw = (required) => {
           }
 
           // Renew
-          await renew(session.key, "keep");
+          await renew(session.key, 'keep');
 
           // Extract current id of user
-          let [id] = session.key.split(":");
+          let [id] = session.key.split(':');
           req.user = { ...session, ...{ id } };
           return next();
         } catch (errSession) {
@@ -73,14 +73,14 @@ const mws = async (socket, [event], required, next) => {
 
       if (token) {
         // Is JWT format
-        if (!validator.isJWT(token)) throw "Token is not valid";
+        if (!validator.isJWT(token)) throw 'Token is not valid';
 
         // Verify Token in Redis, if exists, then return decode token { key, iat }
         const session = await check(token);
 
         // Validate permissions
         if (event) {
-          if (required.length > 0 && "permissions" in session) {
+          if (required.length > 0 && 'permissions' in session) {
             const isAuthorized = config.permissions.filter((x) =>
               session.permissions.includes(x)
             );
@@ -89,7 +89,7 @@ const mws = async (socket, [event], required, next) => {
         }
 
         // Extract current id of user
-        let [id] = session.key.split(":");
+        let [id] = session.key.split(':');
         socket.user = { ...session, ...{ id } };
 
         return next();
@@ -100,7 +100,7 @@ const mws = async (socket, [event], required, next) => {
       return next();
     }
   } catch (err) {
-    console.log("socketError->", err.toString());
+    console.log('socketError->', err.toString());
     // socket.emit("auth:error", { err: err.toString() });
     return next(new Error(err.toString()));
   }

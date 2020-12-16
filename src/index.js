@@ -1,9 +1,9 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 // Constants
-import { MODE, HOST, PORT, WS } from "@/constants/config.constant";
+import { MODE, HOST, PORT, WS } from '@/constants/config.constant';
 // App
-import { init } from "@/app";
-import { app } from "@/libs/express.lib";
+import { init } from '@/app';
+import { app } from '@/libs/express.lib';
 
 (async () => {
   try {

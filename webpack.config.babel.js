@@ -1,37 +1,43 @@
-import path from "path";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import nodeExternals from "webpack-node-externals";
-import NodemonPlugin from "nodemon-webpack-plugin";
-import CopyPlugin from "copy-webpack-plugin";
+import path from 'path';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import nodeExternals from 'webpack-node-externals';
+import NodemonPlugin from 'nodemon-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import ESLintPlugin from 'eslint-webpack-plugin';
 
 const config = (env, argv) => {
   // const isProduction = argv.mode === "production";
   return {
-    entry: [path.resolve(__dirname, "src")],
+    entry: [path.resolve(__dirname, 'src')],
     output: {
-      path: path.join(__dirname, "dist"),
-      publicPath: "/",
-      filename: "app.js",
+      path: path.join(__dirname, 'dist'),
+      publicPath: '/',
+      filename: 'app.js'
     },
     plugins: [
       new CleanWebpackPlugin(),
+      new ESLintPlugin({
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        emitError: true,
+        emitWarning: true
+      }),
       new NodemonPlugin({
         watch: [
-          path.resolve(__dirname, "src"),
-          path.resolve(".env"),
-          path.resolve("package.json"),
+          path.resolve(__dirname, 'src'),
+          path.resolve('.env'),
+          path.resolve('package.json')
         ],
-        ignore: ["./node_modules"],
+        ignore: ['./node_modules'],
         verbose: true,
-        delay: "500",
+        delay: '500'
       }),
-      new CopyPlugin({ patterns: [{ from: ".env" }] }),
+      new CopyPlugin({ patterns: [{ from: '.env' }] })
     ],
-    target: "node",
+    target: 'node',
     node: {
       // Need this when working with express, otherwise the build fails
       __dirname: false, // if you don't put this is, __dirname
-      __filename: false, // and __filename return blank or /
+      __filename: false // and __filename return blank or /
     },
     externals: [nodeExternals()], // Need this to avoid error when working with Express
     module: {
@@ -40,14 +46,14 @@ const config = (env, argv) => {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
-          },
-        },
-      ],
+            loader: 'babel-loader'
+          }
+        }
+      ]
     },
     stats: {
-      warnings: false,
-    },
+      warnings: false
+    }
   };
 };
 

@@ -1,8 +1,8 @@
-import express from "express";
+import express from 'express';
 // Controllers
-import AuthController from "@/controllers/auth.controller";
+import AuthController from '@/controllers/auth.controller';
 // Utils
-import { mw } from "@/utils/middleware.util";
+import { mw } from '@/utils/middleware.util';
 // Constants
 const router = express.Router();
 
@@ -15,7 +15,7 @@ const router = express.Router();
  * @return {object} 200 - Success
  * @return {object} 5XX - Error
  */
-router.post("/api/auth/login", AuthController.login);
+router.post('/api/auth/login', AuthController.login);
 
 /**
  * POST /api/auth/register
@@ -26,7 +26,7 @@ router.post("/api/auth/login", AuthController.login);
  * @return {object} 200 - Success
  * @return {object} 5XX - Error
  */
-router.post("/api/auth/register", AuthController.register);
+router.post('/api/auth/register', AuthController.register);
 
 /**
  * POST /api/auth/recover
@@ -36,7 +36,7 @@ router.post("/api/auth/register", AuthController.register);
  * @return {object} 200 - Success
  * @return {object} 5XX - Error
  */
-router.post("/api/auth/recover", AuthController.recover);
+router.post('/api/auth/recover', AuthController.recover);
 
 /**
  * GET /api/auth/me
@@ -48,7 +48,7 @@ router.post("/api/auth/recover", AuthController.recover);
  * @return {object} 403 - Forbidden
  * @return {object} 5XX - Error
  */
-router.get("/api/auth/me", mw(["user"]), AuthController.me);
+router.get('/api/auth/me', mw(['user']), AuthController.me);
 
 /**
  * POST /api/auth/verify
@@ -59,6 +59,6 @@ router.get("/api/auth/me", mw(["user"]), AuthController.me);
  * @return {object} 200 - Success
  * @return {object} 5XX - Error
  */
-router.post("/api/auth/verify", AuthController.verify);
+router.post('/api/auth/verify', AuthController.verify);
 
 export default router;

@@ -1,5 +1,5 @@
 // Models
-import UserModel from "@/models/user.model";
+import UserModel from '@/models/user.model';
 
 /**
  * login
@@ -12,38 +12,38 @@ const login = async (username, password) => {
   const user = await UserModel.findOne({
     $or: [
       {
-        email: username,
+        email: username
       },
       {
-        phone: username,
-      },
-    ],
+        phone: username
+      }
+    ]
   })
-    .select("+password")
+    .select('+password')
     .lean();
 
   if (user) {
     if (!user.enabled)
       throw {
-        code: "ERROR_LOGIN_1",
-        message: `The user has been banned`,
+        code: 'ERROR_LOGIN_1',
+        message: `The user has been banned`
       };
     if (!user.password)
       throw {
-        code: "ERROR_LOGIN_2",
-        message: `Don't have a password, try in recover password`,
+        code: 'ERROR_LOGIN_2',
+        message: `Don't have a password, try in recover password`
       };
     const isMatch = await UserModel.compare(password, user.password);
     if (!isMatch)
       throw {
-        code: "ERROR_LOGIN_3",
-        message: `Incorrect password`,
+        code: 'ERROR_LOGIN_3',
+        message: `Incorrect password`
       };
     return user;
   } else {
     throw {
-      code: "ERROR_LOGIN_4",
-      message: `User not found`,
+      code: 'ERROR_LOGIN_4',
+      message: `User not found`
     };
   }
 };
@@ -61,24 +61,24 @@ const register = async (username, password, terms) => {
   const exists = await UserModel.exists({
     $or: [
       {
-        email: username,
+        email: username
       },
       {
-        phone: username,
-      },
-    ],
+        phone: username
+      }
+    ]
   });
 
   if (exists) {
     throw {
-      code: "ERROR_REGISTER_1",
+      code: 'ERROR_REGISTER_1',
       message: `${username} is already registered`,
-      params: { username },
+      params: { username }
     };
   } else {
     const query = {};
 
-    if (username.includes("@")) {
+    if (username.includes('@')) {
       query.email = username;
       query.phone = username;
     } else {
@@ -90,13 +90,13 @@ const register = async (username, password, terms) => {
       ...query,
       password,
       check_terms: terms,
-      code_verification: code,
+      code_verification: code
     });
 
     // const page = await PagesModel.create({ user: user._id });
 
     // Send Code
-    if (username.includes("@")) {
+    if (username.includes('@')) {
       // sendEmail({
       //   to: username,
       //   from: "hi@nodetomic.com",
@@ -135,20 +135,20 @@ const recover = async (username) => {
   const user = await UserModel.findOne({
     $or: [
       {
-        email: username,
+        email: username
       },
       {
-        phone: username,
-      },
+        phone: username
+      }
     ],
-    enabled: true,
+    enabled: true
   }).lean();
 
   if (user) {
     // Send code here via Email
     await UserModel.updateOne({ _id: user._id }, { code_verification: code });
 
-    if (username.includes("@")) {
+    if (username.includes('@')) {
       // sendEmail({
       //   to: username,
       //   from: "hi@nodetomic.com",
@@ -168,13 +168,13 @@ const recover = async (username) => {
     }
 
     return {
-      sent: `Sent code to ${username}`,
+      sent: `Sent code to ${username}`
     };
   } else {
     throw {
-      code: "ERROR_RECOVER_1",
+      code: 'ERROR_RECOVER_1',
       message: `${username} is not registered`,
-      params: { username },
+      params: { username }
     };
   }
 };
@@ -187,7 +187,7 @@ const recover = async (username) => {
  */
 const me = async (userId) => {
   return await UserModel.findOne({ _id: userId, enabled: true })
-    .select("phone email name last_name created_at")
+    .select('phone email name last_name created_at')
     .lean();
 };
 
@@ -202,14 +202,14 @@ const verify = async (username, code) => {
   const user = await UserModel.findOne({
     $or: [
       {
-        email: username,
+        email: username
       },
       {
-        phone: username,
-      },
+        phone: username
+      }
     ],
     code_verification: code,
-    enabled: true,
+    enabled: true
   }).lean();
 
   if (user) {
@@ -220,9 +220,9 @@ const verify = async (username, code) => {
     );
   } else {
     throw {
-      code: "ERROR_VERIFY_1",
+      code: 'ERROR_VERIFY_1',
       message: `Invalid code`,
-      params: { code },
+      params: { code }
     };
   }
 };
@@ -232,5 +232,5 @@ export default {
   register,
   recover,
   me,
-  verify,
+  verify
 };

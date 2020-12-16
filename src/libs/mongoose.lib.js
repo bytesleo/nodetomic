@@ -1,9 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 // Constants
-import { URI_DB, MODE } from "@/constants/config.constant";
+import { URI_DB, MODE } from '@/constants/config.constant';
 
 // print mongoose logs in dev env
-// if (MODE === "development") mongoose.set("debug", true);
+if (MODE === 'development') {
+  // mongoose.set('debug', true);
+}
 
 const connect = () =>
   new Promise((resolve, reject) => {
@@ -15,13 +17,13 @@ const connect = () =>
     });
     const db = mongoose.connection;
 
-    db.once("connected", () => {
-      console.log("✅ MongoDB: connected!");
+    db.once('connected', () => {
+      console.log('✅ MongoDB: connected!');
       resolve();
     });
 
-    db.on("error", error => {
-      console.error("❌ MongoDB: error");
+    db.on('error', (error) => {
+      console.error('❌ MongoDB: error');
       reject(error);
     });
   });

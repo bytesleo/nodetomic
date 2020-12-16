@@ -1,9 +1,9 @@
 // base
-import { create as express } from "@/libs/express.lib";
-import { connect as mongoose } from "@/libs/mongoose.lib";
-import { connect as redis } from "@/libs/redis.lib";
-import { connect as ws } from "@/libs/socketio.lib";
-import autoload from "@/utils/autoload.util";
+import { create as express } from '@/libs/express.lib';
+import { connect as mongoose } from '@/libs/mongoose.lib';
+import { connect as redis } from '@/libs/redis.lib';
+import { connect as ws } from '@/libs/socketio.lib';
+import autoload from '@/utils/autoload.util';
 
 /**
  * init

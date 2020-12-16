@@ -1,5 +1,5 @@
 // Env
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config();
 
 const NAME = process.env.NAME;
@@ -26,7 +26,7 @@ const TTL = {
   one_day: 86400,
   one_week: 604800,
   one_month: 2592000,
-  one_year: 31536000,
+  one_year: 31536000
 };
 
 export {
@@ -40,5 +40,5 @@ export {
   URI_REDIS,
   URI_WS_REDIS,
   JWT_SECRET,
-  TTL,
+  TTL
 };

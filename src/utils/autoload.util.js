@@ -1,6 +1,6 @@
 const routes = () => {
   try {
-    const paths = require.context("../routes", true, /^((?!!).)*.js$/);
+    const paths = require.context('../routes', true, /^((?!!).)*.js$/);
     return paths
       .keys()
       .map(paths)
@@ -12,7 +12,7 @@ const routes = () => {
 
 const models = () => {
   try {
-    const paths = require.context("../models", true, /^((?!!).)*.js$/);
+    const paths = require.context('../models', true, /^((?!!).)*.js$/);
     return paths.keys().map(paths);
   } catch (error) {
     return [];
@@ -21,7 +21,7 @@ const models = () => {
 
 const sockets = (socket, io) => {
   try {
-    const paths = require.context("../sockets", true, /^((?!!).)*.js$/);
+    const paths = require.context('../sockets', true, /^((?!!).)*.js$/);
     return paths
       .keys()
       .map(paths)
@@ -33,7 +33,7 @@ const sockets = (socket, io) => {
 
 const seeds = () => {
   try {
-    const paths = require.context("../seeds", true, /^((?!!).)*.js$/);
+    const paths = require.context('../seeds', true, /^((?!!).)*.js$/);
     return paths
       .keys()
       .map(paths)

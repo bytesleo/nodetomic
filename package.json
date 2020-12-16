@@ -107,7 +107,8 @@
     "tabWidth": 2,
     "semi": true,
     "singleQuote": true,
-    "trailingComma": "none"
+    "trailingComma": "none",
+    "endOfLine": "auto"
   },
   "jest": {
     "verbose": false,
@@ -116,7 +117,7 @@
       "<rootDir>/__tests__/setupTests.js"
     ],
     "testMatch": [
-      "<rootDir>/__tests__/**/?((?!!)*.)+(test).[jt]s?(x)"
+      "<rootDir>/__tests__/**/*?((?!!)*.)+(test).[jt]s?(x)"
     ]
   },
   "eslintConfig": {

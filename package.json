@@ -52,7 +52,7 @@
     ],
     "rules": {
       "prettier/prettier": "error",
-      "no-var": 1
+      "no-var": "warn"
     }
   },
   "dependencies": {

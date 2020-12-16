@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
-    "test": "jest ./__tests__"
+    "test": "jest"
   },
   "keywords": [
     "nodetomic",
@@ -116,7 +116,7 @@
       "<rootDir>/__tests__/setupTests.js"
     ],
     "testMatch": [
-      "**/?(*.)+(test).[jt]s?(x)"
+      "<rootDir>/__tests__/**/?((?!!)*.)+(test).[jt]s?(x)"
     ]
   },
   "eslintConfig": {

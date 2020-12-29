@@ -30,7 +30,7 @@ const mw = (required) => {
               const isAuthorized = required.filter((x) =>
                 session.permissions.includes(x)
               );
-              if (isAuthorized.length === 0) return next(forbidden(res));
+              if (isAuthorized.length === 0) return forbidden(res);
             }
           }
 
@@ -42,14 +42,13 @@ const mw = (required) => {
           req.user = { ...session, ...{ id } };
           return next();
         } catch (errSession) {
-          return next(unauthorized(res));
+          return unauthorized(res);
         }
       } else {
-        // return next(forbidden(res));
-        return next(unauthorized(res));
+        return unauthorized(res);
       }
     } catch (err) {
-      return next(error(res, err));
+      return error(res, err);
     }
   };
 };

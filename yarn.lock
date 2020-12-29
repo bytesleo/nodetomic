@@ -3266,10 +3266,10 @@ expect@^26.6.2:
     jest-message-util "^26.6.2"
     jest-regex-util "^26.0.0"
 
-express-easy-helper@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/express-easy-helper/-/express-easy-helper-2.0.0.tgz#805cce11f64542ad26bf9439fae048a40c2e7e65"
-  integrity sha512-dwXfodew6eBRmQmLout+UXCEaqSuwwvIQ3SDqw2r3wIPICyRrq4dcutX07yjrxcPUQpgmAORdHtTpY4dI7JTwg==
+express-easy-helper@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/express-easy-helper/-/express-easy-helper-2.5.1.tgz#9c809a4dca18e069861e0f406a03fc96943c9267"
+  integrity sha512-FrAkb4Eu0sbr6wf6tSZ0hcyGBVUai2tfeeNHgBuHfcA3E25SEKkyw9xVkc0+DeGM2vPq+H8PCX4Bl7ltMDHM1g==
   dependencies:
     express "^4.17.1"
 

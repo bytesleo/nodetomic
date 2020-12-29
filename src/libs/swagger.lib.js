@@ -25,7 +25,7 @@ const create = async (app) => {
         description: ''
       }
     },
-    filesPattern: ['routes/**/*.js'], // Glob pattern to find your jsdoc files (it supports arrays too ['./**/*.controller.js', './**/*.route.js'])
+    filesPattern: ['routes/**/[!!]*.js'], // Glob pattern to find your jsdoc files (it supports arrays too ['./**/*.controller.js', './**/*.route.js'])
     swaggerUIPath: '/api-docs', // SwaggerUI will be render in this url. Default: '/api-docs'
     baseDir: path.resolve(__dirname, './../src'),
     exposeSwaggerUI: true, // Expose OpenAPI UI. Default true

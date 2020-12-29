@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "nodetomic",
-  "version": "4.0.0",
+  "version": "1.0.0",
   "description": "Node, Express, MongoDB, Sockets, Redis, JWT, Webpack, Babel 7",
   "main": "src/index.js",
   "scripts": {

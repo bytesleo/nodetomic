@@ -1,4 +1,5 @@
-title: :: nodetomic ::
+title: Nodetomic
+theme: jekyll-theme-hacker
 plugins:
   - jekyll-relative-links
 relative_links:

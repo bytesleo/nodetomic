@@ -1,28 +1,38 @@
-// Libs
-import AWS from "aws-sdk";
-// Constants
+### Install
+
+```bash
+yarn add aws-sdk
+```
+
+### Setup
+
+```javascript
 import {
   AWS_S3_ACCESS_KEY_ID,
   AWS_S3_SECRET_ACCESS_KEY,
   AWS_S3_REGION,
   AWS_PINPOINT_ID,
-  MODE,
-} from "@/constants/config.constant";
+  MODE
+} from '@/constants/config.constant';
 
-import { renderTemplate } from "../utils/layout.util";
+import { renderTemplate } from '../utils/layout.util';
 
 AWS.config.update({
   accessKeyId: AWS_S3_ACCESS_KEY_ID,
   secretAccessKey: AWS_S3_SECRET_ACCESS_KEY,
-  region: AWS_S3_REGION,
+  region: AWS_S3_REGION
 });
 
 const aws_s3 = new AWS.S3();
-const pinpoint = new AWS.Pinpoint({ apiVersion: "2016-12-01" });
+const pinpoint = new AWS.Pinpoint({ apiVersion: '2016-12-01' });
+```
 
+### s3
+
+```javascript
 const s3Upload = async (config = {}, files) => {
   try {
-    console.log("s3 upload", { config });
+    console.log('s3 upload', { config });
     let result = [];
 
     if (files && files instanceof Array) {
@@ -34,7 +44,7 @@ const s3Upload = async (config = {}, files) => {
             .upload({
               Bucket: config.bucket,
               Body: file.data,
-              Key: `${MODE}${config.path}${file.md5}_${file.name}`,
+              Key: `${MODE}${config.path}${file.md5}_${file.name}`
             })
             .promise()
         );
@@ -45,7 +55,7 @@ const s3Upload = async (config = {}, files) => {
       values.map((x) => {
         result.push({
           url: x.Location,
-          ...config,
+          ...config
         });
       });
     }
@@ -56,10 +66,12 @@ const s3Upload = async (config = {}, files) => {
     console.log({ s3UploadError: err });
   }
 };
+```
 
+```javascript
 const s3Delete = async (deletion) => {
   try {
-    console.log("s3 delete", { deletion });
+    console.log('s3 delete', { deletion });
     let result = [];
 
     // Always receive Array, even for 1 element
@@ -71,7 +83,7 @@ const s3Delete = async (deletion) => {
           aws_s3
             .deleteObject({
               Bucket: element.bucket,
-              Key: element.key,
+              Key: element.key
             })
             .promise()
         );
@@ -87,26 +99,30 @@ const s3Delete = async (deletion) => {
     console.log({ s3DeleteError: err });
   }
 };
+```
 
+### Pinpoint
+
+```javascript
 const sendEmail = async (data) => {
   try {
-    console.log("📧 email", data);
+    console.log('📧 email', data);
 
-    if (MODE !== "development") {
+    if (MODE !== 'development') {
       const parts = {};
 
       // simple email
       if (data.message)
         parts.TextPart = {
-          Charset: "UTF-8",
-          Data: data.message,
+          Charset: 'UTF-8',
+          Data: data.message
         };
 
       // html email
       if (data.template)
         parts.HtmlPart = {
-          Charset: "UTF-8",
-          Data: renderTemplate(data.template, data.params),
+          Charset: 'UTF-8',
+          Data: renderTemplate(data.template, data.params)
         };
 
       const params = {
@@ -114,22 +130,22 @@ const sendEmail = async (data) => {
         MessageRequest: {
           Addresses: {
             [data.to]: {
-              ChannelType: "EMAIL",
-            },
+              ChannelType: 'EMAIL'
+            }
           },
           MessageConfiguration: {
             EmailMessage: {
               FromAddress: data.from,
               SimpleEmail: {
                 Subject: {
-                  Charset: "UTF-8",
-                  Data: data.subject,
+                  Charset: 'UTF-8',
+                  Data: data.subject
                 },
-                ...parts,
-              },
-            },
-          },
-        },
+                ...parts
+              }
+            }
+          }
+        }
       };
 
       const result = await pinpoint.sendMessages(params).promise();
@@ -140,28 +156,30 @@ const sendEmail = async (data) => {
     console.log({ sendEmailError: err });
   }
 };
+```
 
+```javascript
 const sendSMS = async (data) => {
   try {
-    console.log("📱 sms", data);
+    console.log('📱 sms', data);
 
-    if (MODE !== "development") {
+    if (MODE !== 'development') {
       const params = {
         ApplicationId: AWS_PINPOINT_ID,
         MessageRequest: {
           Addresses: {
             [data.to]: {
               BodyOverride: data.message,
-              ChannelType: "SMS",
-            },
+              ChannelType: 'SMS'
+            }
           },
           MessageConfiguration: {
             SMSMessage: {
               Body: data.message,
-              MessageType: "TRANSACTIONAL",
-            },
-          },
-        },
+              MessageType: 'TRANSACTIONAL'
+            }
+          }
+        }
       };
 
       const result = await pinpoint.sendMessages(params).promise();
@@ -171,42 +189,44 @@ const sendSMS = async (data) => {
     console.log({ sendSMSError: err });
   }
 };
+```
 
-export { s3Upload, s3Delete, sendEmail, sendSMS };
+### TEST
+
+```javascript
+// Test S3 upload
+s3Upload(
+  {
+    bucket: 'Nodetomic',
+    path: `development/images/user1/`
+  },
+  files
+);
+
+// Test S3 delete
+s3Delete([
+  {
+    bucket: 'Nodetomic',
+    key: `development/images/xxxxx.jpg`
+  }
+]);
 
 // Test SMS
-// sendSMS({
-//   to: "+573001111111",
-//   from: "Nodetomic",
-//   message: "Nodetomic: 123",
-// });
+sendSMS({
+  to: '+573001111111',
+  from: 'Nodetomic',
+  message: 'Nodetomic: 123'
+});
 
 // Test Email
-// sendEmail({
-//   to: "user@example.com",
-//   from: "hi@example.com",
-//   subject: "Nodetomic",
-//   message: "This is a test",
-//   template: "email.register",
-//   params: {
-//     code: 123,
-//   },
-// });
-
-// Test S3
-// await s3Upload(
-//   {
-//     bucket: "Nodetomic",
-//     path: `development/images/user1/`,
-//   },
-//   files
-// );
-
-// Test S3_delete
-
-// s3Delete([
-//   {
-//     bucket: "Nodetomic",
-//     key: `development/images/xxxxx.jpg`,
-//   }
-// ]);
+sendEmail({
+  to: 'user@example.com',
+  from: 'hi@example.com',
+  subject: 'Nodetomic',
+  message: 'This is a test',
+  template: 'email.register',
+  params: {
+    code: 123
+  }
+});
+```

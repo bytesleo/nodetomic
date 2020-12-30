@@ -7,4 +7,8 @@ relative_links:
   enabled: true
   collections: true
 include:
-  - example.md
+  - setup.md
+  - scripts.md
+  - api.md
+  - aws.md
+  - fcm.md

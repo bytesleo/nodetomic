@@ -7,6 +7,10 @@ $magenta: #c678dd;
 $cyan: #56b6c2;
 $grey: #abb2bf;
 
+code{
+  color $grey;
+}
+
 .highlight .c {
   color: #586e75;
 } // comment //

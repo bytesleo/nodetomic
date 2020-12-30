@@ -1,5 +1,5 @@
 title: Nodetomic
-theme: jekyll-theme-hacker
+theme: jekyll-theme-midnight
 plugins:
   - jekyll-relative-links
   - jekyll-default-layout

@@ -1,4 +1,8 @@
 ## Welcome to GitHub Pages
+[A1](https://kevoj.github.io/nodetomic/example) 
+[A2](example) 
+
+
 
 You can use the [editor on GitHub](https://github.com/kevoj/nodetomic/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
 

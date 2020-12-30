@@ -2,6 +2,7 @@ title: Nodetomic
 theme: jekyll-theme-hacker
 plugins:
   - jekyll-relative-links
+  - jekyll-default-layout
 relative_links:
   enabled: true
   collections: true

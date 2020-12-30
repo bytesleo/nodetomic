@@ -106,7 +106,7 @@ $grey: #abb2bf;
   color: $green;
 } // literal.string //
 .highlight .na {
-  color: #555;
+  color: $grey;
 } // name.attribute //
 .highlight .nb {
   color: $orange;
@@ -130,13 +130,13 @@ $grey: #abb2bf;
   color: $blue;
 } // name.function //
 .highlight .nl {
-  color: #555;
+  color: $grey;
 } // name.label //
 .highlight .nn {
   color: #93a1a1;
 } // name.namespace //
 .highlight .nx {
-  color: #555;
+  color: $grey;
 } // name.other //
 .highlight .py {
   color: #93a1a1;

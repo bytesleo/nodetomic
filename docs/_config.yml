@@ -1,5 +1,5 @@
 title: Nodetomic
-theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs
 plugins:
   - jekyll-relative-links
   - jekyll-default-layout

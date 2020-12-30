@@ -7,209 +7,209 @@ $magenta: #c678dd;
 $cyan: #56b6c2;
 $grey: #abb2bf;
 
-.highlight .c {
-  color: #586e75;
-} // comment //
-.highlight .err {
-  color: #93a1a1;
-} // error //
-.highlight .g {
-  color: #93a1a1;
-} // generic //
-.highlight .k {
-  color: $magenta;
-} // keyword //
-.highlight .l {
-  color: #93a1a1;
-} // literal //
-.highlight .n {
-  color: #93a1a1;
-} // name //
-.highlight .o {
-  color: $magenta;
-} // operator //
-.highlight .x {
-  color: $red;
-} // other //
-.highlight .p {
-  color: #93a1a1;
-} // punctuation //
-.highlight .cm {
-  color: #586e75;
-} // comment.multiline //
-.highlight .cp {
-  color: $magenta;
-} // comment.preproc //
-.highlight .c1 {
-  color: #586e75;
-} // comment.single //
-.highlight .cs {
-  color: $magenta;
-} // comment.special //
-.highlight .gd {
-  color: $green;
-} // generic.deleted //
-.highlight .ge {
-  font-style: italic;
-  color: #93a1a1;
-} // generic.emph //
-.highlight .gr {
-  color: $red;
-} // generic.error //
-.highlight .gh {
-  color: $red;
-} // generic.heading //
-.highlight .gi {
-  color: $magenta;
-} // generic.inserted //
-.highlight .go {
-  color: #93a1a1;
-} // generic.output //
-.highlight .gp {
-  color: #93a1a1;
-} // generic.prompt //
-.highlight .gs {
-  font-weight: bold;
-  color: #93a1a1;
-} // generic.strong //
-.highlight .gu {
-  color: $red;
-} // generic.subheading //
-.highlight .gt {
-  color: #93a1a1;
-} // generic.traceback //
-.highlight .kc {
-  color: $red;
-} // keyword.constant //
-.highlight .kd {
-  color: $magenta;
-} // keyword.declaration //
-.highlight .kn {
-  color: $magenta;
-} // keyword.namespace //
-.highlight .kp {
-  color: $magenta;
-} // keyword.pseudo //
-.highlight .kr {
-  color: $blue;
-} // keyword.reserved //
-.highlight .kt {
-  color: $red;
-} // keyword.type //
-.highlight .ld {
-  color: #93a1a1;
-} // literal.date //
-.highlight .m {
-  color: $green;
-} // literal.number //
-.highlight .s {
-  color: $green;
-} // literal.string //
-.highlight .na {
-  color: $grey;
-} // name.attribute //
-.highlight .nb {
-  color: $orange;
-} // name.builtin //
-.highlight .nc {
-  color: $blue;
-} // name.class //
-.highlight .no {
-  color: $red;
-} // name.constant //
-.highlight .nd {
-  color: $blue;
-} // name.decorator //
-.highlight .ni {
-  color: $red;
-} // name.entity //
-.highlight .ne {
-  color: $red;
-} // name.exception //
-.highlight .nf {
-  color: $blue;
-} // name.function //
-.highlight .nl {
-  color: $grey;
-} // name.label //
-.highlight .nn {
-  color: #93a1a1;
-} // name.namespace //
-.highlight .nx {
-  color: $grey;
-} // name.other //
-.highlight .py {
-  color: #93a1a1;
-} // name.property //
-.highlight .nt {
-  color: $blue;
-} // name.tag //
-.highlight .nv {
-  color: $blue;
-} // name.variable //
-.highlight .ow {
-  color: $magenta;
-} // operator.word //
-.highlight .w {
-  color: #93a1a1;
-} // text.whitespace //
-.highlight .mf {
-  color: $green;
-} // literal.number.float //
-.highlight .mh {
-  color: $green;
-} // literal.number.hex //
-.highlight .mi {
-  color: $green;
-} // literal.number.integer //
-.highlight .mo {
-  color: $green;
-} // literal.number.oct //
-.highlight .sb {
-  color: #586e75;
-} // literal.string.backtick //
-.highlight .sc {
-  color: $green;
-} // literal.string.char //
-.highlight .sd {
-  color: #93a1a1;
-} // literal.string.doc //
-.highlight .s2 {
-  color: $green;
-} // literal.string.double //
-.highlight .se {
-  color: $red;
-} // literal.string.escape //
-.highlight .sh {
-  color: #93a1a1;
-} // literal.string.heredoc //
-.highlight .si {
-  color: $green;
-} // literal.string.interpol //
-.highlight .sx {
-  color: $green;
-} // literal.string.other //
-.highlight .sr {
-  color: $red;
-} // literal.string.regex //
-.highlight .s1 {
-  color: $green;
-} // literal.string.single //
-.highlight .ss {
-  color: $green;
-} // literal.string.symbol //
-.highlight .bp {
-  color: $blue;
-} // name.builtin.pseudo //
-.highlight .vc {
-  color: $blue;
-} // name.variable.class //
-.highlight .vg {
-  color: $blue;
-} // name.variable.global //
-.highlight .vi {
-  color: $blue;
-} // name.variable.instance //
-.highlight .il {
-  color: $green;
-} // literal.number.integer.long //
+// .highlight .c {
+//   color: #586e75;
+// } // comment //
+// .highlight .err {
+//   color: #93a1a1;
+// } // error //
+// .highlight .g {
+//   color: #93a1a1;
+// } // generic //
+// .highlight .k {
+//   color: $magenta;
+// } // keyword //
+// .highlight .l {
+//   color: #93a1a1;
+// } // literal //
+// .highlight .n {
+//   color: #93a1a1;
+// } // name //
+// .highlight .o {
+//   color: $magenta;
+// } // operator //
+// .highlight .x {
+//   color: $red;
+// } // other //
+// .highlight .p {
+//   color: #93a1a1;
+// } // punctuation //
+// .highlight .cm {
+//   color: #586e75;
+// } // comment.multiline //
+// .highlight .cp {
+//   color: $magenta;
+// } // comment.preproc //
+// .highlight .c1 {
+//   color: #586e75;
+// } // comment.single //
+// .highlight .cs {
+//   color: $magenta;
+// } // comment.special //
+// .highlight .gd {
+//   color: $green;
+// } // generic.deleted //
+// .highlight .ge {
+//   font-style: italic;
+//   color: #93a1a1;
+// } // generic.emph //
+// .highlight .gr {
+//   color: $red;
+// } // generic.error //
+// .highlight .gh {
+//   color: $red;
+// } // generic.heading //
+// .highlight .gi {
+//   color: $magenta;
+// } // generic.inserted //
+// .highlight .go {
+//   color: #93a1a1;
+// } // generic.output //
+// .highlight .gp {
+//   color: #93a1a1;
+// } // generic.prompt //
+// .highlight .gs {
+//   font-weight: bold;
+//   color: #93a1a1;
+// } // generic.strong //
+// .highlight .gu {
+//   color: $red;
+// } // generic.subheading //
+// .highlight .gt {
+//   color: #93a1a1;
+// } // generic.traceback //
+// .highlight .kc {
+//   color: $red;
+// } // keyword.constant //
+// .highlight .kd {
+//   color: $magenta;
+// } // keyword.declaration //
+// .highlight .kn {
+//   color: $magenta;
+// } // keyword.namespace //
+// .highlight .kp {
+//   color: $magenta;
+// } // keyword.pseudo //
+// .highlight .kr {
+//   color: $blue;
+// } // keyword.reserved //
+// .highlight .kt {
+//   color: $red;
+// } // keyword.type //
+// .highlight .ld {
+//   color: #93a1a1;
+// } // literal.date //
+// .highlight .m {
+//   color: $green;
+// } // literal.number //
+// .highlight .s {
+//   color: $green;
+// } // literal.string //
+// .highlight .na {
+//   color: $green;
+// } // name.attribute //
+// .highlight .nb {
+//   color: $orange;
+// } // name.builtin //
+// .highlight .nc {
+//   color: $blue;
+// } // name.class //
+// .highlight .no {
+//   color: $red;
+// } // name.constant //
+// .highlight .nd {
+//   color: $blue;
+// } // name.decorator //
+// .highlight .ni {
+//   color: $red;
+// } // name.entity //
+// .highlight .ne {
+//   color: $red;
+// } // name.exception //
+// .highlight .nf {
+//   color: $blue;
+// } // name.function //
+// .highlight .nl {
+//   color: $grey;
+// } // name.label //
+// .highlight .nn {
+//   color: #93a1a1;
+// } // name.namespace //
+// .highlight .nx {
+//   color: $grey;
+// } // name.other //
+// .highlight .py {
+//   color: #93a1a1;
+// } // name.property //
+// .highlight .nt {
+//   color: $blue;
+// } // name.tag //
+// .highlight .nv {
+//   color: $blue;
+// } // name.variable //
+// .highlight .ow {
+//   color: $magenta;
+// } // operator.word //
+// .highlight .w {
+//   color: #93a1a1;
+// } // text.whitespace //
+// .highlight .mf {
+//   color: $green;
+// } // literal.number.float //
+// .highlight .mh {
+//   color: $green;
+// } // literal.number.hex //
+// .highlight .mi {
+//   color: $green;
+// } // literal.number.integer //
+// .highlight .mo {
+//   color: $green;
+// } // literal.number.oct //
+// .highlight .sb {
+//   color: #586e75;
+// } // literal.string.backtick //
+// .highlight .sc {
+//   color: $green;
+// } // literal.string.char //
+// .highlight .sd {
+//   color: #93a1a1;
+// } // literal.string.doc //
+// .highlight .s2 {
+//   color: $green;
+// } // literal.string.double //
+// .highlight .se {
+//   color: $red;
+// } // literal.string.escape //
+// .highlight .sh {
+//   color: #93a1a1;
+// } // literal.string.heredoc //
+// .highlight .si {
+//   color: $green;
+// } // literal.string.interpol //
+// .highlight .sx {
+//   color: $green;
+// } // literal.string.other //
+// .highlight .sr {
+//   color: $red;
+// } // literal.string.regex //
+// .highlight .s1 {
+//   color: $green;
+// } // literal.string.single //
+// .highlight .ss {
+//   color: $green;
+// } // literal.string.symbol //
+// .highlight .bp {
+//   color: $blue;
+// } // name.builtin.pseudo //
+// .highlight .vc {
+//   color: $blue;
+// } // name.variable.class //
+// .highlight .vg {
+//   color: $blue;
+// } // name.variable.global //
+// .highlight .vi {
+//   color: $blue;
+// } // name.variable.instance //
+// .highlight .il {
+//   color: $green;
+// } // literal.number.integer.long //

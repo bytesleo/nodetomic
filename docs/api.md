@@ -1,6 +1,6 @@
 ### Flux
 
-** Routes-> Controlles -> Business -> Models **
+Routes-> Controllers -> Business -> Models
 
 ### Routes
 

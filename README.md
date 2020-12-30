@@ -16,7 +16,7 @@ yarn
 
 ### Setup
 
-[configure](https://kevoj.github.io/nodetomic/setup)
+[CONFIGURE](https://kevoj.github.io/nodetomic/setup)
 
 ### Scripts
 
@@ -38,4 +38,4 @@ yarn build
 yarn test
 ```
 
-[more](https://kevoj.github.io/nodetomic/scripts)
+[MORE](https://kevoj.github.io/nodetomic/scripts)

@@ -6,28 +6,30 @@ $blue: #61afef;
 $magenta: #c678dd;
 $cyan: #56b6c2;
 $grey: #abb2bf;
+$grey-2: #93a1a1;
+$grey-3: #586e75;
 
 code {
   color: $grey;
 }
 
 .highlight .c {
-  color: #586e75;
+  color: $grey-3;
 } // comment //
 .highlight .err {
-  color: #93a1a1;
+  color: $grey-2;
 } // error //
 .highlight .g {
-  color: #93a1a1;
+  color: $grey-2;
 } // generic //
 .highlight .k {
   color: $magenta;
 } // keyword //
 .highlight .l {
-  color: #93a1a1;
+  color: $grey-2;
 } // literal //
 .highlight .n {
-  color: #93a1a1;
+  color: $grey-2;
 } // name //
 .highlight .o {
   color: $magenta;
@@ -36,16 +38,16 @@ code {
   color: $red;
 } // other //
 .highlight .p {
-  color: #93a1a1;
+  color: $grey-2;
 } // punctuation //
 .highlight .cm {
-  color: #586e75;
+  color: $grey-3;
 } // comment.multiline //
 .highlight .cp {
   color: $magenta;
 } // comment.preproc //
 .highlight .c1 {
-  color: #586e75;
+  color: $grey-3;
 } // comment.single //
 .highlight .cs {
   color: $magenta;
@@ -55,7 +57,7 @@ code {
 } // generic.deleted //
 .highlight .ge {
   font-style: italic;
-  color: #93a1a1;
+  color: $grey-2;
 } // generic.emph //
 .highlight .gr {
   color: $red;
@@ -67,20 +69,20 @@ code {
   color: $magenta;
 } // generic.inserted //
 .highlight .go {
-  color: #93a1a1;
+  color: $grey-2;
 } // generic.output //
 .highlight .gp {
-  color: #93a1a1;
+  color: $grey-2;
 } // generic.prompt //
 .highlight .gs {
   font-weight: bold;
-  color: #93a1a1;
+  color: $grey-2;
 } // generic.strong //
 .highlight .gu {
   color: $red;
 } // generic.subheading //
 .highlight .gt {
-  color: #93a1a1;
+  color: $grey-2;
 } // generic.traceback //
 .highlight .kc {
   color: $red;
@@ -101,7 +103,7 @@ code {
   color: $red;
 } // keyword.type //
 .highlight .ld {
-  color: #93a1a1;
+  color: $grey-2;
 } // literal.date //
 .highlight .m {
   color: $green;
@@ -137,13 +139,13 @@ code {
   color: $grey;
 } // name.label //
 .highlight .nn {
-  color: #93a1a1;
+  color: $grey-2;
 } // name.namespace //
 .highlight .nx {
   color: $grey;
 } // name.other //
 .highlight .py {
-  color: #93a1a1;
+  color: $grey-2;
 } // name.property //
 .highlight .nt {
   color: $blue;
@@ -155,7 +157,7 @@ code {
   color: $magenta;
 } // operator.word //
 .highlight .w {
-  color: #93a1a1;
+  color: $grey-2;
 } // text.whitespace //
 .highlight .mf {
   color: $green;
@@ -170,13 +172,13 @@ code {
   color: $green;
 } // literal.number.oct //
 .highlight .sb {
-  color: #586e75;
+  color: $grey-3;
 } // literal.string.backtick //
 .highlight .sc {
   color: $green;
 } // literal.string.char //
 .highlight .sd {
-  color: #93a1a1;
+  color: $grey-2;
 } // literal.string.doc //
 .highlight .s2 {
   color: $green;
@@ -185,7 +187,7 @@ code {
   color: $red;
 } // literal.string.escape //
 .highlight .sh {
-  color: #93a1a1;
+  color: $grey-2;
 } // literal.string.heredoc //
 .highlight .si {
   color: $green;

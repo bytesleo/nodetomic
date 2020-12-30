@@ -1,3 +1,6 @@
+### __tests__/dogs.test.js
+
+```javascript
 import { create } from 'apisauce';
 
 const api = create({
@@ -19,3 +22,4 @@ describe('Dogs', () => {
     done();
   });
 });
+```

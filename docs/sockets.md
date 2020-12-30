@@ -1,3 +1,4 @@
+```javascript
 let socket = null;
 let io = null;
 
@@ -18,3 +19,4 @@ const on = () => {
 };
 
 export { socket, io };
+```

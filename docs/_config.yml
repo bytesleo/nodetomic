@@ -10,5 +10,6 @@ include:
   - setup.md
   - scripts.md
   - api.md
+  - swagger.md
   - aws.md
   - fcm.md

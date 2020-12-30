@@ -1,6 +1,11 @@
-code {
-  background-color: #282c34 !important;
-}
+$dark: #282c34;
+$red: #e06c75;
+$green: #98c379;
+$orange: #e5c07b;
+$blue: #61afef;
+$magenta: #c678dd;
+$cyan: #56b6c2;
+$grey: #abb2bf;
 
 .highlight .k {
   color: #c678dd !important;
@@ -31,7 +36,7 @@ code {
 }
 
 .highlight .nx {
-  color: #61AFEF !important;
+  color: #61afef !important;
 }
 
 .highlight .o {

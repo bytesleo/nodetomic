@@ -1,6 +1,9 @@
 title: Nodetomic
+description: Nodetomic documentation
+baseurl: "/nodetomic" # the subpath of your site, e.g. /blog
+url: "https://kevoj.github.io"
 remote_theme: pmarsceill/just-the-docs
-color_scheme: dark
+color_scheme: nil
 plugins:
   - jekyll-relative-links
   - jekyll-default-layout

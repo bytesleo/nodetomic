@@ -17,7 +17,7 @@ $grey: #abb2bf;
   color: #93a1a1;
 } // generic //
 .highlight .k {
-  color: #859900;
+  color: $magenta;
 } // keyword //
 .highlight .l {
   color: #93a1a1;
@@ -26,7 +26,7 @@ $grey: #abb2bf;
   color: #93a1a1;
 } // name //
 .highlight .o {
-  color: #859900;
+  color: $magenta;
 } // operator //
 .highlight .x {
   color: #cb4b16;
@@ -38,13 +38,13 @@ $grey: #abb2bf;
   color: #586e75;
 } // comment.multiline //
 .highlight .cp {
-  color: #859900;
+  color: $magenta;
 } // comment.preproc //
 .highlight .c1 {
   color: #586e75;
 } // comment.single //
 .highlight .cs {
-  color: #859900;
+  color: $magenta;
 } // comment.special //
 .highlight .gd {
   color: #2aa198;
@@ -60,7 +60,7 @@ $grey: #abb2bf;
   color: #cb4b16;
 } // generic.heading //
 .highlight .gi {
-  color: #859900;
+  color: $magenta;
 } // generic.inserted //
 .highlight .go {
   color: #93a1a1;
@@ -85,10 +85,10 @@ $grey: #abb2bf;
   color: #268bd2;
 } // keyword.declaration //
 .highlight .kn {
-  color: #859900;
+  color: $magenta;
 } // keyword.namespace //
 .highlight .kp {
-  color: #859900;
+  color: $magenta;
 } // keyword.pseudo //
 .highlight .kr {
   color: #268bd2;
@@ -148,7 +148,7 @@ $grey: #abb2bf;
   color: #268bd2;
 } // name.variable //
 .highlight .ow {
-  color: #859900;
+  color: $magenta;
 } // operator.word //
 .highlight .w {
   color: #93a1a1;

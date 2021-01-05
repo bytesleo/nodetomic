@@ -68,7 +68,7 @@ const session = async (id, data) => {
           ...data
         }),
         'EX',
-        TTL.one_month
+        TTL.quarter
       );
       return token;
     } else {
@@ -117,7 +117,7 @@ const check = async (token) => {
  */
 const renew = async (key) => {
   try {
-    await redis.expire(key, TTL.one_month);
+    await redis.expire(key, TTL.quarter);
   } catch (err) {
     console.log({ err });
     return null;

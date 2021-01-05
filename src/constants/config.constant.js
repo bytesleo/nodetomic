@@ -22,11 +22,15 @@ const URI_WS_REDIS = process.env.URI_WS_REDIS;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+// ttl (seconds)
 const TTL = {
-  one_day: 86400,
-  one_week: 604800,
-  one_month: 2592000,
-  one_year: 31536000
+  day: 86_400,
+  week: 604_800,
+  month: 2_592_000,
+  bimester: 5_184_000,
+  quarter: 7_776_000,
+  semester: 15_552_000,
+  year: 31_104_000
 };
 
 export {

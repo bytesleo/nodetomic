@@ -35,14 +35,14 @@ const sign = async (data) => {
 };
 
 /**
- * verify (JWT)
+ * decode (JWT)
  *
- * @param {*} data
+ * @param {*} token
  * @returns
  */
-const verify = async (data) => {
+const decode = async (token) => {
   try {
-    return await jsonwebtoken.verify(data, JWT_SECRET);
+    return await jsonwebtoken.decode(token, JWT_SECRET);
   } catch (err) {
     console.log({ err });
     return null;
@@ -52,7 +52,7 @@ const verify = async (data) => {
 /**
  * session (Redis)
  *
- * @param {*} id
+ * @param {*} userId
  * @param {*} data
  * @returns
  */
@@ -61,7 +61,15 @@ const session = async (id, data) => {
     const key = `${id}:${hash(8)}`;
     const token = await sign({ key, ...data });
     if (token) {
-      await redis.set(key, token, 'EX', TTL.one_month);
+      await redis.set(
+        key,
+        JSON.stringify({
+          key,
+          ...data
+        }),
+        'EX',
+        TTL.one_month
+      );
       return token;
     } else {
       throw 'The key could not be created';
@@ -80,12 +88,21 @@ const session = async (id, data) => {
  */
 const check = async (token) => {
   try {
-    const decode = await verify(token);
-    if ('key' in decode) {
-      const exists = await redis.get(decode.key);
-      return exists && token === exists ? decode : false;
+    const decoded = await decode(token);
+    if ('key' in decoded) {
+      let data = await redis.get(decoded.key);
+      if (data && data.includes('{')) {
+        // v2
+        data = JSON.parse(data);
+        return data && data.key === decoded.key ? { decoded } : null;
+      } else if (data) {
+        // v1
+        return decoded.key ? { decoded } : null;
+      } else {
+        return null;
+      }
     } else {
-      return false;
+      return null;
     }
   } catch (err) {
     console.log({ err });
@@ -98,11 +115,9 @@ const check = async (token) => {
  *
  * @param {*} key
  */
-const renew = async (key, type) => {
+const renew = async (key) => {
   try {
-    if (type === 'keep') {
-      await redis.expire(key, TTL.one_month);
-    }
+    await redis.expire(key, TTL.one_month);
   } catch (err) {
     console.log({ err });
     return null;
@@ -123,4 +138,4 @@ const destroy = async (key) => {
   }
 };
 
-export { session, check, destroy, sign, verify, hash, renew };
+export { session, check, destroy, sign, decode, hash, renew };

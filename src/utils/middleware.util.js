@@ -105,7 +105,7 @@ const mws = async (socket, [event], required, next) => {
   } catch (err) {
     console.log('socketError->', err.toString());
     // socket.emit("auth:error", { err: err.toString() });
-    return error(res, err);
+    throw err.toString();
   }
 };
 

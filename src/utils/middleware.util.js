@@ -22,7 +22,7 @@ const mw = (required) => {
           // Add Bearer to authorization Header
           req.headers.authorization = `Bearer ${token}`;
           // Verify Token in Redis, if exists, then return decode token { key, ...data, iat }
-          const { decoded } = await check(token);
+          const decoded = await check(token);
 
           // Validate permissions
           if (required) {
@@ -36,10 +36,8 @@ const mw = (required) => {
 
           // Renew
           await renew(decoded.key);
-
-          // Extract current id of user
-          let [id] = decoded.key.split(':');
-          req.user = { ...decoded, ...{ id } };
+          // Add to request
+          req.user = decoded;
 
           return next();
         } catch (errSession) {
@@ -76,7 +74,7 @@ const mws = async (socket, [event], required, next) => {
         if (!validator.isJWT(token)) throw 'Token is not valid';
 
         // Verify Token in Redis, if exists, then return decode token { key, iat }
-        const { decoded } = await check(token);
+        const decoded = await check(token);
 
         // Validate permissions
         if (event) {
@@ -90,10 +88,8 @@ const mws = async (socket, [event], required, next) => {
 
         // Renew
         await renew(decoded.key);
-
-        // Extract current id of user
-        let [id] = decoded.key.split(':');
-        socket.user = { ...decoded, ...{ id } };
+        // Add to request
+        socket.user = decoded;
 
         return next();
       } else {

@@ -22,15 +22,15 @@ const URI_WS_REDIS = process.env.URI_WS_REDIS;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// ttl (seconds)
-const TTL = {
-  day: 86_400,
-  week: 604_800,
-  month: 2_592_000,
-  bimester: 5_184_000,
-  quarter: 7_776_000,
-  semester: 15_552_000,
-  year: 31_104_000
+// (seconds, by default quarter)
+const REDIS_TTL = {
+  day: 86400,
+  week: 604800,
+  month: 2592000,
+  bimester: 5184000,
+  trimester: 7776000,
+  semester: 15552000,
+  year: 31104000
 };
 
 export {
@@ -44,5 +44,5 @@ export {
   URI_REDIS,
   URI_WS_REDIS,
   JWT_SECRET,
-  TTL
+  REDIS_TTL
 };

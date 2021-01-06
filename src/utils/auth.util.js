@@ -1,6 +1,7 @@
 import jsonwebtoken from 'jsonwebtoken';
+import moment from 'moment';
 // Constants
-import { JWT_SECRET, TTL } from '@/constants/config.constant';
+import { JWT_SECRET, REDIS_TTL } from '@/constants/config.constant';
 // Utils
 import { redis } from '@/libs/redis.lib';
 
@@ -61,15 +62,7 @@ const session = async (id, data) => {
     const key = `${id}:${hash(8)}`;
     const token = await sign({ key, ...data });
     if (token) {
-      await redis.set(
-        key,
-        JSON.stringify({
-          key,
-          ...data
-        }),
-        'EX',
-        TTL.quarter
-      );
+      await redis.set(key, moment().toISOString(), 'EX', REDIS_TTL.trimester);
       return token;
     } else {
       throw 'The key could not be created';
@@ -89,18 +82,10 @@ const session = async (id, data) => {
 const check = async (token) => {
   try {
     const decoded = await decode(token);
-    if ('key' in decoded) {
-      let data = await redis.get(decoded.key);
-      if (data && data.includes('{')) {
-        // v2
-        data = JSON.parse(data);
-        return data && data.key === decoded.key ? { decoded } : null;
-      } else if (data) {
-        // v1
-        return decoded.key ? { decoded } : null;
-      } else {
-        return null;
-      }
+    const data = await redis.get(decoded.key);
+    if (decoded?.key) {
+      const [id] = decoded.key.split(':');
+      return decoded?.key && data ? { ...decoded, id } : null;
     } else {
       return null;
     }
@@ -117,7 +102,7 @@ const check = async (token) => {
  */
 const renew = async (key) => {
   try {
-    await redis.expire(key, TTL.quarter);
+    await redis.expire(key, REDIS_TTL.trimester);
   } catch (err) {
     console.log({ err });
     return null;

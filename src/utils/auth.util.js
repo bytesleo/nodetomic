@@ -1,6 +1,7 @@
 import jsonwebtoken from 'jsonwebtoken';
+import moment from 'moment';
 // Constants
-import { JWT_SECRET, TTL } from '@/constants/config.constant';
+import { JWT_SECRET, REDIS_TTL } from '@/constants/config.constant';
 // Utils
 import { redis } from '@/libs/redis.lib';
 
@@ -35,14 +36,14 @@ const sign = async (data) => {
 };
 
 /**
- * verify (JWT)
+ * decode (JWT)
  *
- * @param {*} data
+ * @param {*} token
  * @returns
  */
-const verify = async (data) => {
+const decode = async (token) => {
   try {
-    return await jsonwebtoken.verify(data, JWT_SECRET);
+    return await jsonwebtoken.decode(token, JWT_SECRET);
   } catch (err) {
     console.log({ err });
     return null;
@@ -52,7 +53,7 @@ const verify = async (data) => {
 /**
  * session (Redis)
  *
- * @param {*} id
+ * @param {*} userId
  * @param {*} data
  * @returns
  */
@@ -61,7 +62,7 @@ const session = async (id, data) => {
     const key = `${id}:${hash(8)}`;
     const token = await sign({ key, ...data });
     if (token) {
-      await redis.set(key, token, 'EX', TTL.one_month);
+      await redis.set(key, moment().toISOString(), 'EX', REDIS_TTL.trimester);
       return token;
     } else {
       throw 'The key could not be created';
@@ -80,12 +81,13 @@ const session = async (id, data) => {
  */
 const check = async (token) => {
   try {
-    const decode = await verify(token);
-    if ('key' in decode) {
-      const exists = await redis.get(decode.key);
-      return exists && token === exists ? decode : false;
+    const decoded = await decode(token);
+    const data = await redis.get(decoded.key);
+    if (decoded?.key) {
+      const [id] = decoded.key.split(':');
+      return decoded?.key && data ? { ...decoded, id } : null;
     } else {
-      return false;
+      return null;
     }
   } catch (err) {
     console.log({ err });
@@ -98,11 +100,9 @@ const check = async (token) => {
  *
  * @param {*} key
  */
-const renew = async (key, type) => {
+const renew = async (key) => {
   try {
-    if (type === 'keep') {
-      await redis.expire(key, TTL.one_month);
-    }
+    await redis.expire(key, REDIS_TTL.trimester);
   } catch (err) {
     console.log({ err });
     return null;
@@ -123,4 +123,4 @@ const destroy = async (key) => {
   }
 };
 
-export { session, check, destroy, sign, verify, hash, renew };
+export { session, check, destroy, sign, decode, hash, renew };

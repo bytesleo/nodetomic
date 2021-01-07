@@ -22,24 +22,23 @@ const mw = (required) => {
           // Add Bearer to authorization Header
           req.headers.authorization = `Bearer ${token}`;
           // Verify Token in Redis, if exists, then return decode token { key, ...data, iat }
-          const session = await check(token);
+          const decoded = await check(token);
 
           // Validate permissions
           if (required) {
-            if ('permissions' in session) {
+            if ('permissions' in decoded) {
               const isAuthorized = required.filter((x) =>
-                session.permissions.includes(x)
+                decoded.permissions.includes(x)
               );
               if (isAuthorized.length === 0) return forbidden(res);
             }
           }
 
           // Renew
-          await renew(session.key, 'keep');
+          await renew(decoded.key);
+          // Add to request
+          req.user = decoded;
 
-          // Extract current id of user
-          let [id] = session.key.split(':');
-          req.user = { ...session, ...{ id } };
           return next();
         } catch (errSession) {
           return unauthorized(res);
@@ -75,21 +74,22 @@ const mws = async (socket, [event], required, next) => {
         if (!validator.isJWT(token)) throw 'Token is not valid';
 
         // Verify Token in Redis, if exists, then return decode token { key, iat }
-        const session = await check(token);
+        const decoded = await check(token);
 
         // Validate permissions
         if (event) {
-          if (required.length > 0 && 'permissions' in session) {
+          if (required.length > 0 && 'permissions' in decoded) {
             const isAuthorized = config.permissions.filter((x) =>
-              session.permissions.includes(x)
+              decoded.permissions.includes(x)
             );
             if (isAuthorized.length === 0) throw "Don't have permissions";
           }
         }
 
-        // Extract current id of user
-        let [id] = session.key.split(':');
-        socket.user = { ...session, ...{ id } };
+        // Renew
+        await renew(decoded.key);
+        // Add to request
+        socket.user = decoded;
 
         return next();
       } else {
@@ -101,7 +101,7 @@ const mws = async (socket, [event], required, next) => {
   } catch (err) {
     console.log('socketError->', err.toString());
     // socket.emit("auth:error", { err: err.toString() });
-    return next(new Error(err.toString()));
+    throw err.toString();
   }
 };
 

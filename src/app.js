@@ -42,13 +42,7 @@ const routes = async () => {
  * sockets
  */
 const sockets = async () => {
-  await ws([
-    // {
-    //   event: "example",
-    //   permissions: ["user"],
-    //   auth: true,
-    // },
-  ]);
+  await ws();
 };
 
 export { init };

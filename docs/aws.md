@@ -8,9 +8,9 @@ yarn add aws-sdk
 
 ```javascript
 import {
-  AWS_S3_ACCESS_KEY_ID,
-  AWS_S3_SECRET_ACCESS_KEY,
-  AWS_S3_REGION,
+  AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY,
+  AWS_REGION,
   AWS_PINPOINT_ID,
   MODE
 } from '@/constants/config.constant';
@@ -18,9 +18,9 @@ import {
 import { renderTemplate } from '../utils/layout.util';
 
 AWS.config.update({
-  accessKeyId: AWS_S3_ACCESS_KEY_ID,
-  secretAccessKey: AWS_S3_SECRET_ACCESS_KEY,
-  region: AWS_S3_REGION
+  accessKeyId: AWS_ACCESS_KEY_ID,
+  secretAccessKey: AWS_SECRET_ACCESS_KEY,
+  region: AWS_REGION
 });
 
 const aws_s3 = new AWS.S3();
@@ -122,7 +122,7 @@ const sendEmail = async (data) => {
       if (data.template)
         parts.HtmlPart = {
           Charset: 'UTF-8',
-          Data: renderTemplate(data.template, data.params)
+          Data: await renderTemplate(data.template, data.params)
         };
 
       const params = {

@@ -56,52 +56,32 @@ const mw = (required) => {
  * mws
  *
  * @param {*} socket
- * @param {*} event
- * @param {*} required
  * @param {*} next
  * @returns next()
  */
-const mws = async (socket, [event], required, next) => {
+const mws = async (socket, next) => {
   try {
-    // get config event
-    const config = required.find((x) => x.event === event);
+    const token = socket.handshake.query?.Authorization;
 
-    if (config?.auth) {
-      let token = socket.handshake.query?.Authorization;
+    if (token) {
+      // Is JWT format
+      if (!validator.isJWT(token)) throw 'Token is not valid';
 
-      if (token) {
-        // Is JWT format
-        if (!validator.isJWT(token)) throw 'Token is not valid';
+      // Verify Token in Redis, if exists, then return decode token { key, iat }
+      const decoded = await check(token);
 
-        // Verify Token in Redis, if exists, then return decode token { key, iat }
-        const decoded = await check(token);
+      // Renew
+      await renew(decoded.key);
+      // Add to request
+      socket.user = decoded;
 
-        // Validate permissions
-        if (event) {
-          if (required.length > 0 && 'permissions' in decoded) {
-            const isAuthorized = config.permissions.filter((x) =>
-              decoded.permissions.includes(x)
-            );
-            if (isAuthorized.length === 0) throw "Don't have permissions";
-          }
-        }
-
-        // Renew
-        await renew(decoded.key);
-        // Add to request
-        socket.user = decoded;
-
-        return next();
-      } else {
-        throw "Token don't exist";
-      }
+      return next();
     } else {
       return next();
     }
   } catch (err) {
-    console.log('socketError->', err.toString());
-    // socket.emit("auth:error", { err: err.toString() });
-    throw err.toString();
+    console.log('❕Socket: error->', err.toString());
+    return next(err);
   }
 };
 

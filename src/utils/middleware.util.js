@@ -72,8 +72,13 @@ const mws = async (socket, next) => {
 
       // Renew
       await renew(decoded.key);
+
+      // extract data
+      const data = { ...socket.handshake.query };
+      delete data.Authorization;
+
       // Add to request
-      socket.user = decoded;
+      socket.user = { ...decoded, data };
 
       return next();
     } else {

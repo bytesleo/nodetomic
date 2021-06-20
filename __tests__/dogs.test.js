@@ -5,17 +5,15 @@ const api = create({
 });
 
 describe('Dogs', () => {
-  it('all dogs - /dogs/all', async (done) => {
+  test('all dogs - /dogs/all', async () => {
     const { status, data } = await api.get('/dogs/all');
     expect(200).toBe(status);
     expect([]).toEqual(data);
-    done();
   });
 
-  it('all dogs - logged - /dogs/all/logged', async (done) => {
+  test('all dogs - logged - /dogs/all/logged', async () => {
     const { status, data } = await api.get('/dogs/all/logged');
     expect(401).toBe(status);
-    expect('unauthorized').toEqual(data);
-    done();
+    expect('unauthorized').toEqual(data?.result);
   });
 });

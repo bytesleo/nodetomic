@@ -7,6 +7,7 @@ import { mws } from '@/utils/middleware.util';
 
 const io = require('socket.io')(WS);
 io.adapter(redisAdapter(URI_WS_REDIS));
+// Settings
 // io.eio.pingTimeout = 120000; // 2 minutes
 // io.eio.pingInterval = 5000; // 5 seconds
 
@@ -20,8 +21,9 @@ const connect = () =>
       // disconnect
       socket.on('disconnect', (reason) => {
         console.log(`❕Socket: client disconnected! (${socket.id}) ${reason}`);
+        // Remove user socket from db
+        // UserBusiness.removeSocket(socket);
       });
-      // socket.set("pingTimeout", 63000);
       // autoload
       autoload.sockets(socket, io);
       resolve();
@@ -32,6 +34,8 @@ const connect = () =>
       socket.onAny(async (event) => {
         console.log(`Socket: event: ${event} (${socket.id})`);
       });
+      // Save user socket from db
+      // UserBusiness.setSocket(socket);
       return await mws(socket, next);
     });
   });

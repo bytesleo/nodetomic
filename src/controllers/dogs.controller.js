@@ -11,4 +11,14 @@ const all = async (req, res) => {
   }
 };
 
-export default { all };
+const allLogged = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const data = await DogBusiness.allLogged(userId);
+    success(res, data);
+  } catch (err) {
+    error(res, err);
+  }
+};
+
+export default { all, allLogged };

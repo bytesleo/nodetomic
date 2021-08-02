@@ -6,6 +6,7 @@ const routes = () => {
       .map(paths)
       .map((x) => x.default);
   } catch (error) {
+    console.error({ error });
     return [];
   }
 };
@@ -15,6 +16,7 @@ const models = () => {
     const paths = require.context('../models', true, /^((?!!).)*.js$/);
     return paths.keys().map(paths);
   } catch (error) {
+    console.error({ error });
     return [];
   }
 };
@@ -27,6 +29,7 @@ const sockets = (socket, io) => {
       .map(paths)
       .map((x) => x.default(socket, io));
   } catch (error) {
+    console.error({ error });
     return [];
   }
 };
@@ -39,6 +42,7 @@ const seeds = () => {
       .map(paths)
       .map((x) => x.default());
   } catch (error) {
+    console.error({ error });
     return [];
   }
 };

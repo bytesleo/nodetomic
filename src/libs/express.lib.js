@@ -69,7 +69,7 @@ const create = async (routes) => {
   if (routes.length > 0) app.use(routes);
 
   // swagger
-  const swaggerUrl = await swagger(app);
+  const swaggerConfig = await swagger(app);
 
   // handlebars
   app.engine('.hbs', handlebars({ extname: '.hbs', defaultLayout: false }));
@@ -81,7 +81,7 @@ const create = async (routes) => {
     res.render('index', {
       name: PROJECT_NAME,
       PROJECT_MODE: PROJECT_MODE,
-      docs: PROJECT_MODE === 'development' ? swaggerUrl : false
+      docs: swaggerConfig.exposeSwaggerUI ? swaggerConfig.swaggerUIPath : false
     })
   );
   // Static

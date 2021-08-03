@@ -2,28 +2,34 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-const NAME = process.env.NAME;
+export const PROJECT_MODE = process.env.PROJECT_MODE;
 
-const MODE = process.env.MODE;
+export const PROJECT_NAME = process.env.PROJECT_NAME;
 
-const HOST = process.env.HOST;
+export const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME;
 
-const PORT = process.env.PORT;
+export const SERVER_PORT = process.env.SERVER_PORT;
 
-const WS = process.env.WS;
+export const SERVER_WEBSOCKET_PORT = process.env.SERVER_WEBSOCKET_PORT;
 
-const DOMAIN = process.env.DOMAIN;
+export const SWAGGER_HOSTNAME = process.env.SWAGGER_HOSTNAME;
 
-const URI_DB = process.env.URI_DB;
+export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
-const URI_REDIS = process.env.URI_REDIS;
+export const MONGODB_HOSTNAME = process.env.MONGODB_HOSTNAME;
 
-const URI_WS_REDIS = process.env.URI_WS_REDIS;
+export const MONGODB_DATABASE = process.env.MONGODB_DATABASE;
 
-const JWT_SECRET = process.env.JWT_SECRET;
+export const MONGODB_USERNAME = process.env.MONGODB_USERNAME;
 
-// (seconds, by default quarter)
-const REDIS_TTL = {
+export const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD;
+
+export const REDIS_HOSTNAME = process.env.REDIS_HOSTNAME;
+
+export const REDIS_PASSWORD = process.env.REDIS_PASSWORD;
+
+// (seconds, by default trimester)
+export const REDIS_TTL = {
   day: 86400,
   week: 604800,
   month: 2592000,
@@ -31,18 +37,4 @@ const REDIS_TTL = {
   trimester: 7776000,
   semester: 15552000,
   year: 31104000
-};
-
-export {
-  NAME,
-  MODE,
-  HOST,
-  PORT,
-  WS,
-  DOMAIN,
-  URI_DB,
-  URI_REDIS,
-  URI_WS_REDIS,
-  JWT_SECRET,
-  REDIS_TTL
 };

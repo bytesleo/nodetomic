@@ -30,20 +30,6 @@ const router = express.Router();
  *     "race":"Beagle",
  *     "user_id": "6108db02bb8ea9e69b2984a2",
  *     "created_at":"2021-06-22T15:23:34.521Z"
- *   },
- *   {
- *     "_id":"60d200765299bd36806d899a",
- *     "name":"Zeus",
- *     "race":"Chihuahua",
- *     "user_id": "6108db02bb8ea9e69b2984a2",
- *     "created_at":"2021-06-22T15:23:34.522Z"
- *   },
- *   {
- *     "_id":"60d200765299bd36806d899b",
- *     "name":"Poseidon",
- *     "race":"Bulldog",
- *     "user_id": "6108db02bb8ea9e69b2984a2",
- *     "created_at":"2021-06-22T15:23:34.523Z"
  *   }
  * ]
  */

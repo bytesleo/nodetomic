@@ -9,13 +9,15 @@ import autoload from '@/utils/autoload.util';
  * init
  */
 const init = async () => {
-  // 1. connect to DB (You can enable seeds)
+  // Connect to DB (You can enable seeds)
   await db();
-  // 2. connect to Redis
+  // Connect to Redis
   await redis();
-  // 3. create Express app and add routes
+  // Add cronjobs
+  await cronjobs();
+  // Create Express app and add routes
   await routes();
-  // 4. connect Sockets (idle to connections...)
+  // Connect Sockets (idle to connections...)
   sockets();
 };
 
@@ -28,6 +30,14 @@ const db = async () => {
   await autoload.models();
   // Load Seeds
   await autoload.seeds();
+};
+
+/**
+ * cronjobs
+ */
+const cronjobs = async () => {
+  // Load cronjobs
+  await autoload.cronjobs();
 };
 
 /**

@@ -7,7 +7,8 @@
   "scripts": {
     "start": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
-    "test": "jest"
+    "test": "jest",
+    "serve": "yarn build && node dist/app.js"
   },
   "keywords": [
     "nodetomic",
@@ -143,8 +144,9 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error",
-      "no-var": "warn"
+      "prettier/prettier": "warn",
+      "no-var": "warn",
+      "no-unused-vars": "warn"
     }
   }
 }

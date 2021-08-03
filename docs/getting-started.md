@@ -41,6 +41,6 @@ Once the .env is configured, you can start the project
 yarn start
 ```
 
-![image](https://user-images.githubusercontent.com/2652129/128098731-c2ec7045-8b69-49b8-a8aa-515539b5651e.png)
+![image](https://user-images.githubusercontent.com/2652129/128099115-68acdd08-22f4-41c8-b2f2-35d320db9a14.png)
 
 

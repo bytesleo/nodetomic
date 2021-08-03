@@ -47,4 +47,17 @@ const seeds = () => {
   }
 };
 
-export default { models, routes, sockets, seeds };
+const cronjobs = () => {
+  try {
+    const paths = require.context('../cronjobs', true, /^((?!!).)*.js$/);
+    return paths
+      .keys()
+      .map(paths)
+      .map((x) => x.default);
+  } catch (error) {
+    console.error({ error });
+    return [];
+  }
+};
+
+export default { models, routes, sockets, seeds, cronjobs };

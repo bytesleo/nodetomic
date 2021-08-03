@@ -17,11 +17,11 @@ import { app } from '@/libs/express.lib';
       console.log(
         `-------\n${chalk.black.bgGreenBright(
           `🚀 Server is ready!`
-        )}\nPROJECT_MODE: ${chalk.blueBright(
+        )}\nmode: ${chalk.blueBright(
           `${PROJECT_MODE}`
-        )}\nurl: ${chalk.blueBright(
+        )}\nserver: ${chalk.blueBright(
           `http://${SERVER_HOSTNAME}:${SERVER_PORT}`
-        )}\nsockets: ${chalk.blueBright(
+        )}\nsocket: ${chalk.blueBright(
           `http://${SERVER_HOSTNAME}:${SERVER_WEBSOCKET_PORT}`
         )}\n-------`
       );

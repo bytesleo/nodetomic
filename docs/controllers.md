@@ -1,5 +1,5 @@
 ---
-title: Controllers
+title: 2. Controllers
 parent: API
 has_children: false
 nav_order: 2

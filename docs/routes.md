@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: 1. Routes
 parent: API
 has_children: false
 nav_order: 1

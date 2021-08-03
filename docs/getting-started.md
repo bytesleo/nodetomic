@@ -40,3 +40,7 @@ Once the .env is configured, you can start the project
 ```bash
 yarn start
 ```
+
+![image](https://user-images.githubusercontent.com/2652129/128098532-5f35b953-8729-49e9-a993-ffc97f1e7a84.png)
+
+

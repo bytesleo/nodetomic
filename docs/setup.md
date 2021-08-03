@@ -1,3 +1,9 @@
+---
+title: Setup
+has_children: false
+nav_order: 2
+---
+
 # Setup
 
 Create .env file

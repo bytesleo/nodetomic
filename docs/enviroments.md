@@ -1,12 +1,13 @@
 ---
-title: Setup
+title: Environments
+parent: Getting Started
 has_children: false
-nav_order: 2
+nav_order: 1
 ---
 
-# Setup
+# Environments
 
-Create .env file
+The first step is to create the **.env** file in the root of the project. Below is an example of the different environments:
 
 #### Development
 

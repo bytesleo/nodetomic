@@ -2,7 +2,7 @@
 
 Create .env file
 
-#### Dev
+#### Development
 
 ```bash
 PROJECT_MODE=development
@@ -21,7 +21,7 @@ REDIS_HOSTNAME=127.0.0.1:6379
 REDIS_PASSWORD=
 ```
 
-#### Test
+#### Testing
 
 ```bash
 PROJECT_MODE=testing
@@ -40,7 +40,7 @@ REDIS_HOSTNAME=127.0.0.1:6379
 REDIS_PASSWORD=CDEkW6jfPQ3rKSyK
 ```
 
-#### Prod
+#### Production
 
 ```bash
 PROJECT_MODE=production

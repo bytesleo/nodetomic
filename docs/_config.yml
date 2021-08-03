@@ -10,13 +10,6 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-include:
-  - setup.md
-  - scripts.md
-  - api.md
-  - swagger.md
-  - aws.md
-  - fcm.md
 aux_links:
   'Nodetomic on GitHub':
     - '//github.com/kevoj/nodetomic'

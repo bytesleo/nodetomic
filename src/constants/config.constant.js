@@ -14,6 +14,8 @@ export const SERVER_WEBSOCKET_PORT = process.env.SERVER_WEBSOCKET_PORT;
 
 export const SWAGGER_HOSTNAME = process.env.SWAGGER_HOSTNAME;
 
+export const SWAGGER_API_DOCS = process.env.SWAGGER_API_DOCS;
+
 export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 export const MONGODB_HOSTNAME = process.env.MONGODB_HOSTNAME;

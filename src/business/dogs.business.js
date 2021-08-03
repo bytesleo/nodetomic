@@ -1,16 +1,17 @@
 // Models
 import DogsModel from '@/models/dogs.model';
 
-const all = async () => {
+const getAll = async () => {
+  // Database query
   return await DogsModel.find({});
 };
 
-const allLogged = async (userId) => {
-  console.log(`Current userId: ${userId}`);
-  return await DogsModel.find({});
+const getAllLogged = async (user_id) => {
+  // Database query
+  return await DogsModel.find({ user_id });
 };
 
 export default {
-  all,
-  allLogged
+  getAll,
+  getAllLogged
 };

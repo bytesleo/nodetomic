@@ -12,7 +12,7 @@ import morgan from 'morgan';
 import fileUpload from 'express-fileupload';
 import requestIp from 'request-ip';
 // Constants
-import { NAME, MODE } from '@/constants/config.constant';
+import { PROJECT_NAME, PROJECT_MODE } from '@/constants/config.constant';
 // Libs
 import { create as swagger } from '@/libs/swagger.lib';
 
@@ -79,9 +79,9 @@ const create = async (routes) => {
   // index
   app.get('/', (_, res) =>
     res.render('index', {
-      name: NAME,
-      mode: MODE,
-      docs: MODE === 'development' ? swaggerUrl : false
+      name: PROJECT_NAME,
+      PROJECT_MODE: PROJECT_MODE,
+      docs: PROJECT_MODE === 'development' ? swaggerUrl : false
     })
   );
   // Static

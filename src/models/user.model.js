@@ -46,15 +46,11 @@ const schema = new Schema({
     type: String,
     default: null
   },
-  enabled: {
-    type: Boolean,
-    default: true
-  },
-  updated_at: {
+  created_at: {
     type: Date,
     default: Date.now
   },
-  created_at: {
+  updated_at: {
     type: Date,
     default: Date.now
   },
@@ -83,6 +79,14 @@ schema.pre('save', async function () {
 });
 
 schema.pre('updateOne', async function () {
+  const user = this._update;
+  if (user.password) {
+    const hash = await bcrypt.hashSync(user.password, 10);
+    this._update.password = hash;
+  }
+});
+
+schema.pre('updateMany', async function () {
   const user = this._update;
   if (user.password) {
     const hash = await bcrypt.hashSync(user.password, 10);

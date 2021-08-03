@@ -1,14 +1,24 @@
 import redisAdapter from 'socket.io-redis';
 // Constants
-import { WS, URI_WS_REDIS } from '@/constants/config.constant';
+import {
+  SERVER_WEBSOCKET_PORT,
+  REDIS_HOSTNAME,
+  REDIS_PASSWORD
+} from '@/constants/config.constant';
 // Business
 // import UserBusiness from '@/business/users.business';
 // Utils
 import autoload from '@/utils/autoload.util';
 import { mws } from '@/utils/middleware.util';
 
-const io = require('socket.io')(WS);
-io.adapter(redisAdapter(URI_WS_REDIS));
+const io = require('socket.io')(SERVER_WEBSOCKET_PORT);
+io.adapter(
+  redisAdapter(
+    REDIS_PASSWORD
+      ? `redis://:${REDIS_PASSWORD}@${REDIS_HOSTNAME}/1`
+      : `redis://${REDIS_HOSTNAME}/1`
+  )
+);
 // io.eio.pingTimeout = 120000; // 2 minutes
 // io.eio.pingInterval = 5000; // 5 seconds
 

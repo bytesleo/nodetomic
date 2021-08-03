@@ -50,7 +50,7 @@ const config = (env, argv) => {
       ]
     },
     stats: {
-      warnings: false
+      warnings: true
     }
   };
 };

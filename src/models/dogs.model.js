@@ -10,6 +10,10 @@ const schema = new Schema({
     type: String,
     default: null
   },
+  user_id: {
+    type: Schema.Types.ObjectId,
+    default: null
+  },
   created_at: {
     type: Date,
     default: Date.now

@@ -23,7 +23,7 @@ const login = async (username, password) => {
     .lean();
 
   if (user) {
-    if (!user.enabled)
+    if (user.deleted_at)
       throw {
         code: 'ERROR_LOGIN_1',
         message: `The user has been banned`

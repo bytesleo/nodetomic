@@ -12,7 +12,7 @@ import {
   AWS_SECRET_ACCESS_KEY,
   AWS_REGION,
   AWS_PINPOINT_ID,
-  MODE
+  PROJECT_MODE
 } from '@/constants/config.constant';
 
 import { renderTemplate } from '../utils/layout.util';
@@ -44,7 +44,7 @@ const s3Upload = async (config = {}, files) => {
             .upload({
               Bucket: config.bucket,
               Body: file.data,
-              Key: `${MODE}${config.path}${file.md5}_${file.name}`
+              Key: `${PROJECT_MODE}${config.path}${file.md5}_${file.name}`
             })
             .promise()
         );
@@ -108,7 +108,7 @@ const sendEmail = async (data) => {
   try {
     console.log('📧 email', data);
 
-    if (MODE !== 'development') {
+    if (PROJECT_MODE !== 'development') {
       const parts = {};
 
       // simple email
@@ -163,7 +163,7 @@ const sendSMS = async (data) => {
   try {
     console.log('📱 sms', data);
 
-    if (MODE !== 'development') {
+    if (PROJECT_MODE !== 'development') {
       const params = {
         ApplicationId: AWS_PINPOINT_ID,
         MessageRequest: {

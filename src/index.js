@@ -1,6 +1,11 @@
 import chalk from 'chalk';
 // Constants
-import { MODE, HOST, PORT, WS } from '@/constants/config.constant';
+import {
+  PROJECT_MODE,
+  SERVER_HOSTNAME,
+  SERVER_PORT,
+  SERVER_WEBSOCKET_PORT
+} from '@/constants/config.constant';
 // App
 import { init } from '@/app';
 import { app } from '@/libs/express.lib';
@@ -8,13 +13,17 @@ import { app } from '@/libs/express.lib';
 (async () => {
   try {
     await init();
-    app.listen(PORT, () => {
+    app.listen(SERVER_PORT, () => {
       console.log(
         `-------\n${chalk.black.bgGreenBright(
           `🚀 Server is ready!`
-        )}\nmode: ${chalk.blueBright(`${MODE}`)}\nurl: ${chalk.blueBright(
-          `http://${HOST}:${PORT}`
-        )}\nsockets: ${chalk.blueBright(`http://${HOST}:${WS}`)}\n-------`
+        )}\nPROJECT_MODE: ${chalk.blueBright(
+          `${PROJECT_MODE}`
+        )}\nurl: ${chalk.blueBright(
+          `http://${SERVER_HOSTNAME}:${SERVER_PORT}`
+        )}\nsockets: ${chalk.blueBright(
+          `http://${SERVER_HOSTNAME}:${SERVER_WEBSOCKET_PORT}`
+        )}\n-------`
       );
     });
   } catch (error) {

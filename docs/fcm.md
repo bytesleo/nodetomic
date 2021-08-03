@@ -10,7 +10,7 @@ yarn add fcm-push
 // Libs
 import FCM from 'fcm-push';
 // Constants
-import { FCM_SERVER_KEY, MODE } from '@/constants/config.constant';
+import { FCM_SERVER_KEY, PROJECT_MODE } from '@/constants/config.constant';
 // Business
 import UsersBusiness from '@/business/users.business';
 
@@ -33,7 +33,7 @@ const sendPushNotification = async (body) => {
 
     console.log('🔔 Push notification', message);
 
-    if (MODE !== 'development') {
+    if (PROJECT_MODE !== 'development') {
       let result = await fcm.send(message);
 
       console.log({ result });
@@ -80,7 +80,7 @@ export { sendPushNotification };
 
 ```javascript
 const fcmClearGarbage = async (userId, tokens) => {
-  await UserModel.findOneAndUpdate(
+  await UserPROJECT_MODEl.findOneAndUpdate(
     {
       _id: mongoose.Types.ObjectId(userId)
     },
@@ -95,7 +95,7 @@ const fcmClearGarbage = async (userId, tokens) => {
 
 ```javascript
 const fcmUpdate = async (userId, token) => {
-  return await UserModel.updateOne(
+  return await UserPROJECT_MODEl.updateOne(
     {
       enabled: true,
       _id: mongoose.Types.ObjectId(userId)

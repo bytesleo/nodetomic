@@ -15,26 +15,29 @@ const router = express.Router();
  * @example response - 200 - success response example
  * [
  *   {
+ *     "_id":"60d200765299bd36806d8999",
  *     "name":"Sparky",
  *     "race":"Beagle",
- *     "_id":"60d200765299bd36806d8999",
+ *     "user_id": "6108db02bb8ea9e69b2984a2",
  *     "created_at":"2021-06-22T15:23:34.521Z"
  *   },
  *   {
+ *     "_id":"60d200765299bd36806d899a",
  *     "name":"Zeus",
  *     "race":"Chihuahua",
- *     "_id":"60d200765299bd36806d899a",
+ *     "user_id": "6108db02bb8ea9e69b2984a2",
  *     "created_at":"2021-06-22T15:23:34.522Z"
  *   },
  *   {
+ *     "_id":"60d200765299bd36806d899b",
  *     "name":"Poseidon",
  *     "race":"Bulldog",
- *     "_id":"60d200765299bd36806d899b",
+ *     "user_id": "6108db02bb8ea9e69b2984a2",
  *     "created_at":"2021-06-22T15:23:34.523Z"
  *   }
  * ]
  */
-router.get('/api/dogs/all', DogsController.all);
+router.get('/api/dogs/all', DogsController.getAll);
 
 /**
  * GET /api/dogs/all/logged
@@ -48,25 +51,28 @@ router.get('/api/dogs/all', DogsController.all);
  * @example response - 200 - success response example
  * [
  *   {
+ *     "_id":"60d200765299bd36806d8999",
  *     "name":"Sparky",
  *     "race":"Beagle",
- *     "_id":"60d200765299bd36806d8999",
+ *     "user_id": "6108db02bb8ea9e69b2984a2",
  *     "created_at":"2021-06-22T15:23:34.521Z"
  *   },
  *   {
+ *     "_id":"60d200765299bd36806d899a",
  *     "name":"Zeus",
  *     "race":"Chihuahua",
- *     "_id":"60d200765299bd36806d899a",
+ *     "user_id": "6108db02bb8ea9e69b2984a2",
  *     "created_at":"2021-06-22T15:23:34.522Z"
  *   },
  *   {
+ *     "_id":"60d200765299bd36806d899b",
  *     "name":"Poseidon",
  *     "race":"Bulldog",
- *     "_id":"60d200765299bd36806d899b",
+ *     "user_id": "6108db02bb8ea9e69b2984a2",
  *     "created_at":"2021-06-22T15:23:34.523Z"
  *   }
  * ]
  */
-router.get('/api/dogs/all/logged', mw(['user']), DogsController.allLogged);
+router.get('/api/dogs/all/logged', mw(['user']), DogsController.getAllLogged);
 
 export default router;

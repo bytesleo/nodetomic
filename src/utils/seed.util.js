@@ -1,31 +1,17 @@
 /**
- * many
+ * insert
  *
  * @param {*} model
  * @param {*} data
  */
-const many = async (model, data) => {
+export const insert = async (model, data) => {
   try {
-    await model.insertMany(data);
+    // If you don't need mongoose hooks
+    // await model.insertMany(data);
+    // For being able to use mongoose hooks
+    for (const x of data) await model.create(x);
     console.log('->Seed Success: ', model.collection.collectionName);
   } catch (error) {
     console.error(new Error(error));
   }
 };
-
-/**
- * once
- *
- * @param {*} model
- * @param {*} data
- */
-const once = async (model, data) => {
-  try {
-    await model.create(data);
-    console.log('->Seed Success: ', model.collection.collectionName);
-  } catch (error) {
-    console.error(new Error(error));
-  }
-};
-
-export { many, once };

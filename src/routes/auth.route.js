@@ -10,13 +10,12 @@ const router = express.Router();
  * POST /api/auth/login
  * @summary Login user
  * @tags Auth
- * @param {string} username.form.required - email or phone
- * @param {string} password.form.required - user's password
+ * @param {string} request.body.required - email or phone
  * @return {object} 200 - Success
  * @return {object} 5XX - Error
  * @example request - example payload
  * {
- *   "username":"user@app.com",
+ *   "username":"user@example.com",
  *   "password":"123"
  * }
  * @example response - 200 - success response example

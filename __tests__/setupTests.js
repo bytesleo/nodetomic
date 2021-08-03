@@ -1,3 +1,3 @@
-import { HOST, PORT } from '@/constants/config.constant';
+import { SERVER_HOSTNAME, SERVER_PORT } from '@/constants/config.constant';
 
-global.host = `http://${HOST}:${PORT}/api`;
+global.host = `http://${SERVER_HOSTNAME}:${SERVER_PORT}`;

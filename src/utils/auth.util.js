@@ -1,7 +1,7 @@
 import jsonwebtoken from 'jsonwebtoken';
 import moment from 'moment';
 // Constants
-import { JWT_SECRET, REDIS_TTL } from '@/constants/config.constant';
+import { JWT_SECRET_KEY, REDIS_TTL } from '@/constants/config.constant';
 // Utils
 import { redis } from '@/libs/redis.lib';
 
@@ -28,7 +28,7 @@ const hash = (length) => {
  */
 const sign = async (data) => {
   try {
-    return await jsonwebtoken.sign(data, JWT_SECRET);
+    return await jsonwebtoken.sign(data, JWT_SECRET_KEY);
   } catch (err) {
     console.log({ err });
     return null;
@@ -43,7 +43,7 @@ const sign = async (data) => {
  */
 const decode = async (token) => {
   try {
-    return await jsonwebtoken.decode(token, JWT_SECRET);
+    return await jsonwebtoken.decode(token, JWT_SECRET_KEY);
   } catch (err) {
     console.log({ err });
     return null;

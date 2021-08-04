@@ -7,4 +7,27 @@ nav_order: 2
 
 # Folder structure
 
-![image](https://user-images.githubusercontent.com/2652129/128101316-2bbd5685-4b84-41df-97ef-f52830c50404.png)
+<pre> 
+/src/
+|-- models
+|   `-- dogs.model
+|-- business
+|   `-- dogs.business
+|-- controllers
+|   `-- dogs.controller
+|-- routes
+|   `-- dogs.route
+|-- sockets
+|   `-- dogs.socket
+|-- seeds
+|   `-- dogs.seed
+|-- cronjobs
+|   `-- dogs.cronjob
+|-- utils
+|   `-- helper.util
+|-- layouts
+|   `-- login.layout
+|-- libs
+|   `-- express.lib
+`-- app
+</pre>

@@ -51,7 +51,7 @@ Minimalist boilerplate for **nodejs**, designed for vertical and horizontal scal
 
 ![nodetomic_7](https://user-images.githubusercontent.com/2652129/128117968-de8d3d3f-25af-4b5f-bfab-cac9d9e9dac9.png)
 
-## api-docs
+## API docs
 
 ![image](https://user-images.githubusercontent.com/2652129/128109277-2a7bed2d-f6e7-4fe8-8e67-215fbf60f186.png)
 

@@ -16,8 +16,19 @@ const login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    if (validator.isEmpty(username)) throw 'The email cannot be empty';
-    if (validator.isEmpty(password)) throw 'The password cannot be empty';
+    if (validator.isEmpty(username)) {
+      throw {
+        code: 'ERROR_AUTH_1',
+        message: 'The username cannot be empty'
+      };
+    }
+
+    if (validator.isEmpty(password)) {
+      throw {
+        code: 'ERROR_AUTH_2',
+        message: 'The password cannot be empty'
+      };
+    }
 
     const user = await AuthBusiness.login(username, password);
     if (user) {
@@ -43,8 +54,19 @@ const register = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    if (validator.isEmpty(username)) throw 'The username cannot be empty';
-    if (validator.isEmpty(password)) throw 'The password cannot be empty';
+    if (validator.isEmpty(username)) {
+      throw {
+        code: 'ERROR_AUTH_1',
+        message: 'The username cannot be empty'
+      };
+    }
+
+    if (validator.isEmpty(password)) {
+      throw {
+        code: 'ERROR_AUTH_2',
+        message: 'The password cannot be empty'
+      };
+    }
 
     const data = await AuthBusiness.register(username, password);
     let created = '_id' in data || 'n' in data;
@@ -65,8 +87,12 @@ const recover = async (req, res) => {
   try {
     const { username } = req.body;
 
-    if (validator.isEmpty(username)) throw 'The email cannot be empty';
-    // if (!validator.isEmail(username)) throw "The email is not valid";
+    if (validator.isEmpty(username)) {
+      throw {
+        code: 'ERROR_AUTH_1',
+        message: 'The username cannot be empty'
+      };
+    }
 
     const data = await AuthBusiness.recover(username);
     return success(res, data);
@@ -84,15 +110,24 @@ const recover = async (req, res) => {
  */
 const me = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const user_id = req.user.id;
 
-    if (validator.isEmpty(userId)) throw 'The userId cannot be empty';
-    if (!validator.isMongoId(userId)) {
-      throw 'Invalid auth userId...';
+    if (validator.isEmpty(user_id)) {
+      throw {
+        code: 'ERROR_AUTH_3',
+        message: 'The User id cannot be empty'
+      };
     }
 
-    if (userId) {
-      let data = await AuthBusiness.me(userId);
+    if (!validator.isMongoId(user_id)) {
+      throw {
+        code: 'ERROR_AUTH_4',
+        message: 'Invalid auth User id...'
+      };
+    }
+
+    if (user_id) {
+      let data = await AuthBusiness.me(user_id);
       return data ? success(res, data) : unauthorized(res);
     } else {
       return unauthorized(res);
@@ -113,8 +148,19 @@ const verify = async (req, res) => {
   try {
     const { username, code } = req.body;
 
-    if (validator.isEmpty(username)) throw 'The phone cannot be empty';
-    if (validator.isEmpty(code)) throw 'The code cannot be empty';
+    if (validator.isEmpty(username)) {
+      throw {
+        code: 'ERROR_AUTH_1',
+        message: 'The username cannot be empty'
+      };
+    }
+
+    if (validator.isEmpty(code)) {
+      throw {
+        code: 'ERROR_AUTH_5',
+        message: 'The code cannot be empty'
+      };
+    }
 
     const user = await AuthBusiness.verify(username, code);
     if (user) {

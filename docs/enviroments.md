@@ -6,7 +6,7 @@ nav_order: 5
 
 # Environments
 
-The first step is to create the **.env** file in the root of the project. Below is an example of the different environments:
+Create or replace **.env** file in the root of the project:
 
 #### Development
 

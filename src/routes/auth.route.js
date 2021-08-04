@@ -26,7 +26,7 @@ const router = express.Router();
  * {
  *   "err": {
  *       "code": "ERROR_AUTH_1",
- *       "message": "The email cannot be empty"
+ *       "message": "The username cannot be empty"
  *   }
  * }
  * @example response - 5XX - ERROR_AUTH_2
@@ -88,7 +88,7 @@ router.post('/api/auth/login', AuthController.login);
  * {
  *   "err": {
  *       "code": "ERROR_AUTH_1",
- *       "message": "The email cannot be empty"
+ *       "message": "The username cannot be empty"
  *   }
  * }
  * @example response - 5XX - ERROR_AUTH_2
@@ -130,7 +130,7 @@ router.post('/api/auth/register', AuthController.register);
  * {
  *   "err": {
  *       "code": "ERROR_AUTH_1",
- *       "message": "The email cannot be empty"
+ *       "message": "The username cannot be empty"
  *   }
  * }
  * @example response - 5XX - ERROR_RECOVER_1
@@ -148,7 +148,7 @@ router.post('/api/auth/recover', AuthController.recover);
 
 /**
  * GET /api/auth/me
- * @summary Get current
+ * @summary Get info of current logged in User
  * @tags Auth
  * @security JWT
  * @return {object} 200 - Success
@@ -179,7 +179,7 @@ router.get('/api/auth/me', mw(['user']), AuthController.me);
  * {
  *   "err": {
  *       "code": "ERROR_AUTH_1",
- *       "message": "The email cannot be empty"
+ *       "message": "The username cannot be empty"
  *   }
  * }
  * @example response - 5XX - ERROR_AUTH_5

@@ -80,7 +80,7 @@ const create = async (routes) => {
   app.get('/', (_, res) =>
     res.render('index', {
       name: PROJECT_NAME,
-      PROJECT_MODE: PROJECT_MODE,
+      mode: PROJECT_MODE,
       docs: swaggerConfig.exposeSwaggerUI ? swaggerConfig.swaggerUIPath : false
     })
   );

@@ -1,41 +1,8 @@
 # nodetomic
 
-### Install
+[Contribution guidelines for this project](docs/index.md)
 
-```bash
-git clone https://github.com/kevoj/nodetomic
-```
 
-```bash
-cd nodetomic
-```
+## Installation
 
-```bash
-yarn
-```
-
-### Setup
-
-[CONFIGURE](https://kevoj.github.io/nodetomic/setup)
-
-### Scripts
-
-#### start
-
-```bash
-yarn start
-```
-
-#### build
-
-```bash
-yarn build
-```
-
-#### test
-
-```bash
-yarn test
-```
-
-[MORE](https://kevoj.github.io/nodetomic/scripts)
+[CONFIGURE](https://kevoj.github.io/nodetomic/getting-started/installation.html)

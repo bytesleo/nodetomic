@@ -8,7 +8,7 @@ nav_order: 7
 
 Create or replace **.env** file in the root of the project:
 
-#### Development
+### Development
 
 ```bash
 PROJECT_MODE=development
@@ -29,7 +29,7 @@ REDIS_PORT=6379
 REDIS_PASSWORD=
 ```
 
-#### Testing
+### Testing
 
 ```bash
 PROJECT_MODE=testing
@@ -50,7 +50,7 @@ REDIS_PORT=6379
 REDIS_PASSWORD=CDEkW6jfPQ3rKSyK
 ```
 
-#### Production
+### Production
 
 ```bash
 PROJECT_MODE=production

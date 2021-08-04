@@ -23,7 +23,7 @@ yarn
 
 Then, you will need to create a **.env** file in the root of the project, you can check the [guide here](https://kevoj.github.io/nodetomic/environments)
 
-#### Example .env file:
+### Example .env file:
 
 ```bash
 PROJECT_MODE=development

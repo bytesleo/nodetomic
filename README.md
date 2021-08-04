@@ -1,8 +1,10 @@
 # nodetomic
 
-[Contribution guidelines for this project](docs/index.md)
+Minimalist boilerplate: node + express + mongodb + jwt + redis 6 + webpack 5 + babel 7 + socket 4 + swagger 3 + eslint + jest.
 
+### Getting Started
 
-## Installation
+[Installation](https://kevoj.github.io/nodetomic/getting-started/installation.html)
+### Docs
 
-[CONFIGURE](https://kevoj.github.io/nodetomic/getting-started/installation.html)
+[Installation](https://kevoj.github.io/nodetomic)

@@ -1,6 +1,6 @@
 ---
 title: AWS
-parent: Libs
+parent: Custom libs
 nav_order: 1
 ---
 

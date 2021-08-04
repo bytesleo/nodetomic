@@ -1,7 +1,7 @@
 ---
-title: Core
+title: Custom libs
 has_children: true
 nav_order: 5
 ---
 
-# Core
+# Custom libs

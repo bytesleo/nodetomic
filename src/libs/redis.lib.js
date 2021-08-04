@@ -7,13 +7,14 @@ import {
 } from '@/constants/config.constant';
 
 let redis;
+const PORT = require('net').isIP(REDIS_HOSTNAME) ? `:${REDIS_PORT}` : '';
 
 const connect = () =>
   new Promise((resolve, reject) => {
     const r = new Redis(
       REDIS_PASSWORD
-        ? `redis://:${REDIS_PASSWORD}@${REDIS_HOSTNAME}:${REDIS_PORT}/0`
-        : `redis://${REDIS_HOSTNAME}:${REDIS_PORT}/0`
+        ? `redis://:${REDIS_PASSWORD}@${REDIS_HOSTNAME}${PORT}/0`
+        : `redis://${REDIS_HOSTNAME}${PORT}/0`
     );
 
     r.on('connect', function () {

@@ -6,7 +6,7 @@ nav_order: 8
 
 # Scripts
 
-#### start
+### start
 
 Start the project in development mode with the .env file that is in the root
 
@@ -14,7 +14,7 @@ Start the project in development mode with the .env file that is in the root
 yarn start
 ```
 
-#### test
+### test
 
 Run the unit tests hosted on **tests**
 
@@ -22,7 +22,7 @@ Run the unit tests hosted on **tests**
 yarn test
 ```
 
-#### build
+### build
 
 Compile the project with the .env file that is in the root, its output is in dist/app.js
 

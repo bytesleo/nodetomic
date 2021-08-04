@@ -1,3 +1,13 @@
+---
+title: Seeds
+parent: Advance Guide
+has_children: false
+nav_order: 2
+---
+
+# Seeds
+
+```javascript
 // Models
 import DogsModel from '@/models/dogs.model';
 // Utils
@@ -22,3 +32,4 @@ const data = [
 ];
 
 export default async () => await insert(DogsModel, data);
+```

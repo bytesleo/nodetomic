@@ -1,3 +1,13 @@
+---
+title: Sockets
+parent: Advance Guide
+has_children: false
+nav_order: 1
+---
+
+# Sockets
+
+```javascript
 // Vars
 let socket = null;
 let io = null;
@@ -17,3 +27,4 @@ const on = () => {
 };
 
 export { socket, io };
+```

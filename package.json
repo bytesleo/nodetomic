@@ -44,7 +44,7 @@
     "express-easy-helper": "^2.5.1",
     "express-fileupload": "^1.2.1",
     "express-handlebars": "^5.3.2",
-    "express-jsdoc-swagger": "^1.6.2",
+    "express-jsdoc-swagger": "^1.6.3",
     "express-rate-limit": "^5.3.0",
     "helmet": "^4.6.0",
     "ioredis": "^4.27.7",

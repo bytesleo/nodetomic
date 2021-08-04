@@ -1,8 +1,7 @@
 ---
 title: Environments
-parent: Getting Started
 has_children: false
-nav_order: 1
+nav_order: 5
 ---
 
 # Environments

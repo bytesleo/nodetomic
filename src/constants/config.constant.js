@@ -20,6 +20,8 @@ export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 export const MONGODB_HOSTNAME = process.env.MONGODB_HOSTNAME;
 
+export const MONGODB_PORT = process.env.MONGODB_PORT;
+
 export const MONGODB_DATABASE = process.env.MONGODB_DATABASE;
 
 export const MONGODB_USERNAME = process.env.MONGODB_USERNAME;
@@ -27,6 +29,8 @@ export const MONGODB_USERNAME = process.env.MONGODB_USERNAME;
 export const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD;
 
 export const REDIS_HOSTNAME = process.env.REDIS_HOSTNAME;
+
+export const REDIS_PORT = process.env.REDIS_PORT;
 
 export const REDIS_PASSWORD = process.env.REDIS_PASSWORD;
 

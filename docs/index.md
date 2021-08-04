@@ -58,7 +58,3 @@ Minimalist boilerplate for **nodejs**, designed for vertical and horizontal scal
 ## Installation
 
 [Guide](https://kevoj.github.io/nodetomic/getting-started/installation.html)
-
-## Docs
-
-[Guide](https://kevoj.github.io/nodetomic)

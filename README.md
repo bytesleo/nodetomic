@@ -4,7 +4,8 @@ Minimalist boilerplate: node + express + mongodb + jwt + redis 6 + webpack 5 + b
 
 ### Getting Started
 
-[Installation](https://kevoj.github.io/nodetomic/getting-started/installation.html)
-### Docs
+[INSTALLATION](https://kevoj.github.io/nodetomic/getting-started/installation.html)
 
-[Installation](https://kevoj.github.io/nodetomic)
+[SCRIPTS](https://kevoj.github.io/nodetomic/scripts)
+
+[DOCS](https://kevoj.github.io/nodetomic)

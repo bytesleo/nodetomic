@@ -141,7 +141,7 @@ const recover = async (username) => {
         phone: username
       }
     ],
-    enabled: true
+    deleted_at: null
   }).lean();
 
   if (user) {
@@ -185,8 +185,8 @@ const recover = async (username) => {
  * @param {*} userId
  * @returns {object}
  */
-const me = async (userId) => {
-  return await UserModel.findOne({ _id: userId, enabled: true })
+const me = async (user_id) => {
+  return await UserModel.findOne({ _id: user_id, deleted_at: null })
     .select('phone email name last_name created_at')
     .lean();
 };
@@ -209,7 +209,7 @@ const verify = async (username, code) => {
       }
     ],
     code_verification: code,
-    enabled: true
+    deleted_at: null
   }).lean();
 
   if (user) {

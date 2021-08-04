@@ -105,8 +105,8 @@ const fcmClearGarbage = async (userId, tokens) => {
 const fcmUpdate = async (userId, token) => {
   return await UserPROJECT_MODEl.updateOne(
     {
-      enabled: true,
-      _id: mongoose.Types.ObjectId(userId)
+      _id: mongoose.Types.ObjectId(userId),
+      deleted_at: null      
     },
     {
       $addToSet: {

@@ -7,6 +7,14 @@ nav_order: 1
 
 # Installation
 
+## Requirements
+
+- [Nodejs](https://nodejs.org) >= **6.x.x** (Recommended last version)
+- [MongoDB](https://www.mongodb.com)  >= **3.x.x**
+- [Redis](https://redis.io)  >= **3.x.x** (Recommended last version)
+
+## Clone repository
+
 ```bash
 git clone https://github.com/kevoj/nodetomic
 cd nodetomic
@@ -40,7 +48,6 @@ Once the .env is configured, you can start the project
 yarn start
 ```
 
-To see more scrips you can check the [guide here](https://kevoj.github.io/nodetomic/scripts)
-
-
 ![image](https://user-images.githubusercontent.com/2652129/128099115-68acdd08-22f4-41c8-b2f2-35d320db9a14.png)
+
+To see more scrips you can check the [guide here](https://kevoj.github.io/nodetomic/scripts)

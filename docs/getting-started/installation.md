@@ -21,7 +21,7 @@ cd nodetomic
 yarn
 ```
 
-Then, you will need to create a **.env** file in the root of the project, you can check the [guide here](https://kevoj.github.io/nodetomic/enviroments)
+Then, you will need to create a **.env** file in the root of the project, you can check the [guide here](https://kevoj.github.io/nodetomic/environments)
 
 #### Example .env file:
 
@@ -50,4 +50,4 @@ yarn start
 
 ![image](https://user-images.githubusercontent.com/2652129/128099115-68acdd08-22f4-41c8-b2f2-35d320db9a14.png)
 
-To see more scrips you can check the [guide here](https://kevoj.github.io/nodetomic/scripts)
+To see more scripts you can check the [guide here](https://kevoj.github.io/nodetomic/scripts)

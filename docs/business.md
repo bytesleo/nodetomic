@@ -1,8 +1,8 @@
 ---
-title: 3. Business
-parent: API
+title: Business
+parent: Basic Guide
 has_children: false
-nav_order: 3
+nav_order: 2
 ---
 
 # Business

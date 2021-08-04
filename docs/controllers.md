@@ -1,8 +1,8 @@
 ---
-title: 2. Controllers
-parent: API
+title: Controllers
+parent: Basic Guide
 has_children: false
-nav_order: 2
+nav_order: 3
 ---
 
 # Controllers

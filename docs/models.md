@@ -1,8 +1,8 @@
 ---
-title: 4. Models
-parent: API
+title: Models
+parent: Basic Guide
 has_children: false
-nav_order: 4
+nav_order: 1
 ---
 
 # Models

@@ -1,8 +1,8 @@
 ---
-title: 1. Routes
-parent: API
+title: Routes
+parent: Basic Guide
 has_children: false
-nav_order: 1
+nav_order: 4
 ---
 
 # Routes

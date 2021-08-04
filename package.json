@@ -112,7 +112,7 @@
     "endOfLine": "auto"
   },
   "jest": {
-    "verbose": false,
+    "verbose": true,
     "testEnvironment": "node",
     "testTimeout": 30000,
     "setupFilesAfterEnv": [

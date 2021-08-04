@@ -18,3 +18,12 @@ cron.schedule('07 */6 * * *', async () => {
   await DogsBusiness.getAll();
 });
 ```
+
+# Tips
+
+```javascript
+// Run script only on specific PM2 instance
+if (process.env.NODE_APP_INSTANCE === '0') {
+  console.log('hello world');
+}
+```

@@ -3,6 +3,7 @@ import redisAdapter from 'socket.io-redis';
 import {
   SERVER_WEBSOCKET_PORT,
   REDIS_HOSTNAME,
+  REDIS_PORT,
   REDIS_PASSWORD
 } from '@/constants/config.constant';
 // Business
@@ -15,8 +16,8 @@ const io = require('socket.io')(SERVER_WEBSOCKET_PORT);
 io.adapter(
   redisAdapter(
     REDIS_PASSWORD
-      ? `redis://:${REDIS_PASSWORD}@${REDIS_HOSTNAME}/1`
-      : `redis://${REDIS_HOSTNAME}/1`
+      ? `redis://:${REDIS_PASSWORD}@${REDIS_HOSTNAME}:${REDIS_PORT}/1`
+      : `redis://${REDIS_HOSTNAME}:${REDIS_PORT}/1`
   )
 );
 // io.eio.pingTimeout = 120000; // 2 minutes

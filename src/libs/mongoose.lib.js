@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 // Constants
 import {
   MONGODB_HOSTNAME,
+  MONGODB_PORT,
   MONGODB_DATABASE,
   MONGODB_USERNAME,
   MONGODB_PASSWORD,
@@ -17,8 +18,8 @@ const connect = () =>
   new Promise((resolve, reject) => {
     mongoose.connect(
       MONGODB_USERNAME && MONGODB_PASSWORD
-        ? `mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOSTNAME}/${MONGODB_DATABASE}`
-        : `mongodb://${MONGODB_HOSTNAME}/${MONGODB_DATABASE}`,
+        ? `mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOSTNAME}:${MONGODB_PORT}/${MONGODB_DATABASE}`
+        : `mongodb://${MONGODB_HOSTNAME}:${MONGODB_PORT}/${MONGODB_DATABASE}`,
       {
         useCreateIndex: true,
         useNewUrlParser: true,

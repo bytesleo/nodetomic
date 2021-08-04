@@ -13,11 +13,13 @@ import autoload from '@/utils/autoload.util';
 import { mws } from '@/utils/middleware.util';
 
 const io = require('socket.io')(SERVER_WEBSOCKET_PORT);
+const PORT = require('net').isIP(REDIS_HOSTNAME) ? `:${REDIS_PORT}` : '';
+
 io.adapter(
   redisAdapter(
     REDIS_PASSWORD
-      ? `redis://:${REDIS_PASSWORD}@${REDIS_HOSTNAME}:${REDIS_PORT}/1`
-      : `redis://${REDIS_HOSTNAME}:${REDIS_PORT}/1`
+      ? `redis://:${REDIS_PASSWORD}@${REDIS_HOSTNAME}${PORT}/1`
+      : `redis://${REDIS_HOSTNAME}${PORT}/1`
   )
 );
 // io.eio.pingTimeout = 120000; // 2 minutes

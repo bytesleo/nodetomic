@@ -9,9 +9,9 @@ nav_order: 1
 
 ## Requirements
 
-- [Nodejs](https://nodejs.org) >= **6.x.x** (Recommended last version)
-- [MongoDB](https://www.mongodb.com)  >= **3.x.x**
-- [Redis](https://redis.io)  >= **3.x.x** (Recommended last version)
+- [Nodejs](https://nodejs.org) latest (minimum version 6.x.x)
+- [MongoDB](https://www.mongodb.com) latest (minimum version 3.x.x)
+- [Redis](https://redis.io)  >= latest (minimum version 3.x.x)
 
 ## Clone repository
 

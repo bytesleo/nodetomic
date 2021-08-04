@@ -1,4 +1,11 @@
-### Install
+---
+title: FCM
+parent: Libs
+has_children: false
+nav_order: 2
+---
+
+### FCM
 
 ```bash
 yarn add fcm-push

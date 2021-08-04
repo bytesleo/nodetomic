@@ -1,3 +1,16 @@
+---
+title: Unit tests
+has_children: false
+nav_order: 6
+---
+
+# Unit tests
+
+To create unit tests, you must create a file with the extension **test.js** inside __test__ folder.
+
+__test_/dogs.test.js
+
+```javascript
 // Libs
 import { create } from 'apisauce';
 
@@ -18,3 +31,4 @@ describe('Dogs', () => {
     expect('unauthorized').toEqual(data?.result);
   });
 });
+```

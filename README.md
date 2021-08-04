@@ -15,6 +15,8 @@ Minimalist boilerplate for **nodejs**, designed for vertical and horizontal scal
 - Prettier
 - Jest
 
+## Scalability
+
 ### Starting point
 
 ![nodetomic_1](https://user-images.githubusercontent.com/2652129/128117943-ba569149-8f3c-4252-9231-9e16936167a2.png)
@@ -43,15 +45,14 @@ Minimalist boilerplate for **nodejs**, designed for vertical and horizontal scal
 
 ![nodetomic_7](https://user-images.githubusercontent.com/2652129/128117968-de8d3d3f-25af-4b5f-bfab-cac9d9e9dac9.png)
 
-
-### Preview api-docs
+## api-docs
 
 ![image](https://user-images.githubusercontent.com/2652129/128109277-2a7bed2d-f6e7-4fe8-8e67-215fbf60f186.png)
 
-### Installation
+## Installation
 
 [Guide](https://kevoj.github.io/nodetomic/getting-started/installation.html)
 
-### Docs
+## Docs
 
 [Guide](https://kevoj.github.io/nodetomic)

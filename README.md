@@ -15,6 +15,68 @@ Minimalist boilerplate for **nodejs**, designed for vertical and horizontal scal
 - Prettier
 - Jest
 
+## Installation
+
+```bash
+git clone https://github.com/kevoj/nodetomic
+cd nodetomic
+yarn
+```
+
+Then, you will need to create a .env file in the root of the project
+
+```bash
+PROJECT_MODE=development
+PROJECT_NAME=example-name
+SERVER_HOSTNAME=localhost
+SERVER_PORT=8000
+SERVER_WEBSOCKET_PORT=8001
+SWAGGER_HOSTNAME=localhost
+SWAGGER_API_DOCS=true
+JWT_SECRET_KEY=shhhh
+MONGODB_HOSTNAME=127.0.0.1
+MONGODB_PORT=27017
+MONGODB_DATABASE=example-dev
+MONGODB_USERNAME=
+MONGODB_PASSWORD=
+REDIS_HOSTNAME=127.0.0.1
+REDIS_PORT=6379
+REDIS_PASSWORD=
+```
+## Scripts
+
+### start
+
+Start the project in development mode with the .env file that is in the root
+
+```bash
+yarn start
+```
+
+### test
+
+Run the unit tests
+
+```bash
+yarn test
+```
+
+### build
+
+Compile the project
+
+```bash
+yarn build
+```
+
+## Docs
+
+[Guide](https://kevoj.github.io/nodetomic)
+
+## API docs
+
+![image](https://user-images.githubusercontent.com/2652129/128109277-2a7bed2d-f6e7-4fe8-8e67-215fbf60f186.png)
+
 ## Scalability
 
 ### Starting point
@@ -44,15 +106,3 @@ Minimalist boilerplate for **nodejs**, designed for vertical and horizontal scal
 ### Conclusion
 
 ![nodetomic_7](https://user-images.githubusercontent.com/2652129/128117968-de8d3d3f-25af-4b5f-bfab-cac9d9e9dac9.png)
-
-## API docs
-
-![image](https://user-images.githubusercontent.com/2652129/128109277-2a7bed2d-f6e7-4fe8-8e67-215fbf60f186.png)
-
-## Installation
-
-[Guide](https://kevoj.github.io/nodetomic/getting-started/installation.html)
-
-## Docs
-
-[Guide](https://kevoj.github.io/nodetomic)

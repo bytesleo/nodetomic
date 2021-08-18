@@ -47,7 +47,7 @@
     "express-jsdoc-swagger": "^1.6.4",
     "express-rate-limit": "^5.3.0",
     "helmet": "^4.6.0",
-    "ioredis": "^4.27.7",
+    "ioredis": "^4.27.8",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "moment": "^2.29.1",
